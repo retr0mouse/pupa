@@ -1,3 +1,5 @@
+package com.health;
+
 import com.codahale.metrics.health.HealthCheck;
 
 public class TemplateHealthCheck extends HealthCheck {

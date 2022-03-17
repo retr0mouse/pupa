@@ -1,6 +1,8 @@
+package com.api;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Saying {
+public class Saying {   // a representation class
     private long id;
 
     private String content;

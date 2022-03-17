@@ -1,4 +1,7 @@
+package com.database;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Database {
     final static String url = "jdbc:sqlite:C:/Users/Daniil/Documents/Code/cards-project/server/";
@@ -38,13 +41,32 @@ public class Database {
         }
     }
 
+    public static String showtable(String fileName, String table) {
+        try (Connection conn = DriverManager.getConnection(url + fileName);
+             Statement stmt = conn.createStatement()) {
+             ResultSet result = stmt.executeQuery(String.format("SELECT * FROM %s", table));
+             return returnRow(new String[]{"id", "name", "capacity"}, result).toString();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
+    private static ArrayList<String> returnRow(String[] columns, ResultSet rs) throws SQLException {
+        ArrayList<String> rows = new ArrayList<>();
+        while (rs.next()) {
+            for (String column: columns) {
+                rows.add(rs.getString(column));
+            }
+        }
+        return rows;
+    }
+
     public static void main(String[] args) {
-        createNewDatabase("test.db");
-        createNewTable("test.db");
-        executeQuery("test.db",
-                """
-                INSERT INTO warehouses (name, capacity) VALUES ("abobus", 50);
-                """
-        );
+//        createNewDatabase(args[0]);
+//        createNewTable(args[0]);
+//        executeQuery(args[0], args[1]);
+//        showtable(args[0], args[1]);
     }
 }

@@ -1,3 +1,8 @@
+package com.application;
+
+import com.config.HelloWorldConfiguration;
+import com.health.TemplateHealthCheck;
+import com.resources.HelloWorldResource;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -21,7 +26,8 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration> 
     public void run(HelloWorldConfiguration configuration, Environment environment) {
         final HelloWorldResource resource = new HelloWorldResource(
                 configuration.getTemplate(),
-                configuration.getDefaultName()
+                configuration.getDefaultName(),
+                configuration.getDatabase()
         );
         final TemplateHealthCheck healthCheck =
                 new TemplateHealthCheck(configuration.getTemplate());
