@@ -1,3 +1,4 @@
 template: Hello, %s!
 defaultName: Stranger
-database: test.db
+filename: test.db
+table: warehouses

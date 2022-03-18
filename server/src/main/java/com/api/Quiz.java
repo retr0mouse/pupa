@@ -4,16 +4,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
 
-public class Data {
+public class Quiz {
     private long id;
-    private ArrayList<String> content;
+    private String title;
 
-    public Data() {
+    public Quiz() {
     }
 
-    public Data(long id, ArrayList<String> content) {
+    public Quiz(long id, String title) {
         this.id = id;
-        this.content = content;
+        this.title = title;
     }
 
     @JsonProperty
@@ -22,7 +22,7 @@ public class Data {
     }
 
     @JsonProperty
-    public ArrayList<String> getContent() {
-        return content;
+    public String getTitle() {
+        return title;
     }
 }

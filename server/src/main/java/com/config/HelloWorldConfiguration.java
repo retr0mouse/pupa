@@ -9,10 +9,13 @@ public class HelloWorldConfiguration extends Configuration {
     private String template;
 
     @NotEmpty
-    private String defaultName = "Stranger";
+    private String defaultName;
 
     @NotEmpty
-    private String database;
+    private String filename;
+
+    @NotEmpty
+    private String table;
 
     @JsonProperty   // allows Jackson to serialize and deserialize the properties
     public String getTemplate() {
@@ -20,10 +23,20 @@ public class HelloWorldConfiguration extends Configuration {
     }
 
     @JsonProperty
-    public String getDatabase() { return database; }
+    public String getFilename() { return filename; }
 
     @JsonProperty
-    public void setDatabase(String database) { this.database = database; }
+    public String getTable() {
+        return table;
+    }
+
+    @JsonProperty
+    public void setTable(String table) {
+        this.table = table;
+    }
+
+    @JsonProperty
+    public void setFilename(String filename) { this.filename = filename; }
 
     @JsonProperty
     public void setTemplate(String template) {
