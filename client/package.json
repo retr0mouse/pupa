@@ -13,10 +13,12 @@
   "dependencies": {
     "parcel": "^2.3.2",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "styled-components": "^5.3.3"
   },
   "devDependencies": {
     "@types/react": "^17.0.39",
-    "@types/react-dom": "^17.0.13"
+    "@types/react-dom": "^17.0.13",
+    "@types/styled-components": "^5.1.24"
   }
 }
