@@ -2,6 +2,7 @@ import React, { useEffect, useState, ReactElement } from "react";
 import { QuizAPI } from "./apis/QuizAPI";
 import { QuizCreationBox } from "./components/QuizCreationBox";
 import { Quizzes } from "./components/Quizzes";
+import { Message } from "./components/Message";
 
 export default function App() {
     const [quizzes, setQuizzes] = useState([]) as any;
@@ -26,10 +27,13 @@ export default function App() {
         <div>
             <QuizCreationBox 
                 onTyped={(event) => setQuery(event.target.value)}
-                onClicked={() => createQuiz(query)}
+                onClicked={() => query.length > 0 ? createQuiz(query) : null}
             />
             <Quizzes quizzes={quizzes}/>
-            <p>{message}</p>
+            <Message 
+                message={message}
+            />
+
         </div>
     );
 
@@ -37,7 +41,7 @@ export default function App() {
         try {
             await QuizAPI.addQuiz(name);
         } catch (error) {
-            setMessage("👎");
+            setMessage(error + "👎");
             return;
         }
         setMessage("👍");
