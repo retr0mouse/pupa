@@ -1,9 +1,11 @@
 import React, { ReactElement } from "react";
 import styled from "styled-components";
 
+
 interface Props {
     onTyped(query: any): void;
     onClicked(event: any): void;
+    link: string;
 }
 
 const InputBox = styled.div`
@@ -17,6 +19,11 @@ const Button = styled.button`
 
 const TextField = styled.input`
     font-size: 40px;
+`;
+
+const Link = styled.a`
+    text-decoration: none;
+    color: black;
 `;
 
 export function QuizCreationBox(props: Props): ReactElement {

@@ -3,6 +3,8 @@ import { QuizAPI } from "./apis/QuizAPI";
 import { QuizCreationBox } from "./components/QuizCreationBox";
 import { Quizzes } from "./components/Quizzes";
 import { Message } from "./components/Message";
+import { Navigation } from "./components/Navigation";
+import { Main } from "./components/Main";
 
 export default function App() {
     const [quizzes, setQuizzes] = useState([]) as any;
@@ -25,12 +27,15 @@ export default function App() {
 
     return (
         <div>
+            <Navigation/>
             <QuizCreationBox 
                 onTyped={(event) => setQuery(event.target.value)}
-                onClicked={() => query.length > 0 ? createQuiz(query) : null}
+                onClicked={() => query ? createQuiz(query) : null}
+                link={query ? "/quizzes" : "/"}
             />
-            <Quizzes quizzes={quizzes}/>
-            <Message 
+            <Main quizzes={quizzes}/>
+            {console.log(query)}
+            <Message
                 message={message}
             />
 
