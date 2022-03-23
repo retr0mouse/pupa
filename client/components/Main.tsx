@@ -1,18 +1,13 @@
-import { NavLink, Routes, Route } from "react-router-dom";
 import React from "react";
+import { Route, Routes } from "react-router-dom";
+import { Home } from "./Home";
 import { QuizzesPage } from "./QuizzesPage";
-import App from "../App";
-import { Quizzes } from "./Quizzes";
 
-interface Props {
-    quizzes: string[];
-}
-
-export function Main(props: Props) {
+export function Main() {
     return(
         <Routes>
-            {/* <Route path="/" element={}></Route> */}
-            <Route path="/quizzes" element={<Quizzes quizzes={props.quizzes}/>}></Route>
+            <Route path="/" element={<Home/>}></Route>
+            <Route path="/quizzes" element={<QuizzesPage/>}></Route>
         </Routes>
     );
 }

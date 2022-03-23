@@ -18,7 +18,7 @@ public class MarkRightAnswer {
     private Long id;
     private String text;
     private String picture;
-    private boolean right;
+    private boolean is_right;
     private Long mark_right_ex_id;
 
     public MarkRightAnswer() {
@@ -36,8 +36,8 @@ public class MarkRightAnswer {
         this.picture = picture;
     }
 
-    public void setRight(boolean right) {
-        this.right = right;
+    public void setIs_right(boolean is_right) {
+        this.is_right = is_right;
     }
 
     public void setMark_right_ex_id(Long mark_right_ex_id) {
@@ -56,8 +56,8 @@ public class MarkRightAnswer {
         return picture;
     }
 
-    public boolean isRight() {
-        return right;
+    public boolean isIs_right() {
+        return is_right;
     }
 
     public Long getMark_right_ex_id() {
@@ -68,14 +68,14 @@ public class MarkRightAnswer {
         this.id = id;
         this.text = text;
         this.picture = picture;
-        this.right = right;
+        this.is_right = right;
         this.mark_right_ex_id = mark_right_ex_id;
     }
 
     public MarkRightAnswer(String text, String picture, boolean right, Long mark_right_ex_id) {
         this.text = text;
         this.picture = picture;
-        this.right = right;
+        this.is_right = right;
         this.mark_right_ex_id = mark_right_ex_id;
     }
 }

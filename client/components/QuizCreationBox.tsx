@@ -21,11 +21,6 @@ const TextField = styled.input`
     font-size: 40px;
 `;
 
-const Link = styled.a`
-    text-decoration: none;
-    color: black;
-`;
-
 export function QuizCreationBox(props: Props): ReactElement {
     return (
         <InputBox>

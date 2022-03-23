@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table
-public class User {
+public class User_table {
     @Id
     @SequenceGenerator(
             name = "user_sequence",
@@ -16,26 +16,26 @@ public class User {
             generator = "user_sequence"
     )
     private Long id;
-    private String nickname;
+    private String username;
     private String email;
     private String firstname;
     private String lastname;
     private String password;
 
-    public User() {
+    public User_table() {
     }
 
-    public User(String username, String email, String firstname, String lastname, String password) {
-        this.nickname = username;
+    public User_table(String username, String email, String firstname, String lastname, String password) {
+        this.username = username;
         this.email = email;
         this.firstname = firstname;
         this.lastname = lastname;
         this.password = password;
     }
 
-    public User(Long id, String username, String email, String firstname, String lastname, String password) {
+    public User_table(Long id, String username, String email, String firstname, String lastname, String password) {
         this.id = id;
-        this.nickname = username;
+        this.username = username;
         this.email = email;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -46,8 +46,8 @@ public class User {
         this.id = id;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setEmail(String email) {
@@ -70,8 +70,8 @@ public class User {
         return id;
     }
 
-    public String getNickname() {
-        return nickname;
+    public String getUsername() {
+        return username;
     }
 
     public String getEmail() {
