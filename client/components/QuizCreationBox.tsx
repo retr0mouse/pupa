@@ -1,9 +1,11 @@
 import React, { ReactElement } from "react";
 import styled from "styled-components";
 
+
 interface Props {
     onTyped(query: any): void;
     onClicked(event: any): void;
+    link: string;
 }
 
 const InputBox = styled.div`

@@ -3,11 +3,11 @@ package com.example.demo.quiz;
 import javax.persistence.*;
 import java.time.LocalDate;
 
-@Entity
-@Table
+@Entity //  map class to database, this is for Hibernate
+@Table  //  and this is for table in database
 public class Quiz {
-    @Id
-    @SequenceGenerator(
+    @Id // automatically determines the primary key
+    @SequenceGenerator( // generate a sequence
             name = "quiz_sequence",
             sequenceName = "quiz_sequence",
             allocationSize = 1
@@ -18,6 +18,7 @@ public class Quiz {
     )
     private Long id;
     private String title;
+//    @Transient  // lets the spring jpa know that this field should not be a column in a database
     private LocalDate created;
     private Long userId;
 
