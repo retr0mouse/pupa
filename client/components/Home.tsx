@@ -25,13 +25,11 @@ export function Home(): ReactElement{
                 link={query ? "/quizzes" : "/"}
             />
             <Message message={message}/>
-            {console.log(message)}
         </>
     );
 
     async function createQuiz(name: string) {
         try {
-            console.log("lolw");
             await QuizAPI.addQuiz(name);
         } catch (error) {
             
@@ -39,7 +37,6 @@ export function Home(): ReactElement{
             return;
         }
         setMessage("👍");
-        console.log("kekw");
     }
 }
 
