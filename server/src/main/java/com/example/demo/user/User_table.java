@@ -16,7 +16,7 @@ public class User {
             generator = "user_sequence"
     )
     private Long id;
-    private String username;
+    private String nickname;
     private String email;
     private String firstname;
     private String lastname;
@@ -26,7 +26,7 @@ public class User {
     }
 
     public User(String username, String email, String firstname, String lastname, String password) {
-        this.username = username;
+        this.nickname = username;
         this.email = email;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -35,7 +35,7 @@ public class User {
 
     public User(Long id, String username, String email, String firstname, String lastname, String password) {
         this.id = id;
-        this.username = username;
+        this.nickname = username;
         this.email = email;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -46,8 +46,8 @@ public class User {
         this.id = id;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public void setEmail(String email) {
@@ -70,8 +70,8 @@ public class User {
         return id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getNickname() {
+        return nickname;
     }
 
     public String getEmail() {
