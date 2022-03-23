@@ -15,6 +15,7 @@ export function QuizzesPage() {
         <div>
             <Quizzes quizzes={quizzes}/>
             <Message
+                updateMessage={() => setMessage()}
                 message={message}
             />
         </div>
@@ -22,7 +23,7 @@ export function QuizzesPage() {
 
     async function fetchQuizzes() {
         const quizzes = await QuizAPI.getQuizzes();
-        if (quizzes.length < 0) {
+        if (quizzes.length == 0) {
             setMessage("No quizzes found");
             return;
         }

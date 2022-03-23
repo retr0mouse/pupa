@@ -7,16 +7,6 @@ export function Home(): ReactElement{
     const [query, setQuery] = useState() as any;
     const [message, setMessage] = useState() as any;
     
-    useEffect(() => {
-        if (!message) {
-            return;
-        }
-        const timeout = setTimeout(() => setMessage(""), 2000);
-        return () => {
-            clearTimeout(timeout);
-        };
-    }, [message]);
-    
     return(
         <>
             <QuizCreationBox 
@@ -24,7 +14,10 @@ export function Home(): ReactElement{
                 onClicked={() => query ? createQuiz(query) : null}
                 link={query ? "/quizzes" : "/"}
             />
-            <Message message={message}/>
+            <Message 
+                updateMessage={() => setMessage()}
+                message={message}
+            />
         </>
     );
 

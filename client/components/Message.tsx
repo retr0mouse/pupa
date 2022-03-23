@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useEffect } from "react";
 import styled from "styled-components";
 
 
@@ -17,9 +17,20 @@ const TextContainer = styled.div`
 
 interface Props {
     message: string;
+    updateMessage(message: string): void;
 }
 
 export function Message(props: Props): ReactElement {
+    useEffect(() => {
+        if (!props.message) {
+            return;
+        }
+        const timeout = setTimeout(() => props.updateMessage(""), 2000);
+        return () => {
+            clearTimeout(timeout);
+        };
+    }, [props.message]);
+
     return (
         <TextContainer>
             <Text>{props.message}</Text>
