@@ -1,10 +1,6 @@
-import React, { useEffect, useState, ReactElement } from "react";
-import { QuizAPI } from "./apis/QuizAPI";
-import { QuizCreationBox } from "./components/QuizCreationBox";
-import { Quizzes } from "./components/Quizzes";
-import { Message } from "./components/Message";
-import { Navigation } from "./components/Navigation";
+import React from "react";
 import { Main } from "./components/Main";
+import { Navigation } from "./components/Navigation";
 
 export default function App() {
     return (
