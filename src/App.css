@@ -1,0 +1,55 @@
+body {
+    background: lightgoldenrodyellow;
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+}
+
+input {
+    padding: 3px;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.App {
+    text-align: center;
+}
+
+.app-title {
+    text-align: center;
+    color: lightslategray;
+    font-size: 50px;
+}
+
+.btn {
+    margin: 20px;
+    color: white;
+    border-radius: 5px;
+}
+
+.add-btn {
+    background: lightslategray;
+    width: 100px;
+    height: 40px;
+}
+
+.card {
+    width: 200px;
+    margin: 10px auto;
+    padding: 30px;
+    background-color: lightsteelblue;
+    border: bisque 3px solid;
+}
+
+.overturned {
+    background-color: bisque;
+    border: lightsteelblue 3px solid;
+}
+
+.container {
+    border: 5px solid steelblue;
+    border-radius: 25px;
+    width: 50%;
+    min-width: 400px;
+    margin: 10px auto;
+    padding: 40px 20px;
+}
