@@ -1,5 +1,7 @@
-package com.example.demo.quiz_pack;
+package com.example.demo.controllers;
 
+import com.example.demo.models.QuizPack;
+import com.example.demo.services.QuizPackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,4 +35,6 @@ public class QuizPackController {
     public void addQuiz(@RequestBody QuizPack quiz, @RequestParam Long userId) {
         quizService.addNewQuizPack(quiz, userId);
     }
+
+
 }

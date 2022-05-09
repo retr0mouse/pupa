@@ -1,6 +1,5 @@
-package com.example.demo.quiz_pack;
+package com.example.demo.models;
 
-import com.example.demo.user_table.UserTable;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
@@ -46,7 +45,7 @@ public class QuizPack {
             referencedColumnName = "id",
             foreignKey = @ForeignKey(name = "user_table_id_fk")
     )
-    private UserTable user;
+    private User user;
 
     public QuizPack(Long id, String title, LocalDate created) {
         this.id = id;
@@ -85,12 +84,12 @@ public class QuizPack {
         return created;
     }
 
-    public void setUser(UserTable user) {
+    public void setUser(User user) {
         this.user = user;
     }
 
     @JsonBackReference
-    public UserTable getUser() {
+    public User getUser() {
         return user;
     }
 }

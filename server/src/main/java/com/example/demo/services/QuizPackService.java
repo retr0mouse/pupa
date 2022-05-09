@@ -1,7 +1,9 @@
-package com.example.demo.quiz_pack;
+package com.example.demo.services;
 
-import com.example.demo.user_table.UserTable;
-import com.example.demo.user_table.UserTableRepository;
+import com.example.demo.models.QuizPack;
+import com.example.demo.models.User;
+import com.example.demo.repositories.QuizPackRepository;
+import com.example.demo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +15,10 @@ import java.util.Optional;
 public class QuizPackService {   // service layer
 
     private final QuizPackRepository quizRepository;
-    private final UserTableRepository userRepository;
+    private final UserRepository userRepository;
 
     @Autowired  // dependency injection
-    public QuizPackService(QuizPackRepository quizRepository, UserTableRepository userRepository) {
+    public QuizPackService(QuizPackRepository quizRepository, UserRepository userRepository) {
         this.userRepository = userRepository;
         this.quizRepository = quizRepository;
     }
@@ -26,9 +28,9 @@ public class QuizPackService {   // service layer
     }
 
     public void addNewQuizPack(QuizPack quiz, Long userId) {
-        Optional<UserTable> userOptional = userRepository.findById(userId);
+        Optional<User> userOptional = userRepository.findById(userId);
         if (userOptional.isEmpty()) {
-            throw new IllegalStateException("UserTable with id (" + userId + ") does not exist");
+            throw new IllegalStateException("User with id (" + userId + ") does not exist");
         }
         Optional<QuizPack> quizOptional = quizRepository.findQuizPackByTitleAndUser(quiz.getTitle(), userOptional.get());
         if (quizOptional.isPresent()) {
@@ -38,6 +40,7 @@ public class QuizPackService {   // service layer
         userOptional.get().addQuizPack(quiz);
         quizRepository.save(quiz);
     }
+
 
     public QuizPack getQuizPackById(Long id) {
         return quizRepository.findById(id)

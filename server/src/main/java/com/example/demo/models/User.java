@@ -1,12 +1,12 @@
-package com.example.demo.user_table;
-
-import com.example.demo.quiz_pack.QuizPack;
+package com.example.demo.models;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-@Entity (name = "UserTable")
+@Entity (name = "User")
 @Table (
         name = "user_table",
         uniqueConstraints = {
@@ -16,7 +16,7 @@ import java.util.List;
                 )
         }
 )
-public class UserTable {
+public class User {
     @Id
     @SequenceGenerator(
             name = "user_table_sequence",
@@ -70,10 +70,22 @@ public class UserTable {
     )
     private List<QuizPack> quizPacks = new ArrayList<>();
 
-    public UserTable() {
+    @ManyToMany (fetch = FetchType.EAGER)   // with lazy type authorization didn't work
+    @JoinTable (
+            name = "player_to_role",
+            joinColumns = @JoinColumn(
+                    name = "player_id"
+            ),
+            inverseJoinColumns = @JoinColumn(
+                    name = "role_id"
+            )
+    )
+    private Set<Role> roles = new HashSet<>();
+
+    public User() {
     }
 
-    public UserTable(String username, String email, String firstname, String lastname, String password) {
+    public User(String username, String email, String firstname, String lastname, String password) {
         this.username = username;
         this.email = email;
         this.firstname = firstname;
@@ -81,7 +93,7 @@ public class UserTable {
         this.password = password;
     }
 
-    public UserTable(Long id, String username, String email, String firstname, String lastname, String password) {
+    public User(Long id, String username, String email, String firstname, String lastname, String password) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -158,5 +170,13 @@ public class UserTable {
 
     public void setQuizPacks(List<QuizPack> quizPacks) {
         this.quizPacks = quizPacks;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }
