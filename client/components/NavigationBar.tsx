@@ -8,10 +8,22 @@ const ListItem = styled.li`
     padding: 20px;
 
     a{
-        color: white;
-        text-decoration: none;
-    }
+        width: 283px;
+        height: 118px;
+        
 
+        font-family: 'Open Sans', sans-serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 64px;
+        line-height: 85px;
+
+        background: linear-gradient(109.32deg, #2054DB 12.52%, rgba(0, 0, 0, 0) 62.98%), #FF0000;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+/* 
     *, *::before, *::after {
       box-sizing: inherit;
       padding: 0;
@@ -20,14 +32,15 @@ const ListItem = styled.li`
     
     .current {
         border-bottom: 4px solid white;
-    }
+    } */
 `;
 
 const UnorderedList = styled.ul`
     list-style: none;
     display: flex;
-    background-color: black;
-    margin-bottom: 20px;
+    background-color: white;
+    margin: 0 0 30px 0;
+    padding: 0;
 `;
 
 export function Navigation() {
@@ -40,10 +53,10 @@ export function Navigation() {
                             ({ isActive }) => isActive ? activeClassName : undefined
                         }
                         to="/">
-                        Home
+                        Püpa
                     </NavLink>
                 </ListItem>
-                <ListItem>
+                {/* <ListItem>
                     <NavLink
                         className={
                             ({ isActive }) => isActive ? activeClassName : undefined
@@ -51,7 +64,7 @@ export function Navigation() {
                         to="/quizzes">
                         Quizzes
                     </NavLink>
-                </ListItem>
+                </ListItem> */}
             </UnorderedList>
         </nav>
     );

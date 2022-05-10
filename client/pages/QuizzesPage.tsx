@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { QuizAPI } from "../apis/QuizAPI";
-import { Message } from "./Message";
-import { Quizzes } from "./Quizzes";
+import { Message } from "../components/Message";
+import { Navigation } from "../components/NavigationBar";
+import { Quizzes } from "../components/QuizzesList";
 
 export function QuizzesPage() {
     const [quizzes, setQuizzes] = useState([]) as any;
@@ -13,6 +14,7 @@ export function QuizzesPage() {
 
     return (
         <div>
+            <Navigation/>
             <Quizzes quizzes={quizzes}/>
             <Message
                 updateMessage={() => setMessage()}
