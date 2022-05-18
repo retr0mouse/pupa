@@ -2,7 +2,7 @@ package com.example.demo.controllers;
 
 import com.example.demo.enums.ERole;
 import com.example.demo.models.Role;
-import com.example.demo.models.User;
+import com.example.demo.models.UserTable;
 import com.example.demo.models.UserDetailsImpl;
 import com.example.demo.payloads.request.LoginRequest;
 import com.example.demo.payloads.request.SignupRequest;
@@ -48,8 +48,10 @@ public class AuthController {
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) throws AuthenticationException {
+        System.out.println(String.format("Login: %s, password: %s", loginRequest.getUsername(), loginRequest.getPassword()));
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+        System.out.println("Authentication: " + authentication);
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
 
@@ -81,11 +83,11 @@ public class AuthController {
         }
 
         // create new user's account
-        var user = new User(
+        var user = new UserTable(
                 signUpRequest.getUsername(),
+                signUpRequest.getEmail(),
                 signUpRequest.getFirstname(),
                 signUpRequest.getLastname(),
-                signUpRequest.getEmail(),
                 encoder.encode(signUpRequest.getPassword())
         );
 
@@ -121,6 +123,6 @@ public class AuthController {
         user.setRoles(roles);
         userRepository.save(user);
 
-        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+        return ResponseEntity.ok(new MessageResponse("UserTable registered successfully!"));
     }
 }

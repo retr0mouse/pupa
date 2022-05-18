@@ -13,9 +13,9 @@ import java.util.Date;
 @Component
 public class JwtUtils {
     private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
-    @Value("${queazy.app.jwtSecret}")
+    @Value("${pupa.app.jwtSecret}")
     private String jwtSecret;
-    @Value("${queazy.app.jwtExpirationMs}")
+    @Value("${pupa.app.jwtExpirationMs}")
     private int jwtExpirationMs;
     public String generateJwtToken(Authentication authentication) {
         UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();

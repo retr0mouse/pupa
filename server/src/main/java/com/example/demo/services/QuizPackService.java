@@ -1,7 +1,7 @@
 package com.example.demo.services;
 
 import com.example.demo.models.QuizPack;
-import com.example.demo.models.User;
+import com.example.demo.models.UserTable;
 import com.example.demo.repositories.QuizPackRepository;
 import com.example.demo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,13 +11,13 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-@Service  // make this a Spring Bean. Could be simply a "@Component", but this way its more specific
-public class QuizPackService {   // service layer
+@Service
+public class QuizPackService {
 
     private final QuizPackRepository quizRepository;
     private final UserRepository userRepository;
 
-    @Autowired  // dependency injection
+    @Autowired
     public QuizPackService(QuizPackRepository quizRepository, UserRepository userRepository) {
         this.userRepository = userRepository;
         this.quizRepository = quizRepository;
@@ -28,13 +28,13 @@ public class QuizPackService {   // service layer
     }
 
     public void addNewQuizPack(QuizPack quiz, Long userId) {
-        Optional<User> userOptional = userRepository.findById(userId);
+        Optional<UserTable> userOptional = userRepository.findById(userId);
         if (userOptional.isEmpty()) {
-            throw new IllegalStateException("User with id (" + userId + ") does not exist");
+            throw new IllegalStateException("UserTable with id (" + userId + ") does not exist");
         }
-        Optional<QuizPack> quizOptional = quizRepository.findQuizPackByTitleAndUser(quiz.getTitle(), userOptional.get());
+        Optional<QuizPack> quizOptional = quizRepository.findQuizPackByTitleAndCreator(quiz.getTitle(), userOptional.get());
         if (quizOptional.isPresent()) {
-            throw new IllegalStateException("User " + userOptional.get().getUsername() + " already has a quiz with title '" + quizOptional.get().getTitle() + "'");
+            throw new IllegalStateException("UserTable " + userOptional.get().getUsername() + " already has a quiz with title '" + quizOptional.get().getTitle() + "'");
         }
         quiz.setCreated(LocalDate.now());
         userOptional.get().addQuizPack(quiz);

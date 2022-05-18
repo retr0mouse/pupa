@@ -1,6 +1,6 @@
 package com.example.demo.controllers;
 
-import com.example.demo.models.User;
+import com.example.demo.models.UserTable;
 import com.example.demo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,12 +18,12 @@ public class UserController {
     }
 
     @GetMapping("get")
-    public List<User> getAllUsers() {
+    public List<UserTable> getAllUsers() {
         return userTableService.getAllUsers();
     }
 
     @GetMapping(value = "get", params = "id")
-    public User getUserById(@RequestParam Long id) {
+    public UserTable getUserById(@RequestParam Long id) {
         if (!id.toString().matches("^\\d+$")) {
             throw new IllegalStateException("Please provide an id");
         }
@@ -31,7 +31,7 @@ public class UserController {
     }
 
     @PostMapping("add")
-    public void addUser(@RequestBody User user) {
+    public void addUser(@RequestBody UserTable user) {
         userTableService.addUser(user);
     }
 }

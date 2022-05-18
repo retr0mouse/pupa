@@ -1,6 +1,6 @@
 package com.example.demo.services;
 
-import com.example.demo.models.User;
+import com.example.demo.models.UserTable;
 import com.example.demo.models.UserDetailsImpl;
 import com.example.demo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,14 +20,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findUserByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User with username (" + username +") does not exist"));
+        UserTable user = userRepository.findUserByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("UserTable with username (" + username +") does not exist"));
         return UserDetailsImpl.build(user);
     }
 
     public UserDetails loadUserById(Long id) throws UsernameNotFoundException {
-        User user = userRepository.findById(id)
-                .orElseThrow(() -> new UsernameNotFoundException("User with id (" + id + ") does not exist"));
+        UserTable user = userRepository.findById(id)
+                .orElseThrow(() -> new UsernameNotFoundException("UserTable with id (" + id + ") does not exist"));
         return UserDetailsImpl.build(user);
     }
 }

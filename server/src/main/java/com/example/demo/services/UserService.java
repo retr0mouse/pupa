@@ -1,6 +1,6 @@
 package com.example.demo.services;
 
-import com.example.demo.models.User;
+import com.example.demo.models.UserTable;
 import com.example.demo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,19 +17,19 @@ public class UserService {
         this.userTableRepository = userTableRepository;
     }
 
-    public List<User> getAllUsers() {
+    public List<UserTable> getAllUsers() {
         return userTableRepository.findAll();
     }
 
-    public User getUserById(Long id) {
+    public UserTable getUserById(Long id) {
         return userTableRepository.findById(id)
                 .orElseThrow(() -> new IllegalStateException(
                         "The user with id (" + id + ") does not exist"
                 ));
     }
 
-    public void addUser(User user) {
-        Optional<User> userOptional = userTableRepository.findUserByUsername(user.getUsername());
+    public void addUser(UserTable user) {
+        Optional<UserTable> userOptional = userTableRepository.findUserByUsername(user.getUsername());
         if (userOptional.isPresent()) {
             throw new IllegalStateException("This user is already in the database");
         }

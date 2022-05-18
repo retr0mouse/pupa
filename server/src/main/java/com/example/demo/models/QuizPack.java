@@ -45,7 +45,7 @@ public class QuizPack {
             referencedColumnName = "id",
             foreignKey = @ForeignKey(name = "user_table_id_fk")
     )
-    private User user;
+    private UserTable creator;
 
     public QuizPack(Long id, String title, LocalDate created) {
         this.id = id;
@@ -84,12 +84,12 @@ public class QuizPack {
         return created;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setCreator(UserTable user) {
+        this.creator = user;
     }
 
     @JsonBackReference
-    public User getUser() {
-        return user;
+    public UserTable getCreator() {
+        return creator;
     }
 }

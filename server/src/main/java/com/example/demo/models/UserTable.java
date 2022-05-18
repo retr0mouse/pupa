@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Entity (name = "User")
+@Entity (name = "UserTable")
 @Table (
         name = "user_table",
         uniqueConstraints = {
@@ -16,7 +16,7 @@ import java.util.Set;
                 )
         }
 )
-public class User {
+public class UserTable {
     @Id
     @SequenceGenerator(
             name = "user_table_sequence",
@@ -64,7 +64,7 @@ public class User {
     private String password;
 
     @OneToMany (
-            mappedBy = "user",
+            mappedBy = "creator",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
@@ -72,9 +72,9 @@ public class User {
 
     @ManyToMany (fetch = FetchType.EAGER)   // with lazy type authorization didn't work
     @JoinTable (
-            name = "player_to_role",
+            name = "user_to_role",
             joinColumns = @JoinColumn(
-                    name = "player_id"
+                    name = "user_id"
             ),
             inverseJoinColumns = @JoinColumn(
                     name = "role_id"
@@ -82,10 +82,10 @@ public class User {
     )
     private Set<Role> roles = new HashSet<>();
 
-    public User() {
+    public UserTable() {
     }
 
-    public User(String username, String email, String firstname, String lastname, String password) {
+    public UserTable(String username, String email, String firstname, String lastname, String password) {
         this.username = username;
         this.email = email;
         this.firstname = firstname;
@@ -93,7 +93,7 @@ public class User {
         this.password = password;
     }
 
-    public User(Long id, String username, String email, String firstname, String lastname, String password) {
+    public UserTable(Long id, String username, String email, String firstname, String lastname, String password) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -105,14 +105,14 @@ public class User {
     public void addQuizPack(QuizPack quizPack) {
         if (!this.quizPacks.contains(quizPack)) {
             this.quizPacks.add(quizPack);
-            quizPack.setUser(this);
+            quizPack.setCreator(this);
         }
     }
 
     public void removeQuizPack(QuizPack quizPack) {
         if (this.quizPacks.contains(quizPack)) {
             this.quizPacks.remove(quizPack);
-            quizPack.setUser(null);
+            quizPack.setCreator(null);
         }
     }
 
@@ -178,5 +178,19 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    @Override
+    public String toString() {
+        return "UserTable{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", password='" + password + '\'' +
+                ", quizPacks=" + quizPacks +
+                ", roles=" + roles +
+                '}';
     }
 }
