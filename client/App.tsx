@@ -1,12 +1,16 @@
 import React from "react";
-import { Main } from "./components/Main";
-import { Navigation } from "./components/Navigation";
+import { Main } from "./components/MainRoutes";
+import styled from "styled-components";
+
+const Root = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
 
 export default function App() {
     return (
-        <div>
-            <Navigation/>
+        <Root>
             <Main/>
-        </div>
+        </Root>
     );
 }
