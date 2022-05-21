@@ -7,7 +7,6 @@ export function RegistrationPage(): ReactElement {
     const [firstname, setFirstname] = useState("") as any;
     const [lastname, setLastname] = useState("") as any;
     const [email, setEmail] = useState("") as any;
-    const [birthdate, setBirthdate] = useState("") as any;
     const [password, setPassword] = useState("") as any; 
     const [passwordRepeat, setPasswordRepeat] = useState("") as any;
     
@@ -18,7 +17,6 @@ export function RegistrationPage(): ReactElement {
                 onUsernameTyped={(username) => setUsername(username)}
                 onFirstnameTyped={(firstname) => setFirstname(firstname)}
                 onLastnameTyped={(lastname) => setLastname(lastname)}
-                onBirthdateTyped={(birthdate) => setBirthdate(birthdate)}
                 onEmailTyped={(email) => setEmail(email)}
                 onPasswordTyped={(password) => setPassword(password)}
                 onPasswordRepeatTyped={(passwordRepeat) => setPasswordRepeat(passwordRepeat)}
@@ -28,6 +26,6 @@ export function RegistrationPage(): ReactElement {
     );
 
     function Log() {
-        console.log(`${username} ${firstname} ${lastname} ${email} ${birthdate} ${password} ${passwordRepeat}`)
+        console.log(`${username} ${firstname} ${lastname} ${email} ${password} ${passwordRepeat}`)
     }
 }

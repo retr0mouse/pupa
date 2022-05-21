@@ -33,6 +33,7 @@ const RegisterButton = styled.button`
     font-weight: 400;
     font-size: 80px;
     line-height: 94px;
+    cursor: pointer;
 
     color: #FFFFFF;
 
@@ -47,6 +48,7 @@ const LoginButton = styled.button`
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border: none;
     border-radius: 5px;
+    cursor: pointer;
 
     font-family: 'Poppins', sans-serif;
     font-style: normal;
