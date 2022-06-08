@@ -19,8 +19,13 @@ const InputsContainer = styled.div`
         width: 515px;
         height: 80px;
         margin-bottom: 30px;
-        font-size: 36px;
+        font-size: 28px;
         padding-left: 22px;
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    label {
+        color: red;
     }
 
     button {
@@ -39,6 +44,7 @@ const InputsContainer = styled.div`
         margin-top: 0;
         font-weight: 400;
         font-size: 70px;
+        font-family: 'Poppins', sans-serif;
     }
 `;
 
