@@ -29,6 +29,7 @@ const InputsContainer = styled.div`
     }
 
     button {
+        cursor:pointer;
         width: 515px;
         height: 77px;
         background: #5B81E2;

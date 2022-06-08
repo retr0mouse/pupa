@@ -50,7 +50,7 @@ export function RegistrationPage(): ReactElement {
                 setNotice("Registration " + error);
                 return;
             }
-            setNotice("Registation successful!");    
+            setNotice("Registration successful!");    
         }
         else {
             setNotice("Please provide the needed data");
