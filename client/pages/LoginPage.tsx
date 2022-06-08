@@ -28,10 +28,10 @@ export function LoginPage(): ReactElement {
             try { 
                 await UserAPI.LoginUser(username, password); 
             } catch (error) {
-                setNotice("Registration " + error);
+                setNotice("Login " + error);
                 return;
             }
-            setNotice("Registation successful!");    
+            setNotice("Login successful!");    
         }
         else {
             setNotice("Please provide the needed data");
