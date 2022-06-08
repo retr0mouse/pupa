@@ -24,6 +24,11 @@ const RegisterButton = styled.button`
     width: 965px;
     height: 213px;
 
+    transition: transform .2s;
+    :hover {
+        transform: scale(1.2);
+    }
+
     background: #5B81E2;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 16px;
@@ -44,6 +49,11 @@ const LoginButton = styled.button`
     width: 309px;
     height: 75px;
 
+    transition: transform .2s;
+    :hover {
+        transform: scale(1.2);
+    }
+    
     background: #5B81E2;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border: none;

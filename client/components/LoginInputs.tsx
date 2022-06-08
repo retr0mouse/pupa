@@ -10,7 +10,7 @@ const InputsContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    border-radius: 70px;
     input {
         background: #FEFEFE;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -22,12 +22,15 @@ const InputsContainer = styled.div`
         font-size: 28px;
         padding-left: 22px;
         font-family: 'Open Sans', sans-serif;
-    }
 
+        transition: transform .2s;
+        :hover {
+        transform: scale(1.1);
+        }
+    }
     label {
         color: red;
     }
-
     button {
         cursor:pointer;
         width: 515px;
@@ -39,8 +42,12 @@ const InputsContainer = styled.div`
         font-size: 50px;
         color: #F1F1F1;
         font-family: 'Poppins', sans-serif;
-    }
 
+        transition: transform .2s;
+        :hover {
+        transform: scale(1.2);
+        }
+    }
     h1 {
         margin-top: 0;
         font-weight: 400;

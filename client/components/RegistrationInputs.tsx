@@ -10,6 +10,7 @@ const InputsContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    border-radius: 70px;
 
     input {
         background: #FEFEFE;
@@ -22,6 +23,11 @@ const InputsContainer = styled.div`
         font-size: 28px;
         padding-left: 22px;
         font-family: 'Open Sans', sans-serif;
+
+        transition: transform .2s;
+        :hover {
+        transform: scale(1.1);
+        }
     }
 
     label {
@@ -39,7 +45,13 @@ const InputsContainer = styled.div`
         font-size: 50px;
         color: #F1F1F1;
         font-family: 'Poppins', sans-serif;
+
+        transition: transform .2s;
+        :hover {
+        transform: scale(1.2);
+        }
     }
+
 
     h1 {
         margin-top: 0;

@@ -30,7 +30,6 @@ const TeacherButton = styled.button`
         transform: scale(1.2);
     }
 
-    transition: transform .2s;
     background: #5B81E2;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 50%;
@@ -41,15 +40,16 @@ const TeacherButton = styled.button`
 const StudentButton = styled.button`
     width: 500px;
     height: 500px;
+
     transition: transform .2s;
+    :hover {
+        transform: scale(1.2);
+    }
+
     background: #5B81E2;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 50%;
     border: none;
-
-    :hover {
-        transform: scale(1.2);
-    }
 `;    
 export function RolePage() {
     return(
@@ -59,7 +59,7 @@ export function RolePage() {
                
                 <NavLink to="/student">
                     <StudentButton>
-                        <img src={"../images/student-svgrepo-com (1).svg"} alt={"tudeng pilt"}/>
+                        <div id ="studentImage"><img src="../images/1.webp"></img></div>
                     </StudentButton>
                 </NavLink>
                 <p></p>
