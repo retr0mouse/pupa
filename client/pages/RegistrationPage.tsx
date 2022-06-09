@@ -1,4 +1,5 @@
 import React, { ReactElement, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { UserAPI } from "../apis/UserAPI";
 import { Message } from "../components/Message";
 import { Navigation } from "../components/NavigationBar";
@@ -12,6 +13,8 @@ export function RegistrationPage(): ReactElement {
     const [password, setPassword] = useState("") as any; 
     const [passwordRepeat, setPasswordRepeat] = useState("") as any;
     const [notice, setNotice] = useState("") as any;
+    const [isSuccessfull, setIsSuccessfull] = useState(false);
+    const history = useNavigate();
     
     useEffect(() => {
         if (!notice) {
@@ -20,6 +23,7 @@ export function RegistrationPage(): ReactElement {
         const timeout = setTimeout(() => setNotice(""), 2000);
         return () => {
             clearTimeout(timeout);
+            isSuccessfull ? history("/") : null;
         };
     }, [notice])
     
@@ -45,12 +49,14 @@ export function RegistrationPage(): ReactElement {
     async function RegisterUser() {
         if (username != null && email != null && password != null && firstname != null && lastname != null && passwordRepeat != null) {
             try { 
-                await UserAPI.registerUser(username, email, firstname, lastname, password); 
+                const response = await UserAPI.registerUser(username, email, firstname, lastname, password); 
             } catch (error) {
+                setIsSuccessfull(false);
                 setNotice("Registration " + error);
                 return;
             }
-            setNotice("Registation successful!");    
+            setIsSuccessfull(true);
+            setNotice("Registration successful!");    
         }
         else {
             setNotice("Please provide the needed data");

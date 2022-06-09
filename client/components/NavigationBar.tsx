@@ -5,13 +5,12 @@ import styled from "styled-components";
 let activeClassName = "current"
 
 const ListItem = styled.li`
-    padding: 20px;
+    padding: 18px;
 
     a{
         width: 283px;
         height: 118px;
         
-
         font-family: 'Open Sans', sans-serif;
         font-style: normal;
         font-weight: 700;
@@ -22,6 +21,7 @@ const ListItem = styled.li`
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
+
     }
 /* 
     *, *::before, *::after {
@@ -36,6 +36,7 @@ const ListItem = styled.li`
 `;
 
 const UnorderedList = styled.ul`
+    border-radius: 40px;
     list-style: none;
     display: flex;
     background-color: white;

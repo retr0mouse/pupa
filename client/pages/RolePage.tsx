@@ -4,6 +4,8 @@ import { QuizAPI } from "../apis/QuizAPI";
 import { Message } from "../components/Message";
 import { Navigation } from "../components/NavigationBar";
 import styled from "styled-components";
+import studentImage from '../images/student.svg';
+import teacherImage from '../images/teacher.svg';
 
 const ButtonsContainer = styled.div`
     justify-content:space-around;
@@ -20,6 +22,13 @@ const ButtonsContainer = styled.div`
         font-size: 48px;
         font-family: 'Open Sans', sans-serif;
     }
+    .studentImage {
+        width: 380px;
+    }
+
+    .teacherImage {
+        width: 350px;
+    }
 `;
 const TeacherButton = styled.button`
     width: 500px;
@@ -30,7 +39,6 @@ const TeacherButton = styled.button`
         transform: scale(1.2);
     }
 
-    transition: transform .2s;
     background: #5B81E2;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 50%;
@@ -41,31 +49,31 @@ const TeacherButton = styled.button`
 const StudentButton = styled.button`
     width: 500px;
     height: 500px;
+
     transition: transform .2s;
+    :hover {
+        transform: scale(1.2);
+    }
+
     background: #5B81E2;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 50%;
     border: none;
-
-    :hover {
-        transform: scale(1.2);
-    }
 `;    
 export function RolePage() {
     return(
         <>
             <Navigation/>
             <ButtonsContainer>
-               
                 <NavLink to="/student">
                     <StudentButton>
-                        <img src={"../images/student-svgrepo-com (1).svg"} alt={"tudeng pilt"}/>
+                        <img className="studentImage" src={studentImage} alt="" />
                     </StudentButton>
                 </NavLink>
                 <p></p>
                 <NavLink to="/teacher">
                     <TeacherButton>
-                        <img src="../images/student-svgrepo-com (1).svg"/>
+                        <img className="teacherImage" src={teacherImage} alt="" />
                     </TeacherButton>
                 </NavLink>
             </ButtonsContainer>
