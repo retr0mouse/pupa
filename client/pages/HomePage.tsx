@@ -78,7 +78,7 @@ export function Home(): ReactElement{
                 <NavLink to="/register">
                     <RegisterButton>Register</RegisterButton>
                 </NavLink>
-                <p>or</p>
+                <p> </p>
                 <NavLink to="/login">
                     <LoginButton>Log in</LoginButton>
                 </NavLink>

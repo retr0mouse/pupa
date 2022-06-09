@@ -34,7 +34,8 @@ export class UserAPI {
                 'Content-Type': 'application/json'
             }
         });
+
+        return response;
     }
-
-
 }
+
