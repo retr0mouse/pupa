@@ -5,7 +5,7 @@ import { Message } from "../components/Message";
 import { Navigation } from "../components/NavigationBar";
 import { RegistraionInputs } from "../components/RegistrationInputs";
 
-export function RegistrationPage(): ReactElement {
+export function Registration(): ReactElement {
     const [username, setUsername] = useState("") as any;
     const [firstname, setFirstname] = useState("") as any;
     const [lastname, setLastname] = useState("") as any;
@@ -47,7 +47,7 @@ export function RegistrationPage(): ReactElement {
     );
 
     async function RegisterUser() {
-        if (username != null && email != null && password != null && firstname != null && lastname != null && passwordRepeat != null) {
+        if (username.length > 0 && email.length > 0 && password.length > 0 && firstname.length > 0 && lastname.length > 0 && passwordRepeat.length > 0) {
             try { 
                 const response = await UserAPI.registerUser(username, email, firstname, lastname, password); 
             } catch (error) {

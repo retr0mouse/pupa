@@ -60,7 +60,7 @@ const StudentButton = styled.button`
     border-radius: 50%;
     border: none;
 `;    
-export function RolePage() {
+export function RoleSelection() {
     return(
         <>
             <Navigation/>

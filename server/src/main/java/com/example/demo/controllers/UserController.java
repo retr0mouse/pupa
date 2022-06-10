@@ -3,6 +3,8 @@ package com.example.demo.controllers;
 import com.example.demo.models.UserTable;
 import com.example.demo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,6 +30,11 @@ public class UserController {
             throw new IllegalStateException("Please provide an id");
         }
         return userTableService.getUserById(id);
+    }
+
+    @GetMapping(value = "getByJwt")
+    public UserDetails getUsernameFromJwt() {
+        return (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 
     @PostMapping("add")

@@ -5,7 +5,6 @@ import styled from "styled-components";
 interface Props {
     onTyped(query: any): void;
     onClicked(event: any): void;
-    link: string;
 }
 
 const InputBox = styled.div`
@@ -24,8 +23,7 @@ const TextField = styled.input`
 export function QuizCreationBox(props: Props): ReactElement {
     return (
         <InputBox>
-            <TextField type="text" placeholder="Quiz title" onChange={(event) => props.onTyped(event)}>
-            </TextField>
+            <TextField type="text" placeholder="Quiz title" onChange={(event) => props.onTyped(event)}></TextField>
             <br/>
             <Button onClick={(query) => props.onClicked(query)}>Create quiz</Button>
         </InputBox>

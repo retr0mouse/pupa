@@ -36,6 +36,11 @@ public class QuizPack {
     )
     private LocalDate created;
 
+    @Column (
+            name = "description"
+    )
+    private String description;
+
     @ManyToOne (
             cascade = CascadeType.ALL
     )
@@ -47,10 +52,11 @@ public class QuizPack {
     )
     private UserTable creator;
 
-    public QuizPack(Long id, String title, LocalDate created) {
-        this.id = id;
+    public QuizPack(String title, LocalDate created, String description, UserTable creator) {
         this.title = title;
         this.created = created;
+        this.description = description;
+        this.creator = creator;
     }
 
     public QuizPack() {
@@ -91,5 +97,13 @@ public class QuizPack {
     @JsonBackReference
     public UserTable getCreator() {
         return creator;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

@@ -4,7 +4,7 @@ import { Message } from "../components/Message";
 import { Navigation } from "../components/NavigationBar";
 import { Quizzes } from "../components/QuizzesList";
 
-export function QuizzesPage() {
+export function QuizzesList() {
     const [quizzes, setQuizzes] = useState([]) as any;
     const [message, setMessage] = useState() as any;
 

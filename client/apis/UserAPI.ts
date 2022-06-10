@@ -1,3 +1,6 @@
+import { ResponseError } from "../responses/ApiError";
+import { PlayerResponse } from "../responses/PlayerResponse";
+
 export class UserAPI {
     static async registerUser(username: string, email: string, firstname: string, lastname: string, password: string) { 
         const data = {
@@ -18,7 +21,6 @@ export class UserAPI {
         if (!response.ok) {
             throw new Error("Request failed with status code " + response.status + response.statusText);
         }
-        console.log(await response.json());
     }
 
     static async LoginUser(username: string, password: string) {
@@ -36,6 +38,26 @@ export class UserAPI {
         });
 
         return response;
+    }
+
+    static async GetUser() {
+        const token = sessionStorage.getItem("token");
+        if (token == null) {
+            throw new Error("You need to sign in first");
+        }
+        const response = await fetch("http://localhost:8080/api/v1/user_table/getByJwt", {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            }
+        });
+        if (!response.ok) {
+            const error = await response.json() as ResponseError;
+            throw new Error(error.message);
+        }
+        const player = await response.json() as PlayerResponse;
+        return player;
     }
 }
 

@@ -32,9 +32,7 @@ public class QuizPackController {
     }
 
     @PostMapping(path = "add")
-    public void addQuiz(@RequestBody QuizPack quiz, @RequestParam Long userId) {
-        quizService.addNewQuizPack(quiz, userId);
+    public void addQuiz(@RequestBody QuizPack quizPack, @RequestParam Long userId) {
+        quizService.addNewQuizPack(quizPack, userId);
     }
-
-
 }

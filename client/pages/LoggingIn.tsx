@@ -5,7 +5,7 @@ import { LoginInputs } from "../components/LoginInputs";
 import { Message } from "../components/Message";
 import { Navigation } from "../components/NavigationBar";
 
-export function LoginPage(): ReactElement {
+export function LoggingIn(): ReactElement {
     const [username, setUsername] = useState("") as any;
     const [password, setPassword] = useState("") as any;
     const [notice, setNotice] = useState("") as any;
@@ -27,7 +27,7 @@ export function LoginPage(): ReactElement {
         </>
     );
     async function LoginUser() {
-        if (username != null && password != null) {
+        if (username.length > 0 && password.length > 0) {
             try { 
                 const response = await UserAPI.LoginUser(username, password);
                 if (response.ok) {
