@@ -30,11 +30,11 @@ public class PackToQuizController {
         return packToQuizService.getAllPacksToQuizzes();
     }
 
-    @GetMapping(value = "get", params = "id")
-    public UserTable getUserById(@RequestParam Long id) {
-        if (!id.toString().matches("^\\d+$")) {
-            throw new IllegalStateException("Please provide an id");
-        }
-        return userTableService.getUserById(id);
-    }
+//    @GetMapping(value = "get", params = "id")
+//    public UserTable getUserById(@RequestParam Long id) {
+//        if (!id.toString().matches("^\\d+$")) {
+//            throw new IllegalStateException("Please provide an id");
+//        }
+//        return userTableService.getUserById(id);
+//    }
 }
