@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import { Navigation } from "../components/NavigationBar";
 
 const Container = styled.div`
     position: absolute;
@@ -40,13 +41,16 @@ const Container = styled.div`
 `;
 
 export function TeacherHome() {
-    return (
+    return (<>
+    <Navigation/>
         <Container>
+            
             <NavLink to="/create-pack">
                 <button>
                     Create new pack
                 </button>
             </NavLink>
         </Container>
+    </>
     );
 } 

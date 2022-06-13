@@ -1,19 +1,15 @@
-import React, { ReactElement, useEffect, useState } from "react";
+import React, { ReactElement, useEffect, useState, Fragment } from "react";
 import styled from "styled-components";
 import { QuizAPI } from "../apis/QuizAPI";
 import { UserAPI } from "../apis/UserAPI";
 import { CreatePackInputs } from "../components/CreatePackInputs";
 import { Message } from "../components/Message";
+import { Navigation } from "../components/NavigationBar";
+import MyModal, { PopupDialog } from "../components/PopupDialog";
 import { QuizCreationBox } from "../components/QuizCreationBox";
 import { PlayerResponse } from "../responses/PlayerResponse";
-
-// const MainContainer = styled.div`
-//     position: absolute;
-//     top: 50%;
-//     left: 50%;
-//     transform: translate(-50%, -50%);
-//     align-items: center;
-// `;
+import { Dialog, Transition } from '@headlessui/react'
+import Popup from "reactjs-popup";
 
 export function PackCreating(): ReactElement {
     const [userId, setUserId] = useState(null) as any;
@@ -21,7 +17,7 @@ export function PackCreating(): ReactElement {
     const [packDescription, setPackDescription] = useState("") as any;
     const [quizzes, setQuizzes] = useState([]) as any;
     const [notice, setNotice] = useState("") as any;
-
+    
     useEffect(() => {
         const id = getUserId();
         if (!id) {
@@ -32,6 +28,7 @@ export function PackCreating(): ReactElement {
 
     return (
         <>
+            <Navigation/>
             <CreatePackInputs 
                 onTitleTyped={(text) => setPackName(text)}
                 onClickedSave={() => addPack()} 

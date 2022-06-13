@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import plusIcon from "../images/plus.svg";
+import { PopupDialog } from "./PopupDialog";
 
 interface Props {
     onTitleTyped(text: any): void;
@@ -82,7 +83,10 @@ export function CreatePackInputs(props: Props) {
                 <SaveButton onClick={() => props.onClickedSave()}>Save pack</SaveButton>
                 {props.quizzes}
             </MainContainer>
-            <PlusButton onClick={() => props.onClickedPlus()}><img src={plusIcon}></img></PlusButton>
+            {/* <PlusButton onClick={() => props.onClickedPlus()}><img src={plusIcon}></img></PlusButton> */}
+            <PopupDialog
+                image={plusIcon}
+            ></PopupDialog>
         </>
         
     );
