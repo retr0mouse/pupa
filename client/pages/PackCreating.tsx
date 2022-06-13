@@ -35,8 +35,9 @@ export function PackCreating(): ReactElement {
             <CreatePackInputs 
                 onTitleTyped={(text) => setPackName(text)}
                 onClickedSave={() => addPack()} 
-                onClickedPlus={() => addQuiz()}
-                onDescriptionTyped={(text) => setPackDescription(text)}            
+                onClickedPlus={() => addEmptyQuiz()}
+                onDescriptionTyped={(text) => setPackDescription(text)}
+                quizzes={quizzes}
             ></CreatePackInputs>
             <Message
                 message={notice}
@@ -56,12 +57,16 @@ export function PackCreating(): ReactElement {
         }
     }
 
+    async function fetchQuizzes() {
+        
+    }
+
     async function getUserId() {
         const user = await UserAPI.GetUser() as PlayerResponse;
         return user.id;
     }
-}
 
-function addQuiz(): void {
-    throw new Error("Function not implemented.");
+    function addEmptyQuiz() {
+       setQuizzes(quizzes.concat(<div>hello</div>));
+    }
 }

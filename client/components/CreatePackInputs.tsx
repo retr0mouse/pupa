@@ -7,6 +7,7 @@ interface Props {
     onDescriptionTyped(text: any): void;
     onClickedSave(): void;
     onClickedPlus(): void;
+    quizzes: any[];
 }
 const MainContainer = styled.div`
     position: absolute;
@@ -79,6 +80,7 @@ export function CreatePackInputs(props: Props) {
                 <TextField type="text" placeholder="Pack description" onChange={(event) => props.onDescriptionTyped(event.target.value)}></TextField>
                 {/* <Button onClick={() => props.onClicked()}>➕</Button> */}
                 <SaveButton onClick={() => props.onClickedSave()}>Save pack</SaveButton>
+                {props.quizzes}
             </MainContainer>
             <PlusButton onClick={() => props.onClickedPlus()}><img src={plusIcon}></img></PlusButton>
         </>

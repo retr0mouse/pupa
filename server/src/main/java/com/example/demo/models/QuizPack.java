@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity (name = "QuizPack")
 @Table (name = "quiz_pack")
@@ -51,6 +53,22 @@ public class QuizPack {
             foreignKey = @ForeignKey(name = "user_table_id_fk")
     )
     private UserTable creator;
+
+    @OneToMany (
+            mappedBy = "quizPack",
+            cascade = CascadeType.ALL
+    )
+    private List<PackToQuiz> packsToQuizzes = new ArrayList<>();
+
+    private void addPackToQuiz(PackToQuiz packToQuiz) {
+        if (!packsToQuizzes.contains(packToQuiz)) {
+            packsToQuizzes.add(packToQuiz);
+        }
+    }
+
+    private void remotePackToQuiz(PackToQuiz packToQuiz) {
+        packsToQuizzes.remove(packToQuiz);
+    }
 
     public QuizPack(String title, LocalDate created, String description, UserTable creator) {
         this.title = title;
@@ -105,5 +123,13 @@ public class QuizPack {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<PackToQuiz> getPacksToQuizzes() {
+        return packsToQuizzes;
+    }
+
+    public void setPacksToQuizzes(List<PackToQuiz> packsToQuizzes) {
+        this.packsToQuizzes = packsToQuizzes;
     }
 }

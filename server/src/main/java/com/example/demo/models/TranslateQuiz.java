@@ -1,6 +1,10 @@
 package com.example.demo.models;
 
+import com.example.demo.models.PackToQuiz;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity (name = "TranslateQuiz")
 @Table (name = "translate_quiz")
@@ -30,6 +34,22 @@ public class TranslateQuiz {
             name = "translated_word"
     )
     private String translatedWord;
+
+    @OneToMany (
+            mappedBy = "translateQuiz",
+            cascade = CascadeType.ALL
+    )
+    private List<PackToQuiz> packsToQuizzes = new ArrayList<>();
+
+    private void addPackToQuiz(PackToQuiz packToQuiz) {
+        if (!packsToQuizzes.contains(packToQuiz)) {
+            packsToQuizzes.add(packToQuiz);
+        }
+    }
+
+    private void remotePackToQuiz(PackToQuiz packToQuiz) {
+        packsToQuizzes.remove(packToQuiz);
+    }
 
     public TranslateQuiz() {
     }
@@ -61,5 +81,13 @@ public class TranslateQuiz {
 
     public void setTranslatedWord(String translatedWord) {
         this.translatedWord = translatedWord;
+    }
+
+    public List<PackToQuiz> getPacksToQuizzes() {
+        return packsToQuizzes;
+    }
+
+    public void setPacksToQuizzes(List<PackToQuiz> packsToQuizzes) {
+        this.packsToQuizzes = packsToQuizzes;
     }
 }
