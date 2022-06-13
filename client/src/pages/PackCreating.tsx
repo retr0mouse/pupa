@@ -5,7 +5,8 @@ import { UserAPI } from "../apis/UserAPI";
 import { CreatePackInputs } from "../components/CreatePackInputs";
 import { Message } from "../components/Message";
 import { QuizCreationBox } from "../components/QuizCreationBox";
-import { PlayerResponse } from "../responses/PlayerResponse";
+import { PlayerResponse } from "../../responses/PlayerResponse";
+import MyModal from "../components/MyModal";
 
 // const MainContainer = styled.div`
 //     position: absolute;
@@ -39,6 +40,7 @@ export function PackCreating(): ReactElement {
                 onDescriptionTyped={(text) => setPackDescription(text)}
                 quizzes={quizzes}
             ></CreatePackInputs>
+            {/* <MyModal/> */}
             <Message
                 message={notice}
                 updateMessage={() => setNotice()}

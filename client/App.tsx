@@ -1,5 +1,5 @@
 import React from "react";
-import { Main } from "./components/MainRoutes";
+import { Main } from "./src/components/MainRoutes";
 import styled from "styled-components";
 
 const Root = styled.div`
