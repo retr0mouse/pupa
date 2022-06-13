@@ -32,10 +32,12 @@ const Container = styled.div`
 
 
 export function StudentHome() {
-    return (
-        <QuizCreationBox 
-            onTyped={() => null} 
-            onClicked={() => null}
-        ></QuizCreationBox>
-    );
+    return (<>
+                <Navigation/>
+                <QuizCreationBox 
+                    onTyped={() => null} 
+                    onClicked={() => null}
+                ></QuizCreationBox>
+    
+            </>);
 } 
