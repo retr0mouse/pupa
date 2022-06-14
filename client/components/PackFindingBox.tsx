@@ -27,11 +27,20 @@ const Button = styled.button`
 `;
 
 const TextField = styled.input`
-    font-size: 40px;
+   position: relative;
+    font-size: 30px;
+    margin:30px;
+    border: 1px solid;
     border-radius: 20px;
+    font-family:  'Poppins', sans-serif;
+
+    transition: transform .2s;
+    :hover {
+        transform: scale(1.1);
+    }
 `;
 
-export function QuizCreationBox(props: Props): ReactElement {
+export function PackFindingBox(props: Props): ReactElement {
     return (
         <InputBox>
             <TextField type="text" placeholder="Pack id number" onChange={(event) => props.onTyped(event)}></TextField>

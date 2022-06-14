@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { QuizAPI } from "../apis/QuizAPI";
 import { Message } from "../components/Message";
 import { Navigation } from "../components/NavigationBar";
-import { QuizCreationBox } from "../components/QuizCreationBox";
+import { PackFindingBox } from "../components/PackFindingBox";
 import styled from "styled-components";
 
 const ButtonsContainer = styled.div`

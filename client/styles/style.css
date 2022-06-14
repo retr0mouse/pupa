@@ -11,39 +11,33 @@ body {
     background-size: cover;
 }
 
+/* popup in PackCreating */
 .modal {
+    border: 2px solid;
     font-size: 12px;
-    background-color: aqua;
-    border-radius: 16%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 7%;
+    position: relative;
+    border-color: black;
   }
   .modal > .header {
-    width: 100%;
-    border-bottom: 1px solid gray;
-    font-size: 18px;
+    position:static;
+    font-size: 100px;
     text-align: center;
-    padding: 5px;
+    padding: 15px;
+    font-family: 'Poppins';
   }
   .modal > .content {
-    width: 100%;
-    padding: 10px 5px;
-    align-items: center;
+    padding: 140px 300px;
+    position: relative;
   }
   .modal > .actions {
-    width: 100%;
-    padding: 10px 5px;
-    margin: auto;
+    position: static;
+    padding: 30px 5px;
     text-align: center;
-  }
-  .modal > .close {
     cursor: pointer;
-    position: absolute;
-    display: block;
-    padding: 2px 5px;
-    line-height: 20px;
-    right: -10px;
-    top: -10px;
-    font-size: 24px;
-    background: #ffffff;
-    border-radius: 50%;
-    border: 1px solid #cfcece;
+    width:100%;
+
   }
+
+
