@@ -11,6 +11,7 @@ const InputsContainer = styled.div`
     flex-direction: column;
     align-items: center;
     border-radius: 70px;
+    margin: 50px;
 
     input {
         background: #FEFEFE;
@@ -60,6 +61,19 @@ const InputsContainer = styled.div`
         font-family: 'Poppins', sans-serif;
     }
 `;
+const TextField = styled.input`
+    position: relative;
+    font-size: 30px;
+    margin:30px;
+    border: 1px solid;
+    border-radius: 20px;
+    font-family:  'Poppins', sans-serif;
+    transition: transform .2s;
+
+    :hover {
+    transform: scale(1.1);
+    }
+`;
 
 interface Props {
     onUsernameTyped(event: any): void;
@@ -90,39 +104,39 @@ export function RegistraionInputs(props: Props): ReactElement {
         <InputsContainer>
             <h1>Register</h1>
             <label htmlFor="username">{usernameState ? "" : "please provide a username"}</label>
-            <input type="text" name="username" id="" placeholder="username" onChange={(event) => {
+            <TextField type="text" name="username" id="" placeholder="username" onChange={(event) => {
                 props.onUsernameTyped(event?.target.value);
                 event?.target.value.length > 0 ? setUsernameState(true) : setUsernameState(false);
                 setUsername(event?.target.value);
             }}/>
             <label htmlFor="firstname">{firstnameState ? "" : "please provide a firstname"}</label>
-            <input type="text" name="firstname" id="" placeholder="firstname" onChange={(event) => {
+            <TextField type="text" name="firstname" id="" placeholder="firstname" onChange={(event) => {
                 props.onFirstnameTyped(event?.target.value);
                 event?.target.value.length > 0 ? setFirstnameState(true) : setFirstnameState(false);
                 setFirstname(event?.target.value);
             }}/>
             
             <label htmlFor="lastname">{lastnameState ? "" : "please provide a lastname"}</label>
-            <input type="text" name="lastname" id="" placeholder="lastname" onChange={(event) => {
+            <TextField type="text" name="lastname" id="" placeholder="lastname" onChange={(event) => {
                 props.onLastnameTyped(event?.target.value);
                 event?.target.value.length > 0 ? setLastnameState(true) : setLastnameState(false);
                 setLastname(event?.target.value);
             }}/>
             
             <label htmlFor="email">{emailState ? "" : "please provide an email"}</label>
-            <input type="email" name="email" id="" placeholder="email" onChange={(event) => {
+            <TextField type="email" name="email" id="" placeholder="email" onChange={(event) => {
                 props.onEmailTyped(event?.target.value);
                 event?.target.value.length > 0 ? setEmailState(true) : setEmailState(false);
                 setEmail(event?.target.value);
             }}/>
             <label htmlFor="password">{passwordState ? "" : "please provide a password"}</label>
-            <input type="password" name="password" id="" placeholder="password" onChange={(event) => {
+            <TextField type="password" name="password" id="" placeholder="password" onChange={(event) => {
                 props.onPasswordTyped(event?.target.value);
                 event?.target.value.length > 0 ? setPasswordState(true) : setPasswordState(false);
                 setPassword(event?.target.value);
             }}/>
             <label htmlFor="password-repeat">{password != passwordAgain ? "passwords do not match" : ""}</label>
-            <input type="password" name="password-repeat" placeholder="password again" id="" onChange={(event) => {
+            <TextField type="password" name="password-repeat" placeholder="password again" id="" onChange={(event) => {
                 props.onPasswordRepeatTyped(event?.target.value);
                 event?.target.value.length > 0 ? setPasswordAgainState(true) : setPasswordAgainState(false);
                 setPasswordAgain(event?.target.value);

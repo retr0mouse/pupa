@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import plusIcon from "../../images/plus.svg";
 
@@ -6,33 +6,27 @@ interface Props {
     onTitleTyped(text: any): void;
     onDescriptionTyped(text: any): void;
     onClickedSave(): void;
-    onClickedPlus(): void;
-    quizzes: any[];
 }
 const MainContainer = styled.div`
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-
+    margin-left: 50px;
     h1 {
-        background-color: #c4c4c4;
-        width: fit-content;
+        width: 100%;
         font-size: 80px;
-        font-family: 'Open-Sans', sans-serif;
+        font-family: 'Poppins', sans-serif;
+        border-radius: 16%;
     }
 `;
 const SaveButton = styled.button`
+    position: relative;
+    bottom: 69%;
+    left: 80%;
     margin-top: 20px;
-    width: 500px;
+    width: 250px;
     height: 75px;
-
     transition: transform .2s;
+
     :hover {
-        transform: scale(1.05);
+        transform: scale(1.02);
     }
     
     background: #5B81E2;
@@ -44,7 +38,7 @@ const SaveButton = styled.button`
     font-family: 'Poppins', sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 40px;
+    font-size: 35px;
     line-height: 47px;
 
     color: #FFFFFF;
@@ -60,38 +54,69 @@ const PlusButton = styled.button`
     transition: transform .2s;
 
     :hover {
-        transform: scale(1.05);
+        transform: scale(1.02);
     }
     img {
         width: 150px;
     }
 `;
 
-const TextField = styled.input`
+const TitleField = styled.input`
+    position: relative;
     font-size: 40px;
+    height: 15px;
+    width: 500px;
+    padding: 30px;
+    margin-top: 30px;
+    border: 1px solid;
+    border-radius: 20px;
+    font-family:  'Poppins', sans-serif;
+    margin-right: 40px;
+
+    transition: transform .2s;
+        :hover {
+        transform: scale(1.1);
+        }
+`;
+
+const DescriptionField = styled.input`
+    position: relative;
+    font-size: 40px;
+    height: 200px;
+    width: 55%;
+    padding: 30px;
+    margin-top: 30px;
+    border: 1px solid;
+    border-radius: 20px;
+    font-family:  'Poppins', sans-serif;
+    margin-right: 40px;
+    transition: transform .2s;
+        :hover {
+        transform: scale(1.1);
+        }
+`;
+
+const TextContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 `;
 
 export function CreatePackInputs(props: Props) {
     return (
         <>
             <MainContainer>
-                {/* <div className="fixed inset-0 flex items-center justify-center text-white">
-                    <button
-                        type="button"
-                        className="rounded-md bg-black bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
-                    >
-                    Open dialog
-                    </button>
-                </div> */}
-                <h1 >Create a pack</h1>
-                <TextField type="text" placeholder="Pack title" onChange={(event) => props.onTitleTyped(event.target.value)}></TextField>
-                <TextField type="text" placeholder="Pack description" onChange={(event) => props.onDescriptionTyped(event.target.value)}></TextField>
-                {/* <Button onClick={() => props.onClicked()}>➕</Button> */}
                 <SaveButton onClick={() => props.onClickedSave()}>Save pack</SaveButton>
-                {props.quizzes}
+                <h1>Create a pack</h1>
+                <TextContainer>                
+                    <TitleField type="text" placeholder="Pack title" onChange={(event: any) => props.onTitleTyped(event.target.value)}></TitleField>
+                    <DescriptionField type="text" placeholder="Pack description" onChange={(event: any) => props.onDescriptionTyped(event.target.value)}></DescriptionField>
+                </TextContainer>
+                {/* <Button onClick={() => props.onClicked()}>➕</Button> */}
+                
             </MainContainer>
-            <PlusButton onClick={() => props.onClickedPlus()}><img src={plusIcon}></img></PlusButton>
         </>
         
     );
 }
+

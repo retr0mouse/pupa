@@ -36,11 +36,10 @@ const ListItem = styled.li`
 `;
 
 const UnorderedList = styled.ul`
-    border-radius: 40px;
     list-style: none;
     display: flex;
     background-color: white;
-    margin: 0 0 30px 0;
+    margin: 0;
     padding: 0;
 `;
 

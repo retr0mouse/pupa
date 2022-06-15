@@ -12,6 +12,7 @@ const InputsContainer = styled.div`
     flex-direction: column;
     align-items: center;
     border-radius: 70px;
+    margin: 50px;
     
     input {
         background: #FEFEFE;
@@ -58,6 +59,20 @@ const InputsContainer = styled.div`
     }
 `;
 
+const TextField = styled.input`
+    position: relative;
+    font-size: 30px;
+    margin:30px;
+    border: 1px solid;
+    border-radius: 20px;
+    font-family:  'Poppins', sans-serif;
+
+    transition: transform .2s;
+    :hover {
+        transform: scale(1.1);
+    }
+`;
+
 interface Props {
     onUsernameTyped(event: any): void;
     onPasswordTyped(event: any): void;
@@ -72,23 +87,25 @@ export function LoginInputs(props: Props): ReactElement {
 
     
     return (
+        <>
         <InputsContainer>
             <h1>Login</h1>
     
             <label htmlFor="username">{usernameState ? "" : "please provide a username"}</label>
-            <input type="text" name="username" id="" placeholder="username" onChange={(event) => {
+            <TextField type="text" name="username" id="" placeholder="username" onChange={(event: any) => {
                 props.onUsernameTyped(event?.target.value);
                 event?.target.value.length > 0 ? setUsernameState(true) : setUsernameState(false);
                 setUsername(event?.target.value);
             }}/>
             <label htmlFor="password">{passwordState ? "" : "please provide a password"}</label>
-            <input type="password" name="password" id="" placeholder="password" onChange={(event) => {
+            <TextField type="password" name="password" id="" placeholder="password" onChange={(event: any) => {
                 props.onPasswordTyped(event?.target.value);
                 event?.target.value.length > 0 ? setPasswordState(true) : setPasswordState(false);
                 setPassword(event?.target.value);
             }}/>
             <button onClick={() => checkInputs() ? props.onClickedSubmit() : ""}>Submit</button>
-        </InputsContainer>
+        </InputsContainer></>
+        
     )
 
     function checkInputs(): boolean {
