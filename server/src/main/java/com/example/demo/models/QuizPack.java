@@ -66,7 +66,7 @@ public class QuizPack {
         }
     }
 
-    private void remotePackToQuiz(PackToQuiz packToQuiz) {
+    private void removePackToQuiz(PackToQuiz packToQuiz) {
         packsToQuizzes.remove(packToQuiz);
     }
 
