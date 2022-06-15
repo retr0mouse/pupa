@@ -6,7 +6,8 @@ import java.util.List;
 
 @Entity (name = "TranslateQuiz")
 @Table (name = "translate_quiz")
-public class TranslateQuiz {
+@DiscriminatorValue("0")
+public class TranslateQuiz extends Quiz {
     @Id // automatically determines the primary key
     @SequenceGenerator( // generate a sequence
             name = "translate_quiz_sequence",

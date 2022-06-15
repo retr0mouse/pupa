@@ -1,10 +1,13 @@
 package com.example.demo.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity (name = "MarkRightQuiz")
 @Table(name = "mark_right_quiz")
-public class MarkRightQuiz {
+@DiscriminatorValue("1")
+public class MarkRightQuiz extends Quiz{
     @Id // automatically determines the primary key
     @SequenceGenerator( // generate a sequence
             name = "mark_right_quiz_sequence",
@@ -25,6 +28,22 @@ public class MarkRightQuiz {
             name = "question"
     )
     private String question;
+
+    @OneToMany (
+            mappedBy = "markRightQuiz",
+            cascade = CascadeType.ALL
+    )
+    private List<PackToQuiz> packsToQuizzes = new ArrayList<>();
+
+    private void addPackToQuiz(PackToQuiz packToQuiz) {
+        if (!packsToQuizzes.contains(packToQuiz)) {
+            packsToQuizzes.add(packToQuiz);
+        }
+    }
+
+    private void removePackToQuiz(PackToQuiz packToQuiz) {
+        packsToQuizzes.remove(packToQuiz);
+    }
 
     public Long getId() {
         return id;
@@ -48,4 +67,6 @@ public class MarkRightQuiz {
 
     public MarkRightQuiz() {
     }
+
+
 }

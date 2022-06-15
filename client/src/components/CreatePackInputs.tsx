@@ -75,14 +75,14 @@ export function CreatePackInputs(props: Props) {
     return (
         <>
             <MainContainer>
-                <div className="fixed inset-0 flex items-center justify-center text-white">
+                {/* <div className="fixed inset-0 flex items-center justify-center text-white">
                     <button
                         type="button"
                         className="rounded-md bg-black bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
                     >
                     Open dialog
                     </button>
-                </div>
+                </div> */}
                 <h1 >Create a pack</h1>
                 <TextField type="text" placeholder="Pack title" onChange={(event) => props.onTitleTyped(event.target.value)}></TextField>
                 <TextField type="text" placeholder="Pack description" onChange={(event) => props.onDescriptionTyped(event.target.value)}></TextField>
