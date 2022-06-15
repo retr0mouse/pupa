@@ -11,6 +11,7 @@ const InputsContainer = styled.div`
     flex-direction: column;
     align-items: center;
     border-radius: 70px;
+    margin: 50px;
 
     input {
         background: #FEFEFE;

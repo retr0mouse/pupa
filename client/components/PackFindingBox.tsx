@@ -13,10 +13,15 @@ const InputBox = styled.div`
 `;
 
 const Button = styled.button`
-    margin-top: 10px;
-    font-size: 30px;
-    background-color: #5B81E2;
-    border-radius: 16px;
+    color:white;
+    background: #5B81E2;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border: none;
+    border-radius: 5px;
+    width: 300px;
+    height: 50px;
+    font-size: 35px;
+    cursor: pointer;
     font-family: 'Poppins', sans-serif;
     
     transition: transform .2s;
@@ -45,7 +50,7 @@ export function PackFindingBox(props: Props): ReactElement {
         <InputBox>
             <TextField type="text" placeholder="Pack id number" onChange={(event) => props.onTyped(event)}></TextField>
             <br/>
-            <Button onClick={(query) => props.onClicked(query)}>Find quiz</Button>
+            <Button onClick={(query) => props.onClicked(query)}>Find pack</Button>
         </InputBox>
     );
 }

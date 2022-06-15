@@ -124,6 +124,8 @@ const ButtonContainer = styled.div`
     }
 `;
 const TextField = styled.input`
+    text-align: center;
+    text-align-last: center;
     position: relative;
     font-size: 50px;
     margin: 10px;

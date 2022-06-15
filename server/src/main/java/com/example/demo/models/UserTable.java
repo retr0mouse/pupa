@@ -16,7 +16,8 @@ import java.util.Set;
                 )
         }
 )
-public class UserTable {
+public class
+UserTable {
     @Id
     @SequenceGenerator(
             name = "user_table_sequence",

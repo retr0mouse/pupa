@@ -91,7 +91,6 @@ const DescriptionField = styled.input`
     border-radius: 20px;
     font-family:  'Poppins', sans-serif;
     margin-right: 40px;
-
     transition: transform .2s;
         :hover {
         transform: scale(1.1);
@@ -108,8 +107,8 @@ export function CreatePackInputs(props: Props) {
     return (
         <>
             <MainContainer>
-                <h1>Create a pack</h1>
                 <SaveButton onClick={() => props.onClickedSave()}>Save pack</SaveButton>
+                <h1>Create a pack</h1>
                 <TextContainer>                
                     <TitleField type="text" placeholder="Pack title" onChange={(event: any) => props.onTitleTyped(event.target.value)}></TitleField>
                     <DescriptionField type="text" placeholder="Pack description" onChange={(event: any) => props.onDescriptionTyped(event.target.value)}></DescriptionField>

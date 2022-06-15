@@ -7,15 +7,45 @@ interface Props {
 }
 
 const Card = styled.div`
-    background-color: #C4C4C4;
+    width: 200px;
+    background: #5B81E2;
     font-family: 'Poppins', sans-serif;
+    color:white;
     border-radius: 15px;
     margin: 50px;
-    padding: 50px;
-    font-size: 25px;
-    max-width: 100px;
-    word-wrap: break-word;
+    font-size: 30px;
+    max-width: 200px;
+    max-height: 500px;
+    border: 1px solid;
+    white-space: nowrap;
+    p {
+        padding: 2px 5px;   
+        width: 100px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 `;
+ const InitWord = styled.div`
+    padding-top: 30px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: auto;
+    border-bottom: 1px solid;
+    direction: ltr;
+    align-self: center;
+ `;
+
+ const Translate = styled.div`
+    padding-bottom: 30px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: auto;
+    border-top: 1px solid;
+    direction: ltr;
+    align-self: center;
+ `;
 
 export function Cards(props: Props): ReactElement {
     return (
@@ -23,8 +53,8 @@ export function Cards(props: Props): ReactElement {
             {props.initWords?.map((word, index) => {
                 return (
                     <Card>
-                        <p>{word}</p>
-                        <p>{props.transWords[index]}</p>
+                        <InitWord><p>{word}</p></InitWord>
+                        <Translate><p>{props.transWords[index]}</p></Translate>
                     </Card>
                 );
             })}
