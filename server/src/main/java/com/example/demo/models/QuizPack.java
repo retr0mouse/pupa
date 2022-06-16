@@ -77,6 +77,11 @@ public class QuizPack {
         this.creator = creator;
     }
 
+    public QuizPack(String title, String description) {
+        this.title = title;
+        this.description = description;
+    }
+
     public QuizPack() {
     }
 

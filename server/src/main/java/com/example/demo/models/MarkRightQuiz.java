@@ -35,6 +35,14 @@ public class MarkRightQuiz extends Quiz{
     )
     private List<PackToQuiz> packsToQuizzes = new ArrayList<>();
 
+    public List<PackToQuiz> getPacksToQuizzes() {
+        return packsToQuizzes;
+    }
+
+    public void setPacksToQuizzes(List<PackToQuiz> packsToQuizzes) {
+        this.packsToQuizzes = packsToQuizzes;
+    }
+
     private void addPackToQuiz(PackToQuiz packToQuiz) {
         if (!packsToQuizzes.contains(packToQuiz)) {
             packsToQuizzes.add(packToQuiz);

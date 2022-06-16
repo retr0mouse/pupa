@@ -58,6 +58,12 @@ public class TranslateQuiz extends Quiz {
         this.translatedWord = translatedWord;
     }
 
+    public TranslateQuiz(Long id, String initialWord, String translatedWord) {
+        this.id = id;
+        this.initialWord = initialWord;
+        this.translatedWord = translatedWord;
+    }
+
     public Long getId() {
         return id;
     }

@@ -15,6 +15,10 @@ const ButtonsContainer = styled.div`
     display: flex;
     flex-direction: column;
 
+    .link {
+        margin-top: 50px;
+    }
+
     p {
         font-size: 48px;
         font-family: 'Open Sans', sans-serif;
@@ -75,10 +79,10 @@ export function Home(): ReactElement{
         <>
             <Navigation/>
             <ButtonsContainer>
-                <NavLink to="/register">
+                <NavLink className="link" to="/register">
                     <RegisterButton>Register</RegisterButton>
                 </NavLink>
-                <NavLink to="/login">
+                <NavLink className="link" to="/login">
                     <LoginButton>Log in</LoginButton>
                 </NavLink>
             </ButtonsContainer>
