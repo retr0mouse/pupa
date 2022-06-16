@@ -2,6 +2,7 @@ package com.example.demo.controllers;
 
 import com.example.demo.models.QuizPack;
 import com.example.demo.models.MarkRightQuiz;
+import com.example.demo.models.TranslateQuiz;
 import com.example.demo.services.QuizPackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -38,7 +39,7 @@ public class QuizPackController {
     }
 
     @PostMapping(path = "addQuiz")
-    public void addQuizToPack(@RequestParam Long packId, @RequestBody MarkRightQuiz quiz) {
-        System.out.println("keks");
+    public void addQuizToPack(@RequestParam Long packId, @RequestBody TranslateQuiz quiz) {
+        quizPackService.addQuizToPack(packId, quiz);
     }
 }

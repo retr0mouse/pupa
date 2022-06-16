@@ -34,6 +34,7 @@ export function PackCreating(): ReactElement {
         setUserId(id);
     }, []);
 
+
     return (
         <>
             <Navigation/>
@@ -54,7 +55,11 @@ export function PackCreating(): ReactElement {
             <CardsContainer>
                 <Cards
                     initWords={initWords}
-                    transWords={transWords}
+                    transWords={transWords} 
+                    image={undefined} 
+                    onTypedInit={(value) => setCurrentInitWord(value)} 
+                    onTypedTrans={(value) => setCurrentTransWord(value)} 
+                    onClickedSubmit={(index:any) => changeCard(index)}
                 ></Cards>
             </CardsContainer>
         </>
@@ -65,7 +70,7 @@ export function PackCreating(): ReactElement {
         if (packName.length > 0 && packDescription.length > 0) {
             try {
                 await PackAPI.addPack(packName, packDescription, await userId);
-                await QuizAPI.addQuiz(initWords, transWords);
+                await QuizAPI.addQuizzes(initWords, transWords);
                 setNotice("Pack created successfully");
             } catch (error) {
                 setNotice("Error" + error);
@@ -81,5 +86,14 @@ export function PackCreating(): ReactElement {
     function addCard() {
         setInitWords(initWords.concat(currentInitWord));
         setTransWords(transWords.concat(currentTransWord));
+        setCurrentInitWord("");
+        setCurrentTransWord("");
+    }
+
+    function changeCard(index: any): void {
+        initWords[index] = currentInitWord;
+        transWords[index] = currentTransWord;
+        setInitWords([...initWords]);
+        setTransWords([...transWords]);
     }
 }

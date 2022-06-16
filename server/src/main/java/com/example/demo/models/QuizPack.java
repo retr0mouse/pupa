@@ -60,13 +60,13 @@ public class QuizPack {
     )
     private List<PackToQuiz> packsToQuizzes = new ArrayList<>();
 
-    private void addPackToQuiz(PackToQuiz packToQuiz) {
+    public void addPackToQuiz(PackToQuiz packToQuiz) {
         if (!packsToQuizzes.contains(packToQuiz)) {
             packsToQuizzes.add(packToQuiz);
         }
     }
 
-    private void removePackToQuiz(PackToQuiz packToQuiz) {
+    public void removePackToQuiz(PackToQuiz packToQuiz) {
         packsToQuizzes.remove(packToQuiz);
     }
 

@@ -141,9 +141,9 @@ const TextField = styled.input`
 export function PopupDialog(props:Props): ReactElement{
 
     return <Popup
-            trigger={<PopupButton className="button"><img src={props.image}></img></PopupButton>}
-            modal
-            nested
+                trigger={<PopupButton className="button"><img src={props.image}></img></PopupButton>}
+                modal
+                nested
             >
             {(close: any) => (
                 <div className="modal">

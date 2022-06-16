@@ -13,11 +13,10 @@ export class QuizAPI {
         return result;
     }
 
-    static async addQuiz(initWords: string[], transWords: string[], packId: number){
+    static async addQuizzes(initWords: string[], transWords: string[]){
         if (initWords.length != transWords.length) {
             throw new Error();
         }
-        const packType = 0;
         const token = sessionStorage.getItem("token");
         for (let i = 0; i < initWords.length; i++) {
             const data = {

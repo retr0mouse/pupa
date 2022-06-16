@@ -26,39 +26,43 @@ public class PackToQuizService {
         this.userRepository = userRepository;
     }
 
-    public void addPackToQuiz(QuizPack quizPack, TranslateQuiz translateQuiz, Long quizType, Long userId) {
-        Optional<UserTable> user = userRepository.findById(userId);
-        if (user.isEmpty()) {
-            throw new IllegalStateException("The user with id (" +
-                    userId + ") is not in the database");
-        }
-        Optional<QuizPack> pack = quizPackRepository.findQuizPackByTitleAndCreator(quizPack.getTitle(), user.get());
-        if (pack.isEmpty()) {
-            throw new IllegalStateException("The pack with title (" +
-                    quizPack.getTitle() + ") is not in the database");
-        }
-        Optional<QuizType> type = quizTypeRepository.findById(quizType);
-        if (type.isEmpty()) {
-            throw new IllegalStateException("The quiz type with id (" +
-                    quizType + ") is not in the database");
-        }
-        Optional<TranslateQuiz> quiz;
-        if (quizType == 0) {
-            quiz = translateQuizRepository.findById(translateQuiz.getId());
-        }
-        else {
-            throw new IllegalStateException("The quiz type (" + quizType + ") is not in the database");
-        }
+    public void addQuizToPack() {
 
-        if (quiz.isEmpty()) {
-            throw new IllegalStateException("The quiz with id (" +
-                    translateQuiz.getId() + ") is not in the database");
-        }
-        if (packToQuizRepository.findByQuizPackAndTranslateQuizAndQuizType(pack.get(), quiz.get(), type.get()).isPresent()) {
-            throw new IllegalStateException("This relation is already in the database");
-        }
-        packToQuizRepository.save(new PackToQuiz(quiz.get(), pack.get(), type.get()));
     }
+
+//    public void addPackToQuiz(QuizPack quizPack, TranslateQuiz translateQuiz, Long quizType, Long userId) {
+//        Optional<UserTable> user = userRepository.findById(userId);
+//        if (user.isEmpty()) {
+//            throw new IllegalStateException("The user with id (" +
+//                    userId + ") is not in the database");
+//        }
+//        Optional<QuizPack> pack = quizPackRepository.findQuizPackByTitleAndCreator(quizPack.getTitle(), user.get());
+//        if (pack.isEmpty()) {
+//            throw new IllegalStateException("The pack with title (" +
+//                    quizPack.getTitle() + ") is not in the database");
+//        }
+//        Optional<QuizType> type = quizTypeRepository.findById(quizType);
+//        if (type.isEmpty()) {
+//            throw new IllegalStateException("The quiz type with id (" +
+//                    quizType + ") is not in the database");
+//        }
+//        Optional<TranslateQuiz> quiz;
+//        if (quizType == 0) {
+//            quiz = translateQuizRepository.findById(translateQuiz.getId());
+//        }
+//        else {
+//            throw new IllegalStateException("The quiz type (" + quizType + ") is not in the database");
+//        }
+//
+//        if (quiz.isEmpty()) {
+//            throw new IllegalStateException("The quiz with id (" +
+//                    translateQuiz.getId() + ") is not in the database");
+//        }
+//        if (packToQuizRepository.findByQuizPackAndTranslateQuizAndQuizType(pack.get(), quiz.get(), type.get()).isPresent()) {
+//            throw new IllegalStateException("This relation is already in the database");
+//        }
+//        packToQuizRepository.save(new PackToQuiz(quiz.get(), pack.get(), type.get()));
+//    }
 
     public List<PackToQuiz> getAllPacksToQuizzes() {
         return packToQuizRepository.findAll();
