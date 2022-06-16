@@ -26,10 +26,10 @@ public class PackToQuizController {
     }
 
     @PostMapping(value = "add", params = {"type", "userId"})
-    public void addRelation(@RequestBody QuizPack pack,
-                            @RequestBody TranslateQuiz quiz,
+    public void addRelation(@RequestBody List<TranslateQuiz> quizzesList,
                             @RequestParam Long type,
+                            @RequestParam Long packId,
                             @RequestParam Long userId) {
-        packToQuizService.addPackToQuiz(pack, quiz, type, userId);
+        packToQuizService.addPackToQuiz(quizzesList, packId, type, userId);
     }
 }
