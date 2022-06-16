@@ -1,14 +1,13 @@
 package com.example.demo.models;
 
-import com.example.demo.models.PackToQuiz;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity (name = "TranslateQuiz")
 @Table (name = "translate_quiz")
-public class TranslateQuiz {
+@DiscriminatorValue("0")
+public class TranslateQuiz extends Quiz {
     @Id // automatically determines the primary key
     @SequenceGenerator( // generate a sequence
             name = "translate_quiz_sequence",
@@ -47,7 +46,7 @@ public class TranslateQuiz {
         }
     }
 
-    private void remotePackToQuiz(PackToQuiz packToQuiz) {
+    private void removePackToQuiz(PackToQuiz packToQuiz) {
         packsToQuizzes.remove(packToQuiz);
     }
 

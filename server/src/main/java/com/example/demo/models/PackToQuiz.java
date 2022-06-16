@@ -25,14 +25,43 @@ public class PackToQuiz {
     @JoinColumn(name = "pack_id")
     private QuizPack quizPack;
 
-    public PackToQuiz(MarkRightQuiz markRightQuiz, QuizPack quizPack) {
-        this.markRightQuiz = markRightQuiz;
-        this.quizPack = quizPack;
-    }
+    @ManyToOne
+    @MapsId("quizTypeId")
+    @JoinColumn(name = "quiz_type_id")
+    private QuizType quizType;
 
-    public PackToQuiz(TranslateQuiz translateQuiz, QuizPack quizPack) {
+    public PackToQuiz(PackToQuizId id, TranslateQuiz translateQuiz, QuizPack quizPack, QuizType quizType) {
+        this.id = id;
         this.translateQuiz = translateQuiz;
         this.quizPack = quizPack;
+        this.quizType = quizType;
+    }
+
+    public PackToQuiz(PackToQuizId id, MarkRightQuiz markRightQuiz, QuizPack quizPack, QuizType quizType) {
+        this.id = id;
+        this.markRightQuiz = markRightQuiz;
+        this.quizPack = quizPack;
+        this.quizType = quizType;
+    }
+
+    public PackToQuiz(TranslateQuiz translateQuiz, QuizPack quizPack, QuizType quizType) {
+        this.translateQuiz = translateQuiz;
+        this.quizPack = quizPack;
+        this.quizType = quizType;
+    }
+
+    public PackToQuiz(MarkRightQuiz markRightQuiz, QuizPack quizPack, QuizType quizType) {
+        this.markRightQuiz = markRightQuiz;
+        this.quizPack = quizPack;
+        this.quizType = quizType;
+    }
+
+    public QuizType getQuizType() {
+        return quizType;
+    }
+
+    public void setQuizType(QuizType quizType) {
+        this.quizType = quizType;
     }
 
     public PackToQuizId getId() {

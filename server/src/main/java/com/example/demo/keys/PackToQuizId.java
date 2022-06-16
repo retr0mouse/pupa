@@ -12,6 +12,9 @@ public class PackToQuizId implements Serializable {
     @Column (name = "pack_id")
     private Long packId;
 
+    @Column (name = "quiz_type_id")
+    private Long quizTypeId;
+
     public Long getQuizId() {
         return quizId;
     }
@@ -28,11 +31,20 @@ public class PackToQuizId implements Serializable {
         this.packId = packId;
     }
 
+    public Long getQuizTypeId() {
+        return quizTypeId;
+    }
+
+    public void setQuizTypeId(Long quizTypeId) {
+        this.quizTypeId = quizTypeId;
+    }
+
     public PackToQuizId() {
     }
 
-    public PackToQuizId(Long quizId, Long packId) {
+    public PackToQuizId(Long quizId, Long packId, Long quizTypeId) {
         this.quizId = quizId;
         this.packId = packId;
+        this.quizTypeId = quizTypeId;
     }
 }
