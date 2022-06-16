@@ -6,7 +6,7 @@ import { CreatePackInputs } from "../components/CreatePackInputs";
 import { Message } from "../components/Message";
 import { Navigation } from "../components/NavigationBar";
 import { PopupDialog } from "../components/PopupDialog";
-import { PlayerResponse } from "../responses/PlayerResponse";
+import { PlayerResponse } from "../templates/responses/PlayerResponse";
 import plusIcon from "../../images/plus.svg";
 import { Cards } from "../components/Cards";
 import { PackAPI } from "../apis/PackAPI";
@@ -69,8 +69,18 @@ export function PackCreating(): ReactElement {
     async function addPack() {
         if (packName.length > 0 && packDescription.length > 0) {
             try {
-                await PackAPI.addPack(packName, packDescription, await userId);
-                await QuizAPI.addQuizzes(initWords, transWords);
+                const pack = {
+                    title: packName,
+                    description: packDescription
+                }
+                const quizzesList = [];
+                for (let i = 0; i < initWords.length; i++) {
+                    quizzesList.push({
+                        initialWord: initWords[i],
+                        translatedWord: transWords[i]
+                    })
+                }
+                await PackAPI.createPackWithQuizzes(pack, quizzesList, await userId);
                 setNotice("Pack created successfully");
             } catch (error) {
                 setNotice("Error" + error);

@@ -1,9 +1,10 @@
 package com.example.demo.services;
 
-import com.example.demo.keys.PackToQuizId;
 import com.example.demo.models.*;
+import com.example.demo.payloads.request.CreatePackWithQuizzesRequest;
 import com.example.demo.repositories.QuizPackRepository;
 import com.example.demo.repositories.QuizTypeRepository;
+import com.example.demo.repositories.TranslateQuizRepository;
 import com.example.demo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,30 +19,32 @@ public class QuizPackService {
     private final QuizPackRepository quizPackRepository;
     private final UserRepository userRepository;
     private final QuizTypeRepository quizTypeRepository;
+    private final TranslateQuizRepository translateQuizRepository;
 
     @Autowired
-    public QuizPackService(QuizPackRepository quizRepository, UserRepository userRepository, QuizTypeRepository quizTypeRepository) {
+    public QuizPackService(QuizPackRepository quizRepository, UserRepository userRepository, QuizTypeRepository quizTypeRepository, TranslateQuizRepository translateQuizRepository) {
         this.userRepository = userRepository;
         this.quizPackRepository = quizRepository;
         this.quizTypeRepository = quizTypeRepository;
+        this.translateQuizRepository = translateQuizRepository;
     }
 
     public List<QuizPack> getQuizPacks() {
         return quizPackRepository.findAll();
     }
 
-    public void addNewQuizPack(QuizPack quiz, Long userId) {
+    public void addNewQuizPack(QuizPack quizPack, Long userId) {
         Optional<UserTable> userOptional = userRepository.findById(userId);
         if (userOptional.isEmpty()) {
             throw new IllegalStateException("UserTable with id (" + userId + ") does not exist");
         }
-        Optional<QuizPack> quizOptional = quizPackRepository.findQuizPackByTitleAndCreator(quiz.getTitle(), userOptional.get());
+        Optional<QuizPack> quizOptional = quizPackRepository.findQuizPackByTitleAndCreator(quizPack.getTitle(), userOptional.get());
         if (quizOptional.isPresent()) {
             throw new IllegalStateException("UserTable " + userOptional.get().getUsername() + " already has a quiz with title '" + quizOptional.get().getTitle() + "'");
         }
-        quiz.setCreated(LocalDate.now());
-        userOptional.get().addQuizPack(quiz);
-        quizPackRepository.save(quiz);
+        quizPack.setCreated(LocalDate.now());
+        userOptional.get().addQuizPack(quizPack);
+        quizPackRepository.save(quizPack);
     }
 
     public QuizPack getQuizPackById(Long id) {
@@ -52,6 +55,30 @@ public class QuizPackService {
     }
 
     public void addQuizToPack(Long packId, TranslateQuiz quiz) {
-        System.out.println(";asldjflaskdjf");
+        Optional<QuizPack> pack = quizPackRepository.findById(packId);
+        if (pack.isEmpty()) {
+            throw new IllegalStateException("Quiz pack with id (" + packId + ") does not exist");
+        }
+        translateQuizRepository.save(quiz);
+        pack.get().addQuiz(quiz);
+        quizPackRepository.save(pack.get());
+    }
+
+    public void createPackWithQuizzes(CreatePackWithQuizzesRequest request, Long userId) {
+        Optional<UserTable> user = userRepository.findById(userId);
+        if (user.isEmpty()) {
+            throw new IllegalStateException("User with id (" + userId + ") does not exist");
+        }
+        var pack = request.getQuizPack();
+        pack.setCreated(LocalDate.now());
+        user.get().addQuizPack(pack);
+        userRepository.save(user.get());
+        System.out.println(pack);
+        quizPackRepository.save(pack);
+        for (TranslateQuiz quiz: request.getTranslateQuizList()) {
+            translateQuizRepository.save(quiz);
+            pack.addQuiz(quiz);
+        }
+        quizPackRepository.save(pack);
     }
 }

@@ -1,5 +1,8 @@
+import { Pack } from "../templates/Pack";
+import { Quiz } from "../templates/Quiz";
+
 export class PackAPI {
-    static async addPack(name: string, description: string, userId: number) {
+    static async createPack(name: string, description: string, userId: number) {
         const token = sessionStorage.getItem("token");
         const data = {
             title: name,
@@ -38,4 +41,23 @@ export class PackAPI {
             throw new Error("Request failed with status code " + response.status + response.statusText);
         }
     }
+
+    static async createPackWithQuizzes(pack: Pack, packquizzesList: Quiz[], userId: number) {
+        const token = sessionStorage.getItem("token");
+        const data = {
+            quizPack: pack,
+            translateQuizList: packquizzesList
+        };
+        const response = await fetch(`http://localhost:8080/api/v1/quiz_pack/add?userId=${userId}`, {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            }
+        });
+        if (!response.ok) {
+            throw new Error("Request failed with status code " + response.status + response.statusText);
+        }
+    } 
 }

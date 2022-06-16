@@ -35,36 +35,12 @@ public class QuizType {
     )
     private String description;
 
-    @OneToMany (
-            mappedBy = "quizType",
-            cascade = CascadeType.ALL
-    )
-    private List<PackToQuiz> packsToQuizzes = new ArrayList<>();
-
-    private void addPackToQuiz(PackToQuiz packToQuiz) {
-        if (!packsToQuizzes.contains(packToQuiz)) {
-            packsToQuizzes.add(packToQuiz);
-        }
-    }
-
-    private void removePackToQuiz(PackToQuiz packToQuiz) {
-        packsToQuizzes.remove(packToQuiz);
-    }
-
     public QuizType() {
     }
 
     public QuizType(String title, String description) {
         this.title = title;
         this.description = description;
-    }
-
-    public List<PackToQuiz> getPacksToQuizzes() {
-        return packsToQuizzes;
-    }
-
-    public void setPacksToQuizzes(List<PackToQuiz> packsToQuizzes) {
-        this.packsToQuizzes = packsToQuizzes;
     }
 
     public Long getId() {

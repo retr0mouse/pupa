@@ -17,7 +17,6 @@ public class TranslateQuizService {
     }
 
     public void addQuiz(TranslateQuiz quiz) {
-        System.out.println(quiz.getId());
         translateQuizRepository.save(quiz);
     }
 

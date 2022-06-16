@@ -13,7 +13,7 @@ export class QuizAPI {
         return result;
     }
 
-    static async addQuizzes(initWords: string[], transWords: string[]){
+    static async addQuizzes(initWords: string[], transWords: string[], packId: number){
         if (initWords.length != transWords.length) {
             throw new Error();
         }
@@ -23,7 +23,7 @@ export class QuizAPI {
                 initialWord: initWords[i],
                 translatedWord: transWords[i]
             }
-            const response = await fetch("http://localhost:8080/api/v1/tr_quiz/add", {
+            const response = await fetch(`http://localhost:8080/api/v1/quiz_pack/addQuiz?packId=${packId}`, {
                 method: "POST",
                 body: JSON.stringify(data),
                 headers: {

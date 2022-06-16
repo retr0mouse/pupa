@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity (name = "QuizPack")
 @Table (name = "quiz_pack")
@@ -54,21 +55,30 @@ public class QuizPack {
     )
     private UserTable creator;
 
-    @OneToMany (
-            mappedBy = "quizPack",
-            cascade = CascadeType.ALL
+    @ManyToMany (
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.PERSIST
     )
-    private List<PackToQuiz> packsToQuizzes = new ArrayList<>();
-
-    public void addPackToQuiz(PackToQuiz packToQuiz) {
-        if (!packsToQuizzes.contains(packToQuiz)) {
-            packsToQuizzes.add(packToQuiz);
-        }
-    }
-
-    public void removePackToQuiz(PackToQuiz packToQuiz) {
-        packsToQuizzes.remove(packToQuiz);
-    }
+    @JoinTable (
+            name = "quizzes_in_packs",
+            joinColumns = {
+                    @JoinColumn (
+                            name = "quiz_id",
+                            referencedColumnName = "id",
+                            nullable = false,
+                            updatable = false
+                    )
+            },
+            inverseJoinColumns = {
+                    @JoinColumn (
+                            name = "pack_id",
+                            referencedColumnName = "id",
+                            nullable = false,
+                            updatable = false
+                    )
+            }
+    )
+    private List<Quiz> quizzes = new ArrayList<>();
 
     public QuizPack(String title, LocalDate created, String description, UserTable creator) {
         this.title = title;
@@ -83,6 +93,46 @@ public class QuizPack {
     }
 
     public QuizPack() {
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        QuizPack quizPack = (QuizPack) o;
+        return Objects.equals(id, quizPack.id) && Objects.equals(title, quizPack.title) && Objects.equals(created, quizPack.created) && Objects.equals(description, quizPack.description) && Objects.equals(creator, quizPack.creator) && Objects.equals(quizzes, quizPack.quizzes);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title, created, description, creator, quizzes);
+    }
+
+    @Override
+    public String toString() {
+        return "QuizPack{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", created=" + created +
+                ", description='" + description + '\'' +
+//                ", creator=" + creator +
+                ", quizzes=" + quizzes +
+                '}';
+    }
+
+    @JsonBackReference (value = "quiz_pack-quiz")
+    public List<Quiz> getQuizzes() {
+        return quizzes;
+    }
+
+    public void setQuizzes(List<Quiz> quizzes) {
+        this.quizzes = quizzes;
+    }
+
+    public void addQuiz(Quiz quiz) {
+        if (!quizzes.contains(quiz)) {
+            quizzes.add(quiz);
+        }
     }
 
     public QuizPack(String title) {
@@ -117,7 +167,7 @@ public class QuizPack {
         this.creator = user;
     }
 
-    @JsonBackReference
+    @JsonBackReference (value = "quiz_pack-creator")
     public UserTable getCreator() {
         return creator;
     }
@@ -128,13 +178,5 @@ public class QuizPack {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public List<PackToQuiz> getPacksToQuizzes() {
-        return packsToQuizzes;
-    }
-
-    public void setPacksToQuizzes(List<PackToQuiz> packsToQuizzes) {
-        this.packsToQuizzes = packsToQuizzes;
     }
 }

@@ -1,5 +1,5 @@
-import { ResponseError } from "../responses/ApiError";
-import { PlayerResponse } from "../responses/PlayerResponse";
+import { ResponseError } from "../templates/responses/ApiError";
+import { PlayerResponse } from "../templates/responses/PlayerResponse";
 
 export class UserAPI {
     static async registerUser(username: string, email: string, firstname: string, lastname: string, password: string) { 
