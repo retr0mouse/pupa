@@ -1,5 +1,6 @@
 package com.example.demo.controllers;
 
+import com.example.demo.models.Quiz;
 import com.example.demo.models.QuizPack;
 import com.example.demo.models.MarkRightQuiz;
 import com.example.demo.models.TranslateQuiz;

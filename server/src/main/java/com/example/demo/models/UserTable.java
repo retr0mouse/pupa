@@ -1,5 +1,7 @@
 package com.example.demo.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -165,6 +167,7 @@ UserTable {
         return password;
     }
 
+    @JsonBackReference(value = "user-pack")
     public List<QuizPack> getQuizPacks() {
         return quizPacks;
     }
@@ -173,6 +176,7 @@ UserTable {
         this.quizPacks = quizPacks;
     }
 
+    @JsonBackReference(value = "user-role")
     public Set<Role> getRoles() {
         return roles;
     }

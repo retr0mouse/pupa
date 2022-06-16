@@ -1,8 +1,11 @@
 package com.example.demo.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity (name = "TranslateQuiz")
 @Table (name = "translate_quiz")
@@ -34,20 +37,42 @@ public class TranslateQuiz extends Quiz {
     )
     private String translatedWord;
 
-    @OneToMany (
-            mappedBy = "translateQuiz",
-            cascade = CascadeType.ALL
+    @ManyToMany(
+            mappedBy = "quizzes",
+            fetch = FetchType.LAZY
     )
-    private List<PackToQuiz> packsToQuizzes = new ArrayList<>();
+    private List<QuizPack> packs = new ArrayList<>();
 
-    private void addPackToQuiz(PackToQuiz packToQuiz) {
-        if (!packsToQuizzes.contains(packToQuiz)) {
-            packsToQuizzes.add(packToQuiz);
-        }
+    @Override
+    public String toString() {
+        return "TranslateQuiz{" +
+                "id=" + id +
+                ", initialWord='" + initialWord + '\'' +
+                ", translatedWord='" + translatedWord + '\'' +
+                ", packs=" + packs +
+                '}';
     }
 
-    private void removePackToQuiz(PackToQuiz packToQuiz) {
-        packsToQuizzes.remove(packToQuiz);
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TranslateQuiz that = (TranslateQuiz) o;
+        return Objects.equals(id, that.id) && Objects.equals(initialWord, that.initialWord) && Objects.equals(translatedWord, that.translatedWord) && Objects.equals(packs, that.packs);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, initialWord, translatedWord, packs);
+    }
+
+    @JsonBackReference (value = "trans_quiz-pack")
+    public List<QuizPack> getPacks() {
+        return packs;
+    }
+
+    public void setPacks(List<QuizPack> packs) {
+        this.packs = packs;
     }
 
     public TranslateQuiz() {
@@ -86,13 +111,5 @@ public class TranslateQuiz extends Quiz {
 
     public void setTranslatedWord(String translatedWord) {
         this.translatedWord = translatedWord;
-    }
-
-    public List<PackToQuiz> getPacksToQuizzes() {
-        return packsToQuizzes;
-    }
-
-    public void setPacksToQuizzes(List<PackToQuiz> packsToQuizzes) {
-        this.packsToQuizzes = packsToQuizzes;
     }
 }
