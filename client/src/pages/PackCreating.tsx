@@ -4,19 +4,6 @@ import { QuizAPI } from "../apis/QuizAPI";
 import { UserAPI } from "../apis/UserAPI";
 import { CreatePackInputs } from "../components/CreatePackInputs";
 import { Message } from "../components/Message";
-<<<<<<< HEAD:client/src/pages/PackCreating.tsx
-import { QuizCreationBox } from "../components/QuizCreationBox";
-import { PlayerResponse } from "../../responses/PlayerResponse";
-import MyModal from "../components/MyModal";
-
-// const MainContainer = styled.div`
-//     position: absolute;
-//     top: 50%;
-//     left: 50%;
-//     transform: translate(-50%, -50%);
-//     align-items: center;
-// `;
-=======
 import { Navigation } from "../components/NavigationBar";
 import { PopupDialog } from "../components/PopupDialog";
 import { PackFindingBox } from "../components/PackFindingBox";
@@ -30,7 +17,6 @@ const CardsContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
 `;
->>>>>>> origin/popup:client/pages/PackCreating.tsx
 
 export function PackCreating(): ReactElement {
     const [userId, setUserId] = useState(null) as any;
@@ -57,15 +43,11 @@ export function PackCreating(): ReactElement {
                 onClickedSave={() => addPack()} 
                 onDescriptionTyped={(text) => setPackDescription(text)}
             ></CreatePackInputs>
-<<<<<<< HEAD:client/src/pages/PackCreating.tsx
-            {/* <MyModal/> */}
-=======
             <PopupDialog
                 image={plusIcon} 
                 onTypedInit={(cardInit) => setCurrentInitWord(cardInit)} 
                 onTypedTrans={(cardTrans) => setCurrentTransWord(cardTrans)}
                 onClickedSubmit={() => addCard()}></PopupDialog>
->>>>>>> origin/popup:client/pages/PackCreating.tsx
             <Message
                 message={notice}
                 updateMessage={() => setNotice()}
