@@ -47,4 +47,9 @@ public class PackToQuizId implements Serializable {
         this.packId = packId;
         this.quizTypeId = quizTypeId;
     }
+
+    public PackToQuizId(Long quizId, Long packId) {
+        this.quizId = quizId;
+        this.packId = packId;
+    }
 }

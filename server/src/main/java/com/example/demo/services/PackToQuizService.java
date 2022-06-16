@@ -1,14 +1,8 @@
 package com.example.demo.services;
 
 import com.example.demo.keys.PackToQuizId;
-import com.example.demo.models.PackToQuiz;
-import com.example.demo.models.QuizPack;
-import com.example.demo.models.QuizType;
-import com.example.demo.models.TranslateQuiz;
-import com.example.demo.repositories.PackToQuizRepository;
-import com.example.demo.repositories.QuizPackRepository;
-import com.example.demo.repositories.QuizTypeRepository;
-import com.example.demo.repositories.TranslateQuizRepository;
+import com.example.demo.models.*;
+import com.example.demo.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,58 +15,49 @@ public class PackToQuizService {
     private final QuizPackRepository quizPackRepository;
     private final TranslateQuizRepository translateQuizRepository;
     private final QuizTypeRepository quizTypeRepository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public PackToQuizService(PackToQuizRepository packToQuizRepository, QuizPackRepository quizPackRepository, TranslateQuizRepository translateQuizRepository, QuizTypeRepository quizTypeRepository) {
+    public PackToQuizService(PackToQuizRepository packToQuizRepository, QuizPackRepository quizPackRepository, TranslateQuizRepository translateQuizRepository, QuizTypeRepository quizTypeRepository, UserRepository userRepository) {
         this.packToQuizRepository = packToQuizRepository;
         this.quizPackRepository = quizPackRepository;
         this.translateQuizRepository = translateQuizRepository;
         this.quizTypeRepository = quizTypeRepository;
+        this.userRepository = userRepository;
     }
 
-    public void addPackToQuiz(PackToQuizId packToQuizId) {
-        Optional<PackToQuiz> packToQuiz = packToQuizRepository.findById(packToQuizId);
-        Optional<QuizPack> pack = quizPackRepository.findById(packToQuizId.getPackId());
+    public void addPackToQuiz(QuizPack quizPack, TranslateQuiz translateQuiz, Long quizType, Long userId) {
+        Optional<UserTable> user = userRepository.findById(userId);
+        if (user.isEmpty()) {
+            throw new IllegalStateException("The user with id (" +
+                    userId + ") is not in the database");
+        }
+        Optional<QuizPack> pack = quizPackRepository.findQuizPackByTitleAndCreator(quizPack.getTitle(), user.get());
+        if (pack.isEmpty()) {
+            throw new IllegalStateException("The pack with title (" +
+                    quizPack.getTitle() + ") is not in the database");
+        }
+        Optional<QuizType> type = quizTypeRepository.findById(quizType);
+        if (type.isEmpty()) {
+            throw new IllegalStateException("The quiz type with id (" +
+                    quizType + ") is not in the database");
+        }
         Optional<TranslateQuiz> quiz;
-        Optional<QuizType> quizType = quizTypeRepository.findById(packToQuizId.getQuizTypeId());
-        if (packToQuizId.getQuizTypeId() == 0) {
-            quiz = translateQuizRepository.findById(packToQuizId.getQuizId());
+        if (quizType == 0) {
+            quiz = translateQuizRepository.findById(translateQuiz.getId());
         }
         else {
-            throw new IllegalStateException("The quiz type (" + packToQuizId.getQuizTypeId() + ") is not in the database");
-        }
-
-        if (quizType.isEmpty()) {
-            throw new IllegalStateException("The quiz type with id (" +
-                    packToQuizId.getPackId() + ") is not in the database");
-        }
-
-        if (pack.isEmpty()) {
-            throw new IllegalStateException("The pack with id (" +
-                    packToQuizId.getPackId() + ") is not in the database");
+            throw new IllegalStateException("The quiz type (" + quizType + ") is not in the database");
         }
 
         if (quiz.isEmpty()) {
             throw new IllegalStateException("The quiz with id (" +
-                    packToQuizId.getQuizId() + ") is not in the database");
+                    translateQuiz.getId() + ") is not in the database");
         }
-
-        if (packToQuiz.isPresent()) {
-            throw new IllegalStateException(
-                    "The relation with id (" +
-                            packToQuizId.getQuizId() + "," +
-                            packToQuizId.getPackId() + "," +
-                            packToQuizId.getQuizTypeId() + "," +
-                            ") is already in the database"
-            );
+        if (packToQuizRepository.findByQuizPackAndTranslateQuizAndQuizType(pack.get(), quiz.get(), type.get()).isPresent()) {
+            throw new IllegalStateException("This relation is already in the database");
         }
-        packToQuizRepository.save(new PackToQuiz(
-                new PackToQuizId(packToQuizId.getQuizId(), packToQuizId.getPackId(), packToQuizId.getQuizTypeId()),
-                        quiz.get(),
-                        pack.get(),
-                        quizType.get()
-                )
-        );
+        packToQuizRepository.save(new PackToQuiz(quiz.get(), pack.get(), type.get()));
     }
 
     public List<PackToQuiz> getAllPacksToQuizzes() {

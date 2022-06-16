@@ -6,12 +6,10 @@ import { CreatePackInputs } from "../components/CreatePackInputs";
 import { Message } from "../components/Message";
 import { Navigation } from "../components/NavigationBar";
 import { PopupDialog } from "../components/PopupDialog";
-import { PackFindingBox } from "../components/PackFindingBox";
 import { PlayerResponse } from "../responses/PlayerResponse";
-import { Dialog, Transition } from '@headlessui/react'
-import Popup from "reactjs-popup";
-import plusIcon from "../images/plus.svg";
+import plusIcon from "../../images/plus.svg";
 import { Cards } from "../components/Cards";
+import { PackAPI } from "../apis/PackAPI";
 
 const CardsContainer = styled.div`
     display: flex;
@@ -38,6 +36,7 @@ export function PackCreating(): ReactElement {
 
     return (
         <>
+            <Navigation/>
             <CreatePackInputs 
                 onTitleTyped={(text) => setPackName(text)}
                 onClickedSave={() => addPack()} 
@@ -65,16 +64,13 @@ export function PackCreating(): ReactElement {
     async function addPack() {
         if (packName.length > 0 && packDescription.length > 0) {
             try {
-                await QuizAPI.addPack(packName, packDescription, await userId);
+                await PackAPI.addPack(packName, packDescription, await userId);
+                await QuizAPI.addQuiz(initWords, transWords);
                 setNotice("Pack created successfully");
             } catch (error) {
                 setNotice("Error" + error);
             }
         }
-    }
-
-    async function fetchQuizzes() {
-        
     }
 
     async function getUserId() {

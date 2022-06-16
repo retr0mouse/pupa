@@ -1,9 +1,7 @@
 package com.example.demo.controllers;
 
 import com.example.demo.models.MarkRightQuiz;
-import com.example.demo.models.TranslateQuiz;
 import com.example.demo.services.MarkRightQuizService;
-import com.example.demo.services.TranslateQuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
