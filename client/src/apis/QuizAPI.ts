@@ -1,4 +1,5 @@
 import { PackCreating } from "../pages/PackCreating";
+import { ResponseError } from "../templates/ApiError";
 import { Pack } from "../templates/Pack";
 import { PackAPI } from "./PackAPI";
 
@@ -33,7 +34,7 @@ export class QuizAPI {
                 }
             });
             if (!response.ok) {
-                const data = await response.json();
+                const data = await response.json() as ResponseError;
                 throw new Error(data.message);
             }
         }

@@ -2,9 +2,10 @@ import React, { ReactElement, useEffect, useState } from "react";
 import { PackAPI } from "../apis/PackAPI";
 import { Message } from "../components/Message";
 import { Navigation } from "../components/NavigationBar";
-import { Packs } from "../components/Packs";
+import { FoundPacks } from "../components/FoundPacks";
 import { Pack } from "../templates/Pack";
 import styled from "styled-components";
+import { UserAPI } from "../apis/UserAPI";
 
 const PacksContainer = styled.div`
     display: flex;
@@ -31,9 +32,9 @@ export function PackViewing(): ReactElement {
                 message={notice}
             ></Message>
             <PacksContainer>
-                <Packs
+                <FoundPacks
                     packs={packs}
-                ></Packs>
+                ></FoundPacks>
             </PacksContainer>
             
         </>
@@ -41,7 +42,8 @@ export function PackViewing(): ReactElement {
 
     async function fetchPacks() {
         try {
-            const packs = await PackAPI.getPacksByUserId();
+            const user = await UserAPI.GetUser();
+            const packs = await PackAPI.getPacksByUserId(user.id);
             console.log(packs);
             setPacks([...packs]);
         } catch (error) {
