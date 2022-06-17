@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 interface Props {
     onTyped(query: any): void;
-    onClicked(event: any): void;
+    onClicked(): void;
 }
 
 const InputBox = styled.div`
@@ -48,9 +48,9 @@ const TextField = styled.input`
 export function PackFindingBox(props: Props): ReactElement {
     return (
         <InputBox>
-            <TextField type="text" placeholder="Pack id number" onChange={(event) => props.onTyped(event)}></TextField>
+            <TextField type="text" placeholder="User id" onChange={(event: any) => props.onTyped(event?.target.value)}></TextField>
             <br/>
-            <Button onClick={(query) => props.onClicked(query)}>Find pack</Button>
+            <Button onClick={() => props.onClicked()}>Find packs</Button>
         </InputBox>
     );
 }

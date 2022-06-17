@@ -14,7 +14,6 @@ export function QuizzesList() {
 
     return (
         <div>
-            <Navigation/>
             <Quizzes quizzes={quizzes}/>
             <Message
                 updateMessage={() => setMessage()}

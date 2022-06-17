@@ -63,7 +63,7 @@ public class QuizPack {
             name = "quizzes_in_packs",
             joinColumns = {
                     @JoinColumn (
-                            name = "quiz_id",
+                            name = "pack_id",
                             referencedColumnName = "id",
                             nullable = false,
                             updatable = false
@@ -71,7 +71,7 @@ public class QuizPack {
             },
             inverseJoinColumns = {
                     @JoinColumn (
-                            name = "pack_id",
+                            name = "quiz_id",
                             referencedColumnName = "id",
                             nullable = false,
                             updatable = false
@@ -120,7 +120,7 @@ public class QuizPack {
                 '}';
     }
 
-    @JsonBackReference (value = "quiz_pack-quiz")
+//    @JsonBackReference (value = "quiz_pack-quiz")
     public List<Quiz> getQuizzes() {
         return quizzes;
     }

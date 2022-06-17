@@ -10,6 +10,8 @@ import { PlayerResponse } from "../templates/responses/PlayerResponse";
 import plusIcon from "../../images/plus.svg";
 import { Cards } from "../components/Cards";
 import { PackAPI } from "../apis/PackAPI";
+import { Pack } from "../templates/Pack";
+import { Quiz } from "../templates/Quiz";
 
 const CardsContainer = styled.div`
     display: flex;
@@ -37,7 +39,10 @@ export function PackCreating(): ReactElement {
 
     return (
         <>
-            <Navigation/>
+            <Navigation
+                link="/student"
+                isEnabled={true}
+            />
             <CreatePackInputs 
                 onTitleTyped={(text) => setPackName(text)}
                 onClickedSave={() => addPack()} 
@@ -72,8 +77,8 @@ export function PackCreating(): ReactElement {
                 const pack = {
                     title: packName,
                     description: packDescription
-                }
-                const quizzesList = [];
+                } as Pack;
+                const quizzesList = [] as any[];
                 for (let i = 0; i < initWords.length; i++) {
                     quizzesList.push({
                         initialWord: initWords[i],
@@ -83,7 +88,7 @@ export function PackCreating(): ReactElement {
                 await PackAPI.createPackWithQuizzes(pack, quizzesList, await userId);
                 setNotice("Pack created successfully");
             } catch (error) {
-                setNotice("Error" + error);
+                setNotice("Error " + error);
             }
         }
     }

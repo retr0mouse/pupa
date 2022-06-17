@@ -1,4 +1,9 @@
+import { Quiz } from "./Quiz";
+
 export interface Pack {
-    title: string;
-    description: string
+  id: number;
+  title: string;
+  created: string;
+  description: string;
+  quizzes: Quiz[];
 }

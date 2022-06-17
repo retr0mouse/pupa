@@ -77,7 +77,10 @@ const LoginButton = styled.button`
 export function Home(): ReactElement{
     return(
         <>
-            <Navigation/>
+            <Navigation
+                link="/"
+                isEnabled={false}
+            />
             <ButtonsContainer>
                 <NavLink className="link" to="/register">
                     <RegisterButton>Register</RegisterButton>

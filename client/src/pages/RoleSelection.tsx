@@ -63,7 +63,10 @@ const StudentButton = styled.button`
 export function RoleSelection() {
     return(
         <>
-            <Navigation/>
+            <Navigation
+                link="/"
+                isEnabled={false}
+            />
             <ButtonsContainer>
                 <NavLink to="/student">
                     <StudentButton>

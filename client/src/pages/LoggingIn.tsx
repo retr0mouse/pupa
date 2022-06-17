@@ -14,7 +14,10 @@ export function LoggingIn(): ReactElement {
     
     return (
         <>
-            <Navigation/>
+            <Navigation
+                link="/"
+                isEnabled={false}
+            />
             <LoginInputs
                 onUsernameTyped={(username) => setUsername(username)}
                 onPasswordTyped={(password) => setPassword(password)}
