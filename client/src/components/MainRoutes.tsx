@@ -3,6 +3,7 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import { Home } from "../pages/HomePage";
 import { LoggingIn } from "../pages/LoggingIn";
 import { PackCreating } from "../pages/PackCreating";
+import { PackViewing } from "../pages/PackViewing";
 import { QuizzesList } from "../pages/QuizzesList";
 import { Registration } from "../pages/Registration";
 import { RoleSelection } from "../pages/RoleSelection";
@@ -20,6 +21,7 @@ export function Main() {
             <Route path="/student" element={<StudentHome/>}></Route>
             <Route path="/roles" element={<RoleSelection/>}></Route>
             <Route path="/create-pack" element={<PackCreating/>}></Route>
+            <Route path="/packs" element={<PackViewing/>}></Route>
         </Routes>
     );
 }

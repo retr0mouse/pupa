@@ -34,6 +34,11 @@ public class QuizPackController {
         return quizPackService.getQuizPackById(id);
     }
 
+    @GetMapping(value = "getByUser", params = "userId")
+    public List<QuizPack> getQuizPackByUserId(@RequestParam Long userId) {
+        return quizPackService.getQuizPacksByUserId(userId);
+    }
+
     @PostMapping(path = "addEmpty")
     public void addQuizPack(@RequestBody QuizPack quizPack, @RequestParam Long userId) {
         quizPackService.addNewQuizPack(quizPack, userId);

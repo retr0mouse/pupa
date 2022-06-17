@@ -37,7 +37,10 @@ export function PackCreating(): ReactElement {
 
     return (
         <>
-            <Navigation/>
+            <Navigation
+                link="/student"
+                isEnabled={true}
+            />
             <CreatePackInputs 
                 onTitleTyped={(text) => setPackName(text)}
                 onClickedSave={() => addPack()} 

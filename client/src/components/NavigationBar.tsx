@@ -2,7 +2,10 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-let activeClassName = "current"
+interface Props {
+    link: string;
+    isEnabled: boolean;
+}
 
 const ListItem = styled.li`
     padding: 18px;
@@ -21,18 +24,16 @@ const ListItem = styled.li`
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
+    }
 
+    .role-button {
+        font-size: 40px;
+        font-family: 'Poppins', sans-serif;
+        background: #353535;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
     }
-/* 
-    *, *::before, *::after {
-      box-sizing: inherit;
-      padding: 0;
-      margin: 0;
-    }
-    
-    .current {
-        border-bottom: 4px solid white;
-    } */
 `;
 
 const UnorderedList = styled.ul`
@@ -41,31 +42,30 @@ const UnorderedList = styled.ul`
     background-color: white;
     margin: 0;
     padding: 0;
+    justify-content: space-between;
 `;
 
-export function Navigation() {
+export function Navigation(props: Props) {
     return (
         <nav>
             <UnorderedList>
                 <ListItem>
                     <NavLink
-                        className={
-                            ({ isActive }) => isActive ? activeClassName : undefined
-                        }
-                        to="/">
+                        to={props.link}>
                         Püpa
                     </NavLink>
                 </ListItem>
-                {/* <ListItem>
-                    <NavLink
-                        className={
-                            ({ isActive }) => isActive ? activeClassName : undefined
-                        }
-                        to="/quizzes">
-                        Quizzes
+                <ListItem>
+                <NavLink
+                        className="role-button"
+                        to={"/roles"}
+                        >
+                        {props.isEnabled ? "Change role" : null}
                     </NavLink>
-                </ListItem> */}
+                </ListItem>
+                
             </UnorderedList>
+            
         </nav>
     );
 }

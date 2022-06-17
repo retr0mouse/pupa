@@ -29,7 +29,10 @@ export function Registration(): ReactElement {
     
     return (
         <>
-            <Navigation/>
+            <Navigation
+                link="/"
+                isEnabled={false}
+            />
             <RegistraionInputs
                 onUsernameTyped={(username) => setUsername(username)}
                 onFirstnameTyped={(firstname) => setFirstname(firstname)}

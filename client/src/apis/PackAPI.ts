@@ -1,5 +1,7 @@
 import { Pack } from "../templates/Pack";
 import { Quiz } from "../templates/Quiz";
+import { User } from "../templates/User";
+import { UserAPI } from "./UserAPI";
 
 export class PackAPI {
     static async createPack(name: string, description: string, userId: number) {
@@ -60,4 +62,21 @@ export class PackAPI {
             throw new Error("Request failed with status code " + response.status + response.statusText);
         }
     } 
+
+    static async getPacksByUserId() {
+        const token = sessionStorage.getItem("token");
+        const user = await UserAPI.GetUser() as User;
+        const response = await fetch(`http://localhost:8080/api/v1/quiz_pack/getByUser?userId=${user.id}`, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            }
+        });
+        if (!response.ok) {
+            throw new Error("Request failed with status code " + response.status + response.statusText);
+        }
+        const result = await response.json() as Pack[];
+        return result;
+    }
 }

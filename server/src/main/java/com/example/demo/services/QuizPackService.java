@@ -71,14 +71,24 @@ public class QuizPackService {
         }
         var pack = request.getQuizPack();
         pack.setCreated(LocalDate.now());
-        user.get().addQuizPack(pack);
         userRepository.save(user.get());
         System.out.println(pack);
-        quizPackRepository.save(pack);
+//        quizPackRepository.save(pack);
+
+        translateQuizRepository.saveAll(request.getTranslateQuizList());
         for (TranslateQuiz quiz: request.getTranslateQuizList()) {
-            translateQuizRepository.save(quiz);
             pack.addQuiz(quiz);
         }
+        System.out.println(pack);
+        user.get().addQuizPack(pack);
         quizPackRepository.save(pack);
+    }
+
+    public List<QuizPack> getQuizPacksByUserId(Long userId) {
+        Optional<UserTable> user = userRepository.findById(userId);
+        if (user.isEmpty()) {
+            throw new IllegalStateException("User with id (" + userId + ") does not exist");
+        }
+        return user.get().getQuizPacks();
     }
 }

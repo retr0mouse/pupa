@@ -18,6 +18,7 @@ const Container = styled.div`
     button {
         width: 500px;
         height: 75px;
+        margin:20px;
 
         transition: transform .2s;
         :hover {
@@ -42,12 +43,20 @@ const Container = styled.div`
 
 export function TeacherHome() {
     return (<>
-    <Navigation/>
+    <Navigation
+        link="/roles"
+        isEnabled={true}
+    />
         <Container>
             
             <NavLink to="/create-pack">
                 <button>
                     Create new pack
+                </button>
+            </NavLink>
+            <NavLink to="/packs">
+                <button>
+                    View created packs
                 </button>
             </NavLink>
         </Container>

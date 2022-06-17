@@ -9,7 +9,10 @@ import { PackFindingBox } from "../components/PackFindingBox";
 
 export function StudentHome() {
     return (<>
-                <Navigation/>
+                <Navigation
+                    link="/roles"
+                    isEnabled={true}
+                />
                 <PackFindingBox 
                     onTyped={() => null} 
                     onClicked={() => null}
