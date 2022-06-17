@@ -66,16 +66,17 @@ export function FoundPacks(props: Props): ReactElement {
         <>
             {props.packs.map((pack: Pack) => {
                 return (
-                    <Pack>
-                        <TitleContainer>
-                            <p className="title">{pack.title}</p>
-                        </TitleContainer>
-                        {/* <p>pack id: {pack.id}</p> */}
-                        <DescriptionContainer>
-                            <h1 className="header">Kirlejdus:</h1>
-                            <p>{pack.description}</p>
-                        </DescriptionContainer>
-                    </Pack>
+                    <NavLink style={{textDecoration: "none", color: "black"}} to={"/pack-redact?id=" + pack.id}>
+                        <Pack>
+                            <TitleContainer>
+                                <p className="title">{pack.title}</p>
+                            </TitleContainer>
+                            <DescriptionContainer>
+                                <h1 className="header">Kirlejdus:</h1>
+                                <p>{pack.description}</p>
+                            </DescriptionContainer>
+                        </Pack> 
+                    </NavLink>
                 )
             })}
         </>
