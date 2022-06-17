@@ -1,7 +1,8 @@
 import React, { ReactElement } from "react";
 import { NavLink } from "react-router-dom";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { Pack } from "../templates/Pack";
+import { Spinner } from "./Spinner";
 
 interface Props {
     packs: Pack[];
@@ -58,26 +59,23 @@ const DescriptionContainer = styled.div`
     }
 `;
 
+
+
 export function FoundPacks(props: Props): ReactElement {
     return (
         <>
             {props.packs.map((pack: Pack) => {
                 return (
-                    <NavLink
-                        to="/quizzes"
-                    >
-                        <Pack>
-                            <TitleContainer>
-                                <p className="title">{pack.title}</p>
-                            </TitleContainer>
-                            {/* <p>pack id: {pack.id}</p> */}
-                            <DescriptionContainer>
-                                <h1 className="header">Kirlejdus:</h1>
-                                <p>{pack.description}</p>
-                            </DescriptionContainer>
-                        </Pack>
-                    </NavLink>
-                    
+                    <Pack>
+                        <TitleContainer>
+                            <p className="title">{pack.title}</p>
+                        </TitleContainer>
+                        {/* <p>pack id: {pack.id}</p> */}
+                        <DescriptionContainer>
+                            <h1 className="header">Kirlejdus:</h1>
+                            <p>{pack.description}</p>
+                        </DescriptionContainer>
+                    </Pack>
                 )
             })}
         </>

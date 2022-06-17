@@ -23,7 +23,6 @@ export function Main() {
             <Route path="/roles" element={<RoleSelection/>}></Route>
             <Route path="/create-pack" element={<PackCreating/>}></Route>
             <Route path="/packs" element={<PackViewing/>}></Route>
-            <Route path="/quizzes:id" element={<PackViewing/>}></Route>
         </Routes>
     );
 }

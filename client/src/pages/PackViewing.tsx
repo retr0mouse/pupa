@@ -6,12 +6,20 @@ import { FoundPacks } from "../components/FoundPacks";
 import { Pack } from "../templates/Pack";
 import styled from "styled-components";
 import { UserAPI } from "../apis/UserAPI";
+import { Spinner } from "../components/Spinner";
 
 const PacksContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: baseline;
-`;  
+`;
+
+const SpinnerContainer = styled.div`
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+`;
 
 export function PackViewing(): ReactElement {
     const [packs, setPacks] = useState([]) as any;
@@ -31,19 +39,20 @@ export function PackViewing(): ReactElement {
                 updateMessage={() => setNotice()}
                 message={notice}
             ></Message>
+            {/* <SpinnerContainer><Spinner size={280} border={25}></Spinner></SpinnerContainer> */}
             <PacksContainer>
                 <FoundPacks
                     packs={packs}
                 ></FoundPacks>
             </PacksContainer>
-            
+            {packs.length == 0 ? <SpinnerContainer><Spinner size={120} border={25}></Spinner></SpinnerContainer> : null}
         </>
     );
 
     async function fetchPacks() {
         try {
-            const user = await UserAPI.GetUser();
-            const packs = await PackAPI.getPacksByUserId(user.id);
+            // const user = await UserAPI.GetUser();
+            const packs = await PackAPI.getPacksByUserId(1);
             console.log(packs);
             setPacks([...packs]);
         } catch (error) {
