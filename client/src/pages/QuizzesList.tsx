@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { QuizAPI } from "../apis/QuizAPI";
 import { Message } from "../components/Message";
 import { Navigation } from "../components/NavigationBar";
-import { Quizzes } from "../components/QuizzesList";
+import { Quizzes } from "../components/Quizzes";
 
 export function QuizzesList() {
     const [quizzes, setQuizzes] = useState([]) as any;

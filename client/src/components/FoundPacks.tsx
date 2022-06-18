@@ -66,7 +66,7 @@ export function FoundPacks(props: Props): ReactElement {
         <>
             {props.packs.map((pack: Pack) => {
                 return (
-                    <NavLink style={{textDecoration: "none", color: "black"}} to={"/pack-redact?id=" + pack.id}>
+                    <NavLink style={{textDecoration: "none", color: "black"}} to={"/pack-overview/" + pack.id}>
                         <Pack>
                             <TitleContainer>
                                 <p className="title">{pack.title}</p>

@@ -21,7 +21,7 @@ const SpinnerContainer = styled.div`
     transform: translate(-50%, -50%);
 `;
 
-export function PackViewing(): ReactElement {
+export function CreatedPacks(): ReactElement {
     const [packs, setPacks] = useState([]) as any;
     const [notice, setNotice] = useState("") as any;
 
@@ -39,7 +39,6 @@ export function PackViewing(): ReactElement {
                 updateMessage={() => setNotice()}
                 message={notice}
             ></Message>
-            {/* <SpinnerContainer><Spinner size={280} border={25}></Spinner></SpinnerContainer> */}
             <PacksContainer>
                 <FoundPacks
                     packs={packs}
@@ -51,9 +50,8 @@ export function PackViewing(): ReactElement {
 
     async function fetchPacks() {
         try {
-            // const user = await UserAPI.GetUser();
-            const packs = await PackAPI.getPacksByUserId(1);
-            console.log(packs);
+            const user = await UserAPI.GetUser();
+            const packs = await PackAPI.getPacksByUserId(user.id);
             setPacks([...packs]);
         } catch (error) {
             setNotice("Error" + error);

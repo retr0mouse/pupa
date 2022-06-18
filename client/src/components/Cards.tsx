@@ -31,10 +31,11 @@ const Card = styled.div`
     }
 
     transition: transform .2s;
-        :hover {
-        transform: scale(1.1);
-        }
+    :hover {
+    transform: scale(1.1);
+    }
 `;
+
  const InitWord = styled.div`
     padding-top: 30px;
     display: flex;

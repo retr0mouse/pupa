@@ -80,4 +80,21 @@ export class PackAPI {
         const result = await response.json() as Pack[];
         return result;
     }
+
+    static async getPackById(packId: number) {
+        const token = sessionStorage.getItem("token");
+        const response = await fetch(`http://localhost:8080/api/v1/quiz_pack/get?id=${packId}`, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            }
+        });
+        if (!response.ok) {
+            const data = await response.json() as ResponseError;
+            throw new Error(data.message);
+        }
+        const result = await response.json() as Pack;
+        return result;
+    }
 }

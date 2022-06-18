@@ -40,7 +40,7 @@ export function PackCreating(): ReactElement {
     return (
         <>
             <Navigation
-                link="/student"
+                link="/teacher"
                 isEnabled={true}
             />
             <CreatePackInputs 
