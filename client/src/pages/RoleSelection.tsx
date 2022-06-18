@@ -1,7 +1,5 @@
-import React, { ReactElement, useEffect, useState } from "react";
+import React, {  } from "react";
 import { NavLink } from "react-router-dom";
-import { QuizAPI } from "../apis/QuizAPI";
-import { Message } from "../components/Message";
 import { Navigation } from "../components/NavigationBar";
 import styled from "styled-components";
 import studentImage from '../../images/student.svg';

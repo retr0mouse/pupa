@@ -1,9 +1,6 @@
-import React, { ReactElement, useEffect, useState } from "react";
+import React, { ReactElement } from "react";
 import { NavLink } from "react-router-dom";
-import { QuizAPI } from "../apis/QuizAPI";
-import { Message } from "../components/Message";
 import { Navigation } from "../components/NavigationBar";
-import { PackFindingBox } from "../components/PackFindingBox";
 import styled from "styled-components";
 
 const ButtonsContainer = styled.div`

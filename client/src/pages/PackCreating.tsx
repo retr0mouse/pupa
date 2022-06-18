@@ -1,17 +1,15 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import styled from "styled-components";
-import { QuizAPI } from "../apis/QuizAPI";
 import { UserAPI } from "../apis/UserAPI";
 import { CreatePackInputs } from "../components/CreatePackInputs";
 import { Message } from "../components/Message";
 import { Navigation } from "../components/NavigationBar";
 import { PopupDialog } from "../components/PopupDialog";
-import { PlayerResponse } from "../templates/responses/PlayerResponse";
+import { User } from "../templates/User";
 import plusIcon from "../../images/plus.svg";
 import { Cards } from "../components/Cards";
 import { PackAPI } from "../apis/PackAPI";
 import { Pack } from "../templates/Pack";
-import { Quiz } from "../templates/Quiz";
 
 const CardsContainer = styled.div`
     display: flex;
@@ -94,7 +92,7 @@ export function PackCreating(): ReactElement {
     }
 
     async function getUserId() {
-        const user = await UserAPI.GetUser() as PlayerResponse;
+        const user = await UserAPI.GetUser() as User;
         return user.id;
     }
 

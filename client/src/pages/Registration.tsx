@@ -52,7 +52,7 @@ export function Registration(): ReactElement {
     async function RegisterUser() {
         if (username.length > 0 && email.length > 0 && password.length > 0 && firstname.length > 0 && lastname.length > 0 && passwordRepeat.length > 0) {
             try { 
-                const response = await UserAPI.registerUser(username, email, firstname, lastname, password); 
+                await UserAPI.registerUser(username, email, firstname, lastname, password); 
             } catch (error) {
                 setIsSuccessfull(false);
                 setNotice("Registration " + error);

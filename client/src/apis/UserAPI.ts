@@ -1,5 +1,5 @@
-import { ResponseError } from "../templates/responses/ApiError";
-import { PlayerResponse } from "../templates/responses/PlayerResponse";
+import { ResponseError } from "../templates/ApiError";
+import { User } from "../templates/User";
 
 export class UserAPI {
     static async registerUser(username: string, email: string, firstname: string, lastname: string, password: string) { 
@@ -56,7 +56,7 @@ export class UserAPI {
             const error = await response.json() as ResponseError;
             throw new Error(error.message);
         }
-        const player = await response.json() as PlayerResponse;
+        const player = await response.json() as User;
         return player;
     }
 }

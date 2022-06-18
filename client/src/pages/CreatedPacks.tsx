@@ -3,7 +3,6 @@ import { PackAPI } from "../apis/PackAPI";
 import { Message } from "../components/Message";
 import { Navigation } from "../components/NavigationBar";
 import { FoundPacks } from "../components/FoundPacks";
-import { Pack } from "../templates/Pack";
 import styled from "styled-components";
 import { UserAPI } from "../apis/UserAPI";
 import { Spinner } from "../components/Spinner";

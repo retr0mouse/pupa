@@ -1,8 +1,6 @@
 import { ResponseError } from "../templates/ApiError";
 import { Pack } from "../templates/Pack";
 import { Quiz } from "../templates/Quiz";
-import { User } from "../templates/User";
-import { UserAPI } from "./UserAPI";
 
 export class PackAPI {
     static async createPack(name: string, description: string, userId: number) {

@@ -1,7 +1,5 @@
-import { PackCreating } from "../pages/PackCreating";
 import { ResponseError } from "../templates/ApiError";
 import { Pack } from "../templates/Pack";
-import { PackAPI } from "./PackAPI";
 
 export class QuizAPI {
     static async getQuizzes(): Promise<Pack[]>{

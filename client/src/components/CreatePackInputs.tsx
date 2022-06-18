@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import plusIcon from "../../images/plus.svg";
 
 interface Props {
     onTitleTyped(text: any): void;
@@ -44,23 +43,6 @@ const SaveButton = styled.button`
     color: #FFFFFF;
 `;
 
-const PlusButton = styled.button`
-    position: absolute;
-    right: 10%;
-    bottom: 10%;
-    cursor: pointer;
-    background: none;
-
-    transition: transform .2s;
-
-    :hover {
-        transform: scale(1.02);
-    }
-    img {
-        width: 150px;
-    }
-`;
-
 const TitleField = styled.input`
     position: relative;
     font-size: 40px;
@@ -89,10 +71,6 @@ const DescriptionField = styled.input`
     border-radius: 20px;
     font-family:  'Poppins', sans-serif;
     margin-right: 40px;
-    /* transition: transform .2s;
-        :hover {
-        transform: scale(1.01);
-        } */
 `;
 
 const TextContainer = styled.div`
@@ -110,12 +88,9 @@ export function CreatePackInputs(props: Props) {
                 <TextContainer>                
                     <TitleField type="text" placeholder="Pack title" onChange={(event: any) => props.onTitleTyped(event.target.value)}></TitleField>
                     <DescriptionField type="text" placeholder="Pack description" onChange={(event: any) => props.onDescriptionTyped(event.target.value)}></DescriptionField>
-                </TextContainer>
-                {/* <Button onClick={() => props.onClicked()}>➕</Button> */}
-                
+                </TextContainer>                
             </MainContainer>
         </>
-        
     );
 }
 

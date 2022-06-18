@@ -1,8 +1,7 @@
 import React, { ReactElement } from "react";
 import { NavLink } from "react-router-dom";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { Pack } from "../templates/Pack";
-import { Spinner } from "./Spinner";
 
 interface Props {
     packs: Pack[];

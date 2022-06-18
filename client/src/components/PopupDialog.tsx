@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement } from 'react';
 import Popup from 'reactjs-popup';
 import styled from 'styled-components';
 

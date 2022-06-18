@@ -97,7 +97,6 @@ export function RegistraionInputs(props: Props): ReactElement {
     const [password, setPassword] = useState("");
     const [passwordState, setPasswordState] = useState(true);
     const [passwordAgain, setPasswordAgain] = useState("");
-    const [passwordAgainState, setPasswordAgainState] = useState(true);
 
     
     return (
@@ -135,10 +134,9 @@ export function RegistraionInputs(props: Props): ReactElement {
                 event?.target.value.length > 0 ? setPasswordState(true) : setPasswordState(false);
                 setPassword(event?.target.value);
             }}/>
-            <label htmlFor="password-repeat">{password != passwordAgain ? "passwords do not match" : ""}</label>
+            <label htmlFor="password-repeat">{password != passwordAgain && password.length == passwordAgain.length ? "passwords do not match" : ""}</label>
             <TextField type="password" name="password-repeat" placeholder="password again" id="" onChange={(event) => {
                 props.onPasswordRepeatTyped(event?.target.value);
-                event?.target.value.length > 0 ? setPasswordAgainState(true) : setPasswordAgainState(false);
                 setPasswordAgain(event?.target.value);
             }}/>
             <button onClick={() => checkInputs() ? props.onClickedSubmit() : ""}>Submit</button>
@@ -147,28 +145,27 @@ export function RegistraionInputs(props: Props): ReactElement {
 
     function checkInputs(): boolean {
         let isFilled = true;
-        if (username.length <= 0) {
+        if (username.length == 0) {
             setUsernameState(false);
             isFilled = false;
         }
-        if (lastname.length <= 0) {
+        if (lastname.length == 0) {
             setLastnameState(false);
             isFilled = false;
         }
-        if (firstname.length <= 0) {
+        if (firstname.length == 0) {
             setFirstnameState(false);
             isFilled = false;
         }
-        if (email.length <= 0) {
+        if (email.length == 0) {
             setEmailState(false);
             isFilled = false;
         }
-        if (password.length <= 0) {
+        if (password.length == 0) {
             setPasswordState(false);
             isFilled = false;
         }
-        if (passwordAgain.length <= 0) {
-            setPasswordAgainState(false);
+        if (passwordAgain.length == 0) {
             isFilled = false;
         }
         return isFilled;

@@ -1,5 +1,4 @@
 import React, { ReactElement, useState } from "react";
-import { NavLink } from "react-router-dom";
 import styled from "styled-components"
 
 const InputsContainer = styled.div`
