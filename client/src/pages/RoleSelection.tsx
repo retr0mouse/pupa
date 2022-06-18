@@ -5,32 +5,27 @@ import styled from "styled-components";
 import studentImage from '../../images/student.svg';
 import teacherImage from '../../images/teacher.svg';
 
-const ButtonsContainer = styled.div`
+const Container = styled.div`
     justify-content:space-around;
     gap: 200px;
 
     display: flex;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     align-items: center;
 
-    p {
-        font-size: 48px;
-        font-family: 'Open Sans', sans-serif;
-    }
     .studentImage {
-        width: 380px;
+        width: 250px;
     }
 
     .teacherImage {
-        width: 350px;
+        width: 250px;
     }
 `;
-const TeacherButton = styled.button`
-    width: 500px;
-    height: 500px;
+const Button = styled.button`
+    padding: 70px;
+    min-width: 100px;
+    min-height: 100px;
+    max-width: 500px;
+    max-height: 500px;
 
     transition: transform .2s;
     :hover {
@@ -41,43 +36,61 @@ const TeacherButton = styled.button`
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 50%;
     border: none;
-    
+`;  
+
+const ButtonContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h1 {
+        font-size: 50px;
+        font-family: 'Poppins';
+        font-weight: 500;
+    }
 `;
 
-const StudentButton = styled.button`
-    width: 500px;
-    height: 500px;
+const MainContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-    transition: transform .2s;
-    :hover {
-        transform: scale(1.2);
+    h1 {
+        font-size: 70px;
     }
+`;
 
-    background: #5B81E2;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 50%;
-    border: none;
-`;    
 export function RoleSelection() {
     return(
         <>
             <Navigation
-                link="/"
-                isEnabled={false}
+                link="/roles"
+                enableRolesButton={false}
+                enableLogoutButton={true}
             />
-            <ButtonsContainer>
-                <NavLink to="/student">
-                    <StudentButton>
-                        <img className="studentImage" src={studentImage} alt="" />
-                    </StudentButton>
-                </NavLink>
-                <p></p>
-                <NavLink to="/teacher">
-                    <TeacherButton>
-                        <img className="teacherImage" src={teacherImage} alt="" />
-                    </TeacherButton>
-                </NavLink>
-            </ButtonsContainer>
+            <MainContainer>
+                <h1>Choose a role</h1>
+                <Container>
+                    <ButtonContainer>
+                        <NavLink to="/student">
+                            <Button>
+                                <img className="studentImage" src={studentImage} alt="" />
+                            </Button>
+                        </NavLink>
+                        <h1>Student</h1>
+                    </ButtonContainer>
+                    <ButtonContainer>
+                        <NavLink to="/teacher">
+                            <Button>
+                                <img className="teacherImage" src={teacherImage} alt="" />
+                            </Button>
+                        </NavLink>
+                        <h1>Teacher</h1>
+                    </ButtonContainer>
+                    
+                </Container>
+            </MainContainer>
+            
         </>
     );
 }

@@ -5,7 +5,7 @@ import { LoginInputs } from "../components/LoginInputs";
 import { Message } from "../components/Message";
 import { Navigation } from "../components/NavigationBar";
 
-export function LoggingIn(): ReactElement {
+export function Login(): ReactElement {
     const [username, setUsername] = useState("") as any;
     const [password, setPassword] = useState("") as any;
     const [notice, setNotice] = useState("") as any;
@@ -16,7 +16,8 @@ export function LoggingIn(): ReactElement {
         <>
             <Navigation
                 link="/"
-                isEnabled={false}
+                enableRolesButton={false}
+                enableLogoutButton={false}
             />
             <LoginInputs
                 onUsernameTyped={(username) => setUsername(username)}

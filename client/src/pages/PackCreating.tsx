@@ -7,7 +7,7 @@ import { Navigation } from "../components/NavigationBar";
 import { PopupDialog } from "../components/PopupDialog";
 import { User } from "../templates/User";
 import plusIcon from "../../images/plus.svg";
-import { Cards } from "../components/Cards";
+import { CardsToRedact } from "../components/CardsToRedact";
 import { PackAPI } from "../apis/PackAPI";
 import { Pack } from "../templates/Pack";
 
@@ -39,7 +39,8 @@ export function PackCreating(): ReactElement {
         <>
             <Navigation
                 link="/teacher"
-                isEnabled={true}
+                enableRolesButton={true}
+                enableLogoutButton={true}
             />
             <CreatePackInputs 
                 onTitleTyped={(text) => setPackName(text)}
@@ -56,14 +57,14 @@ export function PackCreating(): ReactElement {
                 updateMessage={() => setNotice()}
             ></Message>
             <CardsContainer>
-                <Cards
+                <CardsToRedact
                     initWords={initWords}
                     transWords={transWords} 
                     image={undefined} 
                     onTypedInit={(value) => setCurrentInitWord(value)} 
                     onTypedTrans={(value) => setCurrentTransWord(value)} 
                     onClickedSubmit={(index:any) => changeCard(index)}
-                ></Cards>
+                ></CardsToRedact>
             </CardsContainer>
         </>
             

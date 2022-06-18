@@ -76,7 +76,8 @@ export function Home(): ReactElement{
         <>
             <Navigation
                 link="/"
-                isEnabled={false}
+                enableRolesButton={false}
+                enableLogoutButton={false}
             />
             <ButtonsContainer>
                 <NavLink className="link" to="/register">

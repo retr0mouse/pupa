@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { Pack } from "../templates/Pack";
 
 interface Props {
+    link: string;
     packs: Pack[];
 }
 
@@ -60,12 +61,12 @@ const DescriptionContainer = styled.div`
 
 
 
-export function FoundPacks(props: Props): ReactElement {
+export function PacksPreview(props: Props): ReactElement {
     return (
         <>
             {props.packs.map((pack: Pack) => {
                 return (
-                    <NavLink style={{textDecoration: "none", color: "black"}} to={"/pack-overview/" + pack.id}>
+                    <NavLink style={{textDecoration: "none", color: "black"}} to={props.link + pack.id}>
                         <Pack>
                             <TitleContainer>
                                 <p className="title">{pack.title}</p>

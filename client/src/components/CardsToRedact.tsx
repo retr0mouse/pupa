@@ -32,7 +32,7 @@ const Card = styled.div`
 
     transition: transform .2s;
     :hover {
-    transform: scale(1.1);
+        transform: scale(1.1);
     }
 `;
 
@@ -97,7 +97,7 @@ const ButtonContainer = styled.div`
 `;
 
 
-export function Cards(props: Props): ReactElement {
+export function CardsToRedact(props: Props): ReactElement {
     return (
         <>
             {props.initWords?.map((word, index) => {

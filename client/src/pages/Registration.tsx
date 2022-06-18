@@ -31,7 +31,8 @@ export function Registration(): ReactElement {
         <>
             <Navigation
                 link="/"
-                isEnabled={false}
+                enableRolesButton={false}
+                enableLogoutButton={false}
             />
             <RegistraionInputs
                 onUsernameTyped={(username) => setUsername(username)}

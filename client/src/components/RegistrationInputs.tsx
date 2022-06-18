@@ -2,7 +2,9 @@ import React, { ReactElement, useState } from "react";
 import styled from "styled-components"
 
 const InputsContainer = styled.div`
-    align-self: center;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
     width: max-content;
     padding: 50px;
     border-radius: 5px;

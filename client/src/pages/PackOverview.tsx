@@ -28,20 +28,20 @@ export function PackOverview() {
         <>
             <Navigation
                 link="/teacher"
-                isEnabled={true}
+                enableRolesButton={true}
+                enableLogoutButton={true}
             ></Navigation>
-            {pack ? 
-                <PackInfo
-                    pack={pack}
-                ></PackInfo>
-                : null
-            
-            }
             <Message
                 message={notice}
                 updateMessage={() => setNotice()}
             ></Message>
-            {loading ? <SpinnerContainer><Spinner size={120} border={25}></Spinner></SpinnerContainer> : null}
+            {loading ?
+                <SpinnerContainer><Spinner size={120} border={25}></Spinner></SpinnerContainer> 
+                : 
+                <PackInfo
+                    pack={pack}
+                ></PackInfo>
+            }
         </>
     )
 

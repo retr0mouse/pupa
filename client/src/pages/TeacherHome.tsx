@@ -44,8 +44,9 @@ const Container = styled.div`
 export function TeacherHome() {
     return (<>
     <Navigation
-        link="/roles"
-        isEnabled={true}
+        link="/teacher"
+        enableRolesButton={true}
+        enableLogoutButton={true}
     />
         <Container>
             

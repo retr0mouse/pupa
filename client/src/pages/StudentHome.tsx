@@ -4,7 +4,7 @@ import { Navigation } from "../components/NavigationBar";
 import styled from "styled-components";
 import { PackFindingBox } from "../components/PackFindingBox";
 import { PackAPI } from "../apis/PackAPI";
-import { FoundPacks } from "../components/FoundPacks";
+import { PacksPreview } from "../components/PacksPreview";
 import { Spinner } from "../components/Spinner";
 
 const PacksContainer = styled.div`
@@ -30,8 +30,9 @@ export function StudentHome() {
     return (
         <>
             <Navigation
-                link="/roles"
-                isEnabled={true}
+                link="/student"
+                enableRolesButton={true}
+                enableLogoutButton={true}
             />
             <PackFindingBox
                 onTyped={(id) => {
@@ -39,12 +40,16 @@ export function StudentHome() {
                 }} 
                 onClicked={() => fetchPacks()}
             ></PackFindingBox>
-            <PacksContainer>
-                <FoundPacks
-                    packs={packs}
-                ></FoundPacks>
-            </PacksContainer>
-            {loading ? <SpinnerContainer><Spinner size={120} border={25}></Spinner></SpinnerContainer> : null}
+            {loading ? 
+                <SpinnerContainer><Spinner size={120} border={25}></Spinner></SpinnerContainer> 
+                : 
+                <PacksContainer>
+                    <PacksPreview
+                        link="/pack-study/"
+                        packs={packs}
+                    ></PacksPreview>
+                </PacksContainer>
+            }
             <Message
                 updateMessage={() => setNotice()}
                 message={notice}
