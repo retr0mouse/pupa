@@ -17,7 +17,10 @@ const SpinnerContainer = styled.div`
 
 const CardsContainer = styled.div`
     position: absolute;
-    top: 60%;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 `;

@@ -64,9 +64,9 @@ const DescriptionContainer = styled.div`
 export function PacksPreview(props: Props): ReactElement {
     return (
         <>
-            {props.packs.map((pack: Pack) => {
+            {props.packs.map((pack: Pack, index: number) => {
                 return (
-                    <NavLink style={{textDecoration: "none", color: "black"}} to={props.link + pack.id}>
+                    <NavLink key={index} style={{textDecoration: "none", color: "black"}} to={props.link + pack.id}>
                         <Pack>
                             <TitleContainer>
                                 <p className="title">{pack.title}</p>

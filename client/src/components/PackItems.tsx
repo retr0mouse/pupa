@@ -56,6 +56,10 @@ const ReturnButton = styled.div`
     cursor: pointer;
 `;
 
+const CardContainer = styled.div`
+    margin: 30px;
+`;
+
 export function PackItems(props: Props): ReactElement {
     return (
         <>
@@ -66,10 +70,13 @@ export function PackItems(props: Props): ReactElement {
                 <CardsContainer>
                     {props.pack.quizzes.map((quiz) => {
                         return (
-                            <Card
-                                initialWord={quiz.initialWord}
-                                translatedWord={quiz.translatedWord}
-                            ></Card>
+                            <CardContainer>
+                                <Card
+                                    initialWord={quiz.initialWord}
+                                    translatedWord={quiz.translatedWord}
+                                ></Card>
+                            </CardContainer>
+                            
                         )
                     })}
                 </CardsContainer>
