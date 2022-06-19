@@ -4,16 +4,12 @@ import styled from "styled-components";
 import { Navigation } from "../components/NavigationBar";
 
 const Container = styled.div`
-    position: absolute;
-    top: 50%;
+    position: relative;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 0);
     align-items: center;
     display: flex;
     flex-direction: column;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     
     button {
         width: 500px;
@@ -39,6 +35,11 @@ const Container = styled.div`
 
         color: #FFFFFF;
     }
+
+    h1 {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 44px;
+    }
 `;
 
 export function TeacherHome() {
@@ -49,7 +50,7 @@ export function TeacherHome() {
         enableLogoutButton={true}
     />
         <Container>
-            
+            <h1>Teacher Home Page</h1>
             <NavLink to="/create-pack">
                 <button>
                     Create new pack

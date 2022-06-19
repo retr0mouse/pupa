@@ -13,7 +13,7 @@ const InputsContainer = styled.div`
     flex-direction: column;
     align-items: center;
     border-radius: 70px;
-    margin: 50px;
+    margin-top: 50px;
     
     input {
         background: #FEFEFE;
@@ -63,7 +63,7 @@ const InputsContainer = styled.div`
 const TextField = styled.input`
     position: relative;
     font-size: 30px;
-    margin:30px;
+    margin: 30px;
     border: 1px solid;
     border-radius: 20px;
     font-family:  'Poppins', sans-serif;
@@ -86,12 +86,10 @@ export function LoginInputs(props: Props): ReactElement {
     const [password, setPassword] = useState("");
     const [passwordState, setPasswordState] = useState(true);
 
-    
     return (
         <>
         <InputsContainer>
             <h1>Login</h1>
-    
             <label htmlFor="username">{usernameState ? "" : "please provide a username"}</label>
             <TextField type="text" name="username" id="" placeholder="username" onChange={(event: any) => {
                 props.onUsernameTyped(event?.target.value);
@@ -104,18 +102,18 @@ export function LoginInputs(props: Props): ReactElement {
                 event?.target.value.length > 0 ? setPasswordState(true) : setPasswordState(false);
                 setPassword(event?.target.value);
             }}/>
-            <button onClick={() => checkInputs() ? props.onClickedSubmit() : ""}>Submit</button>
+            <button onClick={() => checkInputs() ? props.onClickedSubmit() : null}>Submit</button>
         </InputsContainer></>
         
     )
 
     function checkInputs(): boolean {
         let isFilled = true;
-        if (username.length <= 0) {
+        if (username.length === 0) {
             setUsernameState(false);
             isFilled = false;
         }
-        if (password.length <= 0) {
+        if (password.length === 0) {
             setPasswordState(false);
             isFilled = false;
         }

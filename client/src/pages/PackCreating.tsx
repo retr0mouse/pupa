@@ -4,16 +4,39 @@ import { UserAPI } from "../apis/UserAPI";
 import { CreatePackInputs } from "../components/CreatePackInputs";
 import { Message } from "../components/Message";
 import { Navigation } from "../components/NavigationBar";
-import { PopupDialog } from "../components/PopupDialog";
+import { CardFieldsPopup } from "../components/CardFieldsPopup";
 import { User } from "../templates/User";
 import plusIcon from "../../images/plus.svg";
-import { CardsToRedact } from "../components/CardsToRedact";
 import { PackAPI } from "../apis/PackAPI";
 import { Pack } from "../templates/Pack";
+import { Card } from "../components/Card";
 
 const CardsContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
+`;
+
+const PopupButton = styled.div`
+    position: sticky;
+    top: 40%;
+    margin-left: 92%;
+    
+    img{
+        
+        width: 120px;
+        transition: transform .2s;
+
+        :hover {
+            transform: scale(1.1);
+        }
+    }
+    cursor: pointer;
+`
+
+const PointyCardContainer = styled.div`
+    margin: 50px;
+    width: fit-content;
+    cursor: pointer;
 `;
 
 export function PackCreating(): ReactElement {
@@ -47,27 +70,41 @@ export function PackCreating(): ReactElement {
                 onClickedSave={() => addPack()} 
                 onDescriptionTyped={(text) => setPackDescription(text)}
             ></CreatePackInputs>
-            <PopupDialog
-                image={plusIcon} 
+            <CardFieldsPopup
+                title="Create a card"
+                trigger={<PopupButton><img src={plusIcon}></img></PopupButton>} 
                 onTypedInit={(cardInit) => setCurrentInitWord(cardInit)} 
                 onTypedTrans={(cardTrans) => setCurrentTransWord(cardTrans)}
-                onClickedSubmit={() => addCard()}></PopupDialog>
+                onClickedSubmit={() => addCard()}
+            ></CardFieldsPopup>
             <Message
                 message={notice}
                 updateMessage={() => setNotice()}
             ></Message>
             <CardsContainer>
-                <CardsToRedact
-                    initWords={initWords}
-                    transWords={transWords} 
-                    image={undefined} 
-                    onTypedInit={(value) => setCurrentInitWord(value)} 
-                    onTypedTrans={(value) => setCurrentTransWord(value)} 
-                    onClickedSubmit={(index:any) => changeCard(index)}
-                ></CardsToRedact>
+                {initWords?.map((word: string, index: number) => {
+                    return (
+                        <CardFieldsPopup
+                            key={index}
+                            title="Edit a card"
+                            trigger={
+                                <PointyCardContainer>
+                                    <Card
+                                        initialWord={word}
+                                        translatedWord={transWords[index]}
+                                    ></Card>
+                                </PointyCardContainer>
+                            }
+                            defaultInitWord={word}
+                            defaultTransWord={transWords[index]}
+                            onTypedInit={(value) => setCurrentInitWord(value)} 
+                            onTypedTrans={(value) => setCurrentTransWord(value)} 
+                            onClickedSubmit={() => changeCard(index)}
+                        ></CardFieldsPopup>
+                    );
+                })}
             </CardsContainer>
         </>
-            
     );
 
     async function addPack() {
@@ -109,5 +146,7 @@ export function PackCreating(): ReactElement {
         transWords[index] = currentTransWord;
         setInitWords([...initWords]);
         setTransWords([...transWords]);
+        setCurrentInitWord("");
+        setCurrentTransWord("");
     }
 }

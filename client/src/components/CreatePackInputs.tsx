@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 interface Props {
@@ -9,10 +9,8 @@ interface Props {
 const MainContainer = styled.div`
     margin-left: 50px;
     h1 {
-        width: 100%;
-        font-size: 80px;
-        font-family: 'Poppins', sans-serif;
-        border-radius: 16%;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 44px;
     }
 `;
 const SaveButton = styled.button`
@@ -45,12 +43,12 @@ const SaveButton = styled.button`
 
 const TitleField = styled.input`
     position: relative;
-    font-size: 40px;
+    font-size: 36px;
     height: 15px;
     width: 500px;
     padding: 30px;
     margin-top: 30px;
-    border: 1px solid;
+    border: none;
     border-radius: 20px;
     font-family:  'Poppins', sans-serif;
     margin-right: 40px;
@@ -60,14 +58,14 @@ const TitleField = styled.input`
         } */
 `;
 
-const DescriptionField = styled.input`
+const DescriptionField = styled.textarea`
     position: relative;
-    font-size: 40px;
-    height: 200px;
+    font-size: 36px;
+    height: 150px;
     width: 55%;
     padding: 30px;
     margin-top: 30px;
-    border: 1px solid;
+    border: none;
     border-radius: 20px;
     font-family:  'Poppins', sans-serif;
     margin-right: 40px;
@@ -77,20 +75,40 @@ const TextContainer = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
+
+    label {
+        font-family: 'Poppins', sans-serif;
+        color: red;
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
 `;
 
 export function CreatePackInputs(props: Props) {
+    const [startedTypingTitle, setStartedTypingTitle] = useState(false);
+    const [title, setTitle] = useState("");
+    
     return (
         <>
             <MainContainer>
-                <SaveButton onClick={() => props.onClickedSave()}>Save pack</SaveButton>
+                <SaveButton onClick={() => checkInputs() ? props.onClickedSave() : setStartedTypingTitle(true)}>Save pack</SaveButton>
                 <h1>Create a pack</h1>
                 <TextContainer>                
-                    <TitleField type="text" placeholder="Pack title" onChange={(event: any) => props.onTitleTyped(event.target.value)}></TitleField>
-                    <DescriptionField type="text" placeholder="Pack description" onChange={(event: any) => props.onDescriptionTyped(event.target.value)}></DescriptionField>
+                    <label htmlFor="InitialWord">{title.length === 0 && startedTypingTitle ? "please provide a title" : ""}</label>
+                    <TitleField type="text" placeholder="Pack title" onChange={(event: any) => {
+                        props.onTitleTyped(event?.target.value);
+                        setTitle(event?.target.value);
+                        setStartedTypingTitle(true);
+                    }}></TitleField>
+                    <DescriptionField placeholder="Pack description" onChange={(event: any) => props.onDescriptionTyped(event?.target.value)}></DescriptionField>
                 </TextContainer>                
             </MainContainer>
         </>
     );
+
+    function checkInputs(): boolean {
+        if (title.length === 0) return false;
+        else return true;
+    }
 }
 

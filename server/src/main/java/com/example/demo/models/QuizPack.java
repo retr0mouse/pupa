@@ -40,7 +40,8 @@ public class QuizPack {
     private LocalDate created;
 
     @Column (
-            name = "description"
+            name = "description",
+            length = 2048
     )
     private String description;
 

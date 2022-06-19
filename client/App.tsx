@@ -1,12 +1,11 @@
-import React from "react";
+import React, { StrictMode } from "react";
 import { Route, Routes } from "react-router-dom";
 import { CreatedPacks } from "./src/pages/CreatedPacks";
-import { Home } from "./src/pages/HomePage";
+import { Home } from "./src/pages/Home";
 import { Login } from "./src/pages/Login";
 import { PackCreating } from "./src/pages/PackCreating";
 import { PackOverview } from "./src/pages/PackOverview";
 import { PackStudy } from "./src/pages/PackStudy";
-import { QuizzesList } from "./src/pages/QuizzesList";
 import { Registration } from "./src/pages/Registration";
 import { RoleSelection } from "./src/pages/RoleSelection";
 import { StudentHome } from "./src/pages/StudentHome";
@@ -16,7 +15,6 @@ export default function App() {
     return (
         <Routes>
             <Route path="/" element={<Home/>}/>
-            <Route path="/quizzes" element={<QuizzesList/>}/>
             <Route path="/register" element={<Registration/>}/>
             <Route path="/login" element={<Login/>}/>
             <Route path="/teacher" element={<TeacherHome/>}/>

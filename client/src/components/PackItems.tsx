@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { Pack } from "../templates/Pack";
 import arrow from "../../images/arrow.svg";
 import { NavLink } from "react-router-dom";
+import { Card } from "./Card";
 
 interface Props {
     pack: Pack;
@@ -38,54 +39,6 @@ const CardsContainer = styled.div`
     flex-wrap: wrap;
 `;
 
-const Card = styled.div`
-    /* width: 200px; */
-    min-width: 250px;
-    background: #EEEEEE;
-    font-family: 'Poppins', sans-serif;
-    color: black;
-    border-radius: 15px;
-    margin: 50px;
-    font-size: 30px;
-    max-width: 200px;
-    max-height: 500px;
-    white-space: nowrap;
-    display: flex;
-    flex-direction: column;
-    /* box-shadow:  0 -25px 0 #4F4F4F; */
-    border-bottom: 2rem solid #4F4F4F;
-
-    p {
-        padding: 2px 5px;   
-        width: 100px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        text-align: center;
-    }
-`
-
-const InitWord = styled.div`
-    padding-top: 30px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: 70%;
-    border-bottom: 1.3px solid;
-    direction: ltr;
-    align-self: center;
-`;
-
-const Translate = styled.div`
-    padding-bottom: 30px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: 70%;
-    border-top: 1.3px solid;
-    direction: ltr;
-    align-self: center;
-`;
-
 const ReturnButton = styled.div`
     position: absolute;
     top: 15%;   
@@ -103,7 +56,7 @@ const ReturnButton = styled.div`
     cursor: pointer;
 `;
 
-export function PackInfo(props: Props): ReactElement {
+export function PackItems(props: Props): ReactElement {
     return (
         <>
             <PackContainer>
@@ -113,10 +66,10 @@ export function PackInfo(props: Props): ReactElement {
                 <CardsContainer>
                     {props.pack.quizzes.map((quiz) => {
                         return (
-                            <Card>
-                                <InitWord><p>{quiz.initialWord}</p></InitWord>
-                                <Translate><p>{quiz.translatedWord}</p></Translate>
-                            </Card>
+                            <Card
+                                initialWord={quiz.initialWord}
+                                translatedWord={quiz.translatedWord}
+                            ></Card>
                         )
                     })}
                 </CardsContainer>

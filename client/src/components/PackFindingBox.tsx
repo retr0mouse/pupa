@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useState } from "react";
 import styled from "styled-components";
 
 
@@ -8,18 +8,37 @@ interface Props {
 }
 
 const InputBox = styled.div`
-    text-align: center;
-    text-align-last: center;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h1 {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 44px;
+    }
+
+    label {
+        font-family: 'Poppins', sans-serif;
+        color: red;
+        font-size: 30px;
+        margin-left: 30px;
+        margin-bottom: 10px;
+        align-self: baseline;
+    }
 `;
 
 const Button = styled.button`
     color:white;
-    background: #5B81E2;
+    background: #C4C4C4;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border: none;
-    border-radius: 5px;
-    width: 300px;
-    height: 50px;
+    border-radius: 50%;
+    width: fit-content;
+    height: fit-content;
     font-size: 35px;
     cursor: pointer;
     font-family: 'Poppins', sans-serif;
@@ -32,10 +51,10 @@ const Button = styled.button`
 `;
 
 const TextField = styled.input`
-   position: relative;
+    text-align: center;
     font-size: 30px;
-    margin:30px;
-    border: 1px solid;
+    margin-right:30px;
+    border: none;
     border-radius: 20px;
     font-family:  'Poppins', sans-serif;
 
@@ -43,14 +62,30 @@ const TextField = styled.input`
     :hover {
         transform: scale(1.1);
     }
+    
 `;
 
 export function PackFindingBox(props: Props): ReactElement {
+    const [startedTypingId, setStartedTypingId] = useState(false);
+    const [id, setId] = useState("");
+
     return (
         <InputBox>
-            <TextField type="text" placeholder="User id" onChange={(event: any) => props.onTyped(event?.target.value)}></TextField>
-            <br/>
-            <Button onClick={() => props.onClicked()}>Find packs</Button>
+            <h1>Packs Finding Page</h1>                
+            <label htmlFor="InitialWord">{id.length === 0 && startedTypingId ? "Please provide an id" : ""}</label>
+            <div>
+                <TextField type="text" placeholder="User id" onChange={(event: any) => {
+                    props.onTyped(event?.target.value);
+                    setId(event?.target.value);
+                    setStartedTypingId(true);
+                }}></TextField>
+                <Button onClick={() => checkInputs() ? props.onClicked() : setStartedTypingId(true)}>🔎</Button>
+            </div>
         </InputBox>
     );
+
+    function checkInputs(): boolean {
+        if (id.length === 0) return false;
+        else return true;
+    }
 }

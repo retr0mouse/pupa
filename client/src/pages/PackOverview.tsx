@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { PackAPI } from "../apis/PackAPI";
 import { Message } from "../components/Message";
 import { Navigation } from "../components/NavigationBar";
-import { PackInfo } from "../components/PackInfo";
+import { PackItems } from "../components/PackItems";
 import { Spinner } from "../components/Spinner";
 
 const SpinnerContainer = styled.div`
@@ -38,9 +38,9 @@ export function PackOverview() {
             {loading ?
                 <SpinnerContainer><Spinner size={120} border={25}></Spinner></SpinnerContainer> 
                 : 
-                <PackInfo
+                <PackItems
                     pack={pack}
-                ></PackInfo>
+                ></PackItems>
             }
         </>
     )

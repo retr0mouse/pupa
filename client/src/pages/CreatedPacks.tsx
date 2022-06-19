@@ -20,6 +20,15 @@ const SpinnerContainer = styled.div`
     transform: translate(-50%, -50%);
 `;
 
+const Title = styled.h1`
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: fit-content;
+    font-size: 44px;
+    font-family: 'Open Sans', sans-serif;
+`;
+
 export function CreatedPacks(): ReactElement {
     const [packs, setPacks] = useState([]) as any;
     const [notice, setNotice] = useState("") as any;
@@ -36,10 +45,7 @@ export function CreatedPacks(): ReactElement {
                 enableRolesButton={true}
                 enableLogoutButton={true}
             />
-            <Message
-                updateMessage={() => setNotice()}
-                message={notice}
-            ></Message>
+            <Title>Created packs overview</Title>
             {loading ? 
                 <SpinnerContainer><Spinner size={120} border={25}></Spinner></SpinnerContainer> 
                 : 
@@ -50,6 +56,10 @@ export function CreatedPacks(): ReactElement {
                     ></PacksPreview>
                 </PacksContainer>
             }
+            <Message
+                updateMessage={() => setNotice()}
+                message={notice}
+            ></Message>
         </>
     );
 
