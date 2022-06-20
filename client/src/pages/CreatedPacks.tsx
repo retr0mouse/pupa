@@ -1,11 +1,12 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import { PackAPI } from "../apis/PackAPI";
-import { Message } from "../components/Message";
+import { ErrorMessage } from "../components/ErrorMessage";
 import { Navigation } from "../components/NavigationBar";
 import { PacksPreview } from "../components/PacksPreview";
 import styled from "styled-components";
 import { UserAPI } from "../apis/UserAPI";
 import { Spinner } from "../components/Spinner";
+import { SuccessMessage } from "../components/SuccessMessage";
 
 const PacksContainer = styled.div`
     display: flex;
@@ -31,7 +32,7 @@ const Title = styled.h1`
 
 export function CreatedPacks(): ReactElement {
     const [packs, setPacks] = useState([]) as any;
-    const [notice, setNotice] = useState("") as any;
+    const [errorNotice, setErrorNotice] = useState("") as any;
     const [loading, setLoading] = useState(true) as any;
 
     useEffect(() => {
@@ -56,10 +57,9 @@ export function CreatedPacks(): ReactElement {
                     ></PacksPreview>
                 </PacksContainer>
             }
-            <Message
-                updateMessage={() => setNotice()}
-                message={notice}
-            ></Message>
+            <ErrorMessage
+                message={errorNotice}
+            ></ErrorMessage>
         </>
     );
 
@@ -69,7 +69,7 @@ export function CreatedPacks(): ReactElement {
             const packs = await PackAPI.getPacksByUserId(user.id);
             setPacks([...packs]);
         } catch (error) {
-            setNotice("Error" + error);
+            setErrorNotice("Error" + error);
         }
         setLoading(false);
     }

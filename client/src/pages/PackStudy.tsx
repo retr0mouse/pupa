@@ -3,7 +3,7 @@ import { NavLink, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { PackAPI } from "../apis/PackAPI";
 import { CardsToStudy } from "../components/CardsToStudy";
-import { Message } from "../components/Message";
+import { ErrorMessage } from "../components/ErrorMessage";
 import { Navigation } from "../components/NavigationBar";
 import { Spinner } from "../components/Spinner";
 import arrow from "../../images/arrow.svg";
@@ -74,10 +74,9 @@ export function PackStudy(): ReactElement {
                         cards={cards}            
                     ></CardsToStudy>
                 }
-                <Message
+                <ErrorMessage
                     message={notice}
-                    updateMessage={() => setNotice()}
-                ></Message>
+                ></ErrorMessage>
             </CardsContainer>
         </>
         

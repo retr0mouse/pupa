@@ -2,8 +2,10 @@ import React, { ReactElement, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserAPI } from "../apis/UserAPI";
 import { LoginInputs } from "../components/LoginInputs";
-import { Message } from "../components/Message";
+import { ErrorMessage } from "../components/ErrorMessage";
 import { Navigation } from "../components/NavigationBar";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export function Login(): ReactElement {
     const [username, setUsername] = useState("") as any;
@@ -22,12 +24,13 @@ export function Login(): ReactElement {
             <LoginInputs
                 onUsernameTyped={(username) => setUsername(username)}
                 onPasswordTyped={(password) => setPassword(password)}
-                onClickedSubmit={() => LoginUser()}
+                onClickedSubmit={() => {
+                    LoginUser();
+                }}
             ></LoginInputs>
-            <Message
+            <ErrorMessage
                 message={notice}
-                updateMessage={() => setNotice()}
-            ></Message>
+            ></ErrorMessage>
         </>
     );
     async function LoginUser() {
@@ -43,10 +46,10 @@ export function Login(): ReactElement {
                     throw new Error("Bad credentials");
                 }
             } catch (error) {
-                setNotice("Login error: " + error);
+                setNotice(error);
                 return;
             }
-            setNotice("Login successful!");    
+            // setNotice("Login successful!");    
         }
         else {
             setNotice("Please provide the needed data");

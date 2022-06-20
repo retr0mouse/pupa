@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect, useState } from "react";
 import styled from "styled-components";
 import { UserAPI } from "../apis/UserAPI";
 import { CreatePackInputs } from "../components/CreatePackInputs";
-import { Message } from "../components/Message";
+import { ErrorMessage as ErrorMessage } from "../components/ErrorMessage";
 import { Navigation } from "../components/NavigationBar";
 import { CardFieldsPopup } from "../components/CardFieldsPopup";
 import { User } from "../templates/User";
@@ -10,6 +10,7 @@ import plusIcon from "../../images/plus.svg";
 import { PackAPI } from "../apis/PackAPI";
 import { Pack } from "../templates/Pack";
 import { Card } from "../components/Card";
+import { SuccessMessage } from "../components/SuccessMessage";
 
 const CardsContainer = styled.div`
     display: flex;
@@ -47,7 +48,8 @@ export function PackCreating(): ReactElement {
     const [currentTransWord, setCurrentTransWord] = useState("") as any;
     const [initWords, setInitWords] = useState([]) as any;
     const [transWords, setTransWords] = useState([]) as any;
-    const [notice, setNotice] = useState("") as any;
+    const [errorNotice, setErrorNotice] = useState("") as any;
+    const [successNotice, setSuccessNotice] = useState("") as any;
 
     useEffect(() => {
         const id = getUserId();
@@ -77,10 +79,12 @@ export function PackCreating(): ReactElement {
                 onTypedTrans={(cardTrans) => setCurrentTransWord(cardTrans)}
                 onClickedSubmit={() => addCard()}
             ></CardFieldsPopup>
-            <Message
-                message={notice}
-                updateMessage={() => setNotice()}
-            ></Message>
+            <ErrorMessage
+                message={errorNotice}
+            ></ErrorMessage>
+            <SuccessMessage
+                message={successNotice}
+            ></SuccessMessage>
             <CardsContainer>
                 {initWords?.map((word: string, index: number) => {
                     return (
@@ -122,9 +126,9 @@ export function PackCreating(): ReactElement {
                     })
                 }
                 await PackAPI.createPackWithQuizzes(pack, quizzesList, await userId);
-                setNotice("Pack created successfully");
+                setSuccessNotice("Pack created successfully");
             } catch (error) {
-                setNotice("Error " + error);
+                setErrorNotice("Error " + error);
             }
         }
     }

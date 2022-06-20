@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Message } from "../components/Message";
+import { ErrorMessage } from "../components/ErrorMessage";
 import { Navigation } from "../components/NavigationBar";
 import styled from "styled-components";
 import { PackFindingBox } from "../components/PackFindingBox";
@@ -50,10 +50,9 @@ export function StudentHome() {
                     ></PacksPreview>
                 </PacksContainer>
             }
-            <Message
-                updateMessage={() => setNotice()}
+            <ErrorMessage
                 message={notice}
-            ></Message>
+            ></ErrorMessage>
         </>
     );
 

@@ -1,9 +1,10 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserAPI } from "../apis/UserAPI";
-import { Message } from "../components/Message";
+import { ErrorMessage } from "../components/ErrorMessage";
 import { Navigation } from "../components/NavigationBar";
 import { RegistraionInputs } from "../components/RegistrationInputs";
+import { SuccessMessage } from "../components/SuccessMessage";
 
 export function Registration(): ReactElement {
     const [username, setUsername] = useState("") as any;
@@ -12,20 +13,21 @@ export function Registration(): ReactElement {
     const [email, setEmail] = useState("") as any;
     const [password, setPassword] = useState("") as any; 
     const [passwordRepeat, setPasswordRepeat] = useState("") as any;
-    const [notice, setNotice] = useState("") as any;
+    const [errorNotice, setErrorNotice] = useState("") as any;
+    const [successNotice, setSuccessNotice] = useState("") as any;
     const [isSuccessfull, setIsSuccessfull] = useState(false);
     const history = useNavigate();
     
     useEffect(() => {
-        if (!notice) {
+        if (!successNotice) {
             return;
         }
-        const timeout = setTimeout(() => setNotice(""), 2000);
+        const timeout = setTimeout(() => setSuccessNotice(""), 2000);
         return () => {
             clearTimeout(timeout);
             isSuccessfull ? history("/") : null;
         };
-    }, [notice])
+    }, [successNotice])
     
     return (
         <>
@@ -43,10 +45,12 @@ export function Registration(): ReactElement {
                 onPasswordRepeatTyped={(passwordRepeat) => setPasswordRepeat(passwordRepeat)}
                 onClickedSubmit={() => RegisterUser()}
             ></RegistraionInputs>
-            <Message 
-                message={notice} 
-                updateMessage={() => setNotice()}
-            ></Message>                
+            <ErrorMessage 
+                message={errorNotice} 
+            ></ErrorMessage>   
+            <SuccessMessage
+                message={successNotice}
+            ></SuccessMessage>             
         </>
     );
 
@@ -56,14 +60,14 @@ export function Registration(): ReactElement {
                 await UserAPI.registerUser(username, email, firstname, lastname, password); 
             } catch (error) {
                 setIsSuccessfull(false);
-                setNotice("Registration " + error);
+                setSuccessNotice("Registration " + error);
                 return;
             }
             setIsSuccessfull(true);
-            setNotice("Registration successful!");    
+            setSuccessNotice("Registration successful!");    
         }
         else {
-            setNotice("Please provide the needed data");
+            setErrorNotice("Please provide the needed data");
         }
         return;
     }

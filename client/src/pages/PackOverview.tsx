@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { PackAPI } from "../apis/PackAPI";
-import { Message } from "../components/Message";
+import { ErrorMessage } from "../components/ErrorMessage";
 import { Navigation } from "../components/NavigationBar";
 import { PackItems } from "../components/PackItems";
 import { Spinner } from "../components/Spinner";
@@ -31,10 +31,9 @@ export function PackOverview() {
                 enableRolesButton={true}
                 enableLogoutButton={true}
             ></Navigation>
-            <Message
+            <ErrorMessage
                 message={notice}
-                updateMessage={() => setNotice()}
-            ></Message>
+            ></ErrorMessage>
             {loading ?
                 <SpinnerContainer><Spinner size={120} border={25}></Spinner></SpinnerContainer> 
                 : 

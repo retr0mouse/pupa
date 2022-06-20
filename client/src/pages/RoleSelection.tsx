@@ -45,7 +45,7 @@ const ButtonContainer = styled.div`
 
     h1 {
         font-size: 50px;
-        font-family: 'Poppins';
+        font-family: 'Poppins', sans-serif;
         font-weight: 500;
     }
 `;
@@ -57,6 +57,7 @@ const MainContainer = styled.div`
 
     h1 {
         font-size: 70px;
+        font-family: 'Open Sans', sans-serif;
     }
 `;
 
