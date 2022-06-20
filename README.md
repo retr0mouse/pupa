@@ -1,22 +1,46 @@
 ﻿![püpa logo](pupa_logo.png)
 
-# Техническое задание
+# Kuidas seda käivitada
 
-# 1. Цель проекта
+1.Samm
+Laadige alla Node package manager'it
+2.Samm
+Avage "client" kausta terminalis ja kirjutage "npm install" ja seepärast "npm start"
+3.Samm
+Avage kausta "server" IDE's (Näiteks IntelliJ IDEA) ja käivitage "ServerApplication.java"
+4.Samm
+Naudige!
+
 # 1. Projekti eesmärk
-
-Цель проекта - разработать веб-приложение (веб-сайт), с помощью которого пользователи смогут создавать различные игры/задания (далее карты) для. Пользователю, создающему карты (далее учитель), будет доступно несколько макетов карт, по типу “выбери верный вариант ответа” или “соедени пары”, в которые он сможет добавлять условие задания и варианты ответов, отмечать правильные/неправильные варианты. Карты в свою очередь, можно добавлять в наборы, чтобы была возможность для долгих сессий выполнения карт без постоянного переключения. Для пользователя, который выполняет карты (далее ученик), в конце выполнения задания будет выводиться его персональный результат: процент прохождения и скорость решения. Помимо создания простых карт должна быть возможность автоматического создания кроссвордов, при котором от учителя требуется лишь добавить нужные слова, а сам кроссворд составится автоматически. 
 
 Projekti eesmärk - veebirakenduse(veebisaiti) arendamine, mille abil kasutajat saavad luua kõiksuguseid mänge/ülesanndeid(edaspidi kaardid). Kasutajale, kes loob kaarte(edaspidi õpetaja) on saadaval mitu kaardi maketti, näiteks "vali õige vastus" või "leia paari", kuhu ta ise saab lisada ülesannete tingumusi ja vastuste võimalusi, märkida õiget/valet varianti. Kaadrid, omakorda, saab lisada komplektidesse, et pleks võimalus pikkemateks sessioonideks ilma pideva ringiliikumise. Kasutajale, kes lahendab kaarte(edaspidi õpilane), peale harjutuste lõppetamist väljundatakse tema isiklik tulemus: läbimise protsent ja lahendamise kiirus. Samas peab olema ka automaatne ristsõna loomise võimalus, kus õpetajalt nõudakse ainult vajaliku sõna lisamist, ristsõna ise luuakse automaatselt.
 
-# 2. Описание приложения
-# 2. Projekti kirjeldus
+# 2. Projekti põhjus
 
-Приложение состоит из следующих функциональных блоков:
+Projekt on loodud Tallinna Ülikooli Digitehnoloogi Instituudi(https://www.tlu.ee/dt) tarkvaraarenduse projekti raames, kliendi(Gerly Lehtmets) poolt, selleks, et abistada õpetajaid oma koolis.
 
-1. Регистрация, аутентификация и авторизация
-2. Функционал для учителя
-3. Функционал для ученика
+
+# 3. Kasutatud tehnoloogiad
+
+Figma
+Trello
+Discord
+Visual Studio Code
+IntelliJ IDEA 2022.1.2
+ReactJS
+Node.Js
+PostGRE
+Heroku
+
+# 4. Projekti Autorid
+
+Daniil Šarin
+Karen Tihhomirov
+Daniil Stoljar
+Ilja Leontjev
+ 
+
+# 3. Projekti kirjeldus
 
 
 Rakendus koosneb järgmistest blokkidest:
@@ -27,23 +51,11 @@ Rakendus koosneb järgmistest blokkidest:
 
 
 
-## 2.1 Типы пользователей
-## 2.1 Kasutajate tüübid
-
-
-В приложении предусмотрены два типа пользователей: учитель и ученик. Учитель создает карты, может делать их открытыми/закрытыми, то же самое с наборами карт, просматривает решения учеников. Ученик выбирает доступные ему карты, решает их, может просматривать свой результат, персональную статистику.  
+## 3.1 Kasutajate tüübid
 
 Rakenduses on ettenähtud kaks tüüpi kasutajaid: õpetaja ja õpilane. Õpetaja loob kaarte, saab neid teha avatuks/suletuks, samamoodi ka pakkidega, läbivaadata õpilase lahendusi. Õpilane valib kaarte, mis on talle saadavad, lahendab neid, saab oma tulemust ja isiklikut statistikat vaadata.
 
-## 2.2 Регистрация
-## 2.2 Registreerimine
-
-
-Для регистрации пользователю нужно указать:
-
-1. Имя и фамилию 
-2. email
-3. Пароль
+## 3.2 Registreerimine
 
 Registreerimiseks kasutaja peab sisestama:
 
@@ -51,27 +63,12 @@ Registreerimiseks kasutaja peab sisestama:
 2. email
 3. Salasõna
 
-## 2.3 Аутентификация учителя и ученика
-## 2.3 Õpetaja ja õpilase sisselogimine
-
-В первоначальной версии приложения, сразу после аутентификации у пользователя будет запрошена роль: учитель или ученик. На основе его выбора, приложение будет показывать ему функционал, привязанный к выбранной роли.
-Для пользователя должна быть реализована возможность восстановления забытого пароля. При запросе восстановления пароля необходимо на email пользователя прислать ссылку на восстановление пароля.  
+## 3.3 Õpetaja ja õpilase sisselogimine
 
 Esialgses rakenduse versioonis, kohe peale sisselogimist kasutajalt küsitakse tema roll: õpetaja või õpilane. Funktsionaalsus, mida talle pakkutakse, on seotud rolliga, mida ta valib. 
 Kasutajal peab olema realiseeritud unustatud salasõna taastamise võimalus. Salasõna taastamise nõudmisel on vajalik saata email´i peale link, mille abil saab salasõna taastada.
 
-## 2.4 Функционал для учителя
-## 2.4 Õpetaja funktsionaalsus
-
-Учитель после аутентификации и выбора роли “Учитель” получает доступ к такому функционалу:
-
-1. Создание карт, их наборов
-2. Просмотр созданных/общедоступных карт, наборов карт
-3. Редактирование готовых заданий: изменение содержимого, перенос из одной папки в другую, изменение статуса (открытое/закрытое)
-4. Просмотр статистики учеников по прохождению созданных заданий
-5. Распечатывание заданий, которые имеют тип “кроссворд”
-6. Распечатывание карточек, для дальнейшего использования на уроках в живую
-
+## 3.4 Õpetaja funktsionaalsus
 Peale sisselogimist ja rolli valimist "Õpetaja" saab läbipääsu järgmisele funktsionaalile:
 
 1. Kaardide ja kaardi pakkide loomine
@@ -81,17 +78,7 @@ Peale sisselogimist ja rolli valimist "Õpetaja" saab läbipääsu järgmisele f
 5. Harjutuste väljaprintimine, millel on tüüp "ristsõna"
 6. Kaardide väljaprintimine, selleks, et kasutada neid kontakttunnis
 
-> по каждому пункту можно расписать подробнее
-
-## 2.5 Функционал для ученика
-## 2.5 Õpilase funktsionaalsus
-
-Ученик после аутентификации и выбора роли “Ученик” получает доступ к такому функционалу:
-
-1. Просмотр доступных, пройденных наборов карт
-2. Просмотр информации о наборах карт
-3. Выполнение заданий
-4. Просмотр собственной статистики выполнения заданий
+## 3.5 Õpilase funktsionaalsus
 
 Peale sisselogimist ja rolli valimist "Õpilane" saab läbipääsu järgmisele funktsionaalile:
 
@@ -100,6 +87,31 @@ Peale sisselogimist ja rolli valimist "Õpilane" saab läbipääsu järgmisele f
 3. Ülesannete lahendamine
 4. Oma lahendatud ülesannetest statistika ülevaade
 
-# Похожие приложения 
 
-https://www.flexiquiz.com/
+## 5.5 Vertabelo andmebaasi arhitektuur
+
+![Vertabelo skeem](DBschema.png)
+
+
+
+# LICENSE
+
+Copyright (c) <2022> <Daniil Šarin, Karen Tihomirov, Daniil Stoljar, Ilja Leontjev>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
