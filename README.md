@@ -2,13 +2,13 @@
 
 # Kuidas seda käivitada
 
-1.Samm
-Laadige alla Node package manager'it
-2.Samm
-Avage "client" kausta terminalis ja kirjutage "npm install" ja seepärast "npm start"
-3.Samm
-Avage kausta "server" IDE's (Näiteks IntelliJ IDEA) ja käivitage "ServerApplication.java"
-4.Samm
+1.Samm <br>
+Laadige alla Node package manager'it <br>
+2.Samm <br>
+Avage "client" kausta terminalis ja kirjutage "npm install" ja seepärast "npm start" <br>
+3.Samm <br>
+Avage kausta "server" IDE's (Näiteks IntelliJ IDEA) ja käivitage "ServerApplication.java" <br>
+4.Samm <br>
 Naudige!
 
 # 1. Projekti eesmärk
