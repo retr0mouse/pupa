@@ -1,15 +1,30 @@
 ﻿![püpa logo](pupa_logo.png)
+[Backendi volikirjad](https://docs.google.com/document/d/11eQ6jj11fMdsSLMwvlwpJLKRvYuWpILu-bkJmNhb_ao/edit?usp=sharing)
 
 # Kuidas seda käivitada
 
-1.Samm <br>
-Laadige alla Node package manager'it <br>
-2.Samm <br>
-Avage "client" kausta terminalis ja kirjutage "npm install" ja seepärast "npm start" <br>
-3.Samm <br>
-Avage kausta "server" IDE's (Näiteks IntelliJ IDEA) ja käivitage "ServerApplication.java" <br>
-4.Samm <br>
-Naudige!
+1. Laadige alla node package manager'it (npm) <br>
+2. Avage "client" kausta terminalis ja kirjutage "npm install" ja seepärast "npm start" <br>
+3. Avage kausta "server" IDE's (Näiteks IntelliJ IDEA) ja täitke nõutud väljad andmebaasiga ühendamiseks failis server/src/main/resources/application.properties (kuidas - on näidatud all)<br>
+4. Pange käima faili "ServerApplication.java" klõpsades rohelist nuppu<br>
+5. Avage veebibrauseris aadress "http://localhost:1234"<br>
+
+appliction.properties fail
+``` properties
+spring.datasource.url=jdbc:postgresql://HOST/ANDMEBAAS
+spring.datasource.username=KASUTAJANIMI
+spring.datasource.password=SALASÕNA
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.properties.hibernate.format_sql=true
+spring.jpa.hibernate.naming.implicit-strategy=org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+spring.jpa.hibernate.naming.physical-strategy=org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+server.error.include-message=always
+pupa.app.jwtSecret=pupaSecretKey
+pupa.app.jwtExpirationMs=86400000
+```
+^ kolm esimest tekstivälja tuleb muuta
 
 # 1. Projekti eesmärk
 
@@ -32,6 +47,7 @@ Projekt on loodud Tallinna Ülikooli Digitehnoloogi Instituudi(https://www.tlu.e
     <li>Node.js</li>
     <li>PostgreSQL</li>
     <li>Heroku</li>
+    <li>Spring</li>
 </ul>
 
 
