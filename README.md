@@ -22,22 +22,25 @@ Projekt on loodud Tallinna Ülikooli Digitehnoloogi Instituudi(https://www.tlu.e
 
 # 3. Kasutatud tehnoloogiad
 
-Figma
-Trello
-Discord
-Visual Studio Code
-IntelliJ IDEA 2022.1.2
-ReactJS
-Node.Js
-PostGRE
-Heroku
+<ul>
+    <li>Figma</li> 
+    <li>Trello</li>
+    <li>Discord</li>
+    <li>Visual Studio Code</li>  
+    <li>IntelliJ IDEA Ultimate 2022</li>
+    <li>React</li>
+    <li>Node.js</li>
+    <li>PostgreSQL</li>
+    <li>Heroku</li>
+</ul>
+
 
 # 4. Projekti Autorid
 
-Daniil Šarin
-Karen Tihhomirov
-Daniil Stoljar
-Ilja Leontjev
+Daniil Šarin <br>
+Karen Tihhomirov <br>
+Daniil Stoljar <br>
+Ilja Leontjev <br>
  
 
 # 3. Projekti kirjeldus
