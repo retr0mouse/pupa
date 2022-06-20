@@ -1,4 +1,4 @@
-import React, { StrictMode } from "react";
+import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { CreatedPacks } from "./src/pages/CreatedPacks";
 import { Home } from "./src/pages/Home";

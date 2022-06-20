@@ -6,7 +6,6 @@ import { PacksPreview } from "../components/PacksPreview";
 import styled from "styled-components";
 import { UserAPI } from "../apis/UserAPI";
 import { Spinner } from "../components/Spinner";
-import { SuccessMessage } from "../components/SuccessMessage";
 
 const PacksContainer = styled.div`
     display: flex;
