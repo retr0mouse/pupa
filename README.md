@@ -9,7 +9,7 @@
 4. Pange käima faili "ServerApplication.java" klõpsades rohelist nuppu<br>
 5. Avage veebibrauseris aadress "http://localhost:1234"<br>
 
-appliction.properties fail
+```application.properties``` fail
 ``` properties
 spring.datasource.url=jdbc:postgresql://HOST/ANDMEBAAS
 spring.datasource.username=KASUTAJANIMI

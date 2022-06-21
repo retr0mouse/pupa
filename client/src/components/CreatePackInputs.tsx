@@ -52,10 +52,6 @@ const TitleField = styled.input`
     border-radius: 20px;
     font-family:  'Poppins', sans-serif;
     margin-right: 40px;
-    /* transition: transform .2s;
-        :hover {
-        transform: scale(1.1);
-        } */
 `;
 
 const DescriptionField = styled.textarea`
