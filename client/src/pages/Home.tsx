@@ -4,10 +4,9 @@ import { Navigation } from "../components/NavigationBar";
 import styled from "styled-components";
 
 const ButtonsContainer = styled.div`
-    position: absolute;
-    top: 50%;
+    position: relative;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 0);
     align-items: center;
     display: flex;
     flex-direction: column;

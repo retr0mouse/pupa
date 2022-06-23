@@ -10,7 +10,7 @@ export class PackAPI {
             description: description
         };
 
-        const response = await fetch(`http://localhost:8080/api/v1/quiz_pack/add?userId=${userId}`, {
+        const response = await fetch(`https://pupa-cards-backend.herokuapp.com/api/v1/quiz_pack/add?userId=${userId}`, {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
@@ -30,7 +30,7 @@ export class PackAPI {
             packId: packId,
             quizTypeId: typeId
         };
-        const response = await fetch(`http://localhost:8080/api/v1/pack_to_quiz/add`, {
+        const response = await fetch(`https://pupa-cards-backend.herokuapp.com/api/v1/pack_to_quiz/add`, {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
@@ -49,7 +49,7 @@ export class PackAPI {
             quizPack: pack,
             translateQuizList: packquizzesList
         };
-        const response = await fetch(`http://localhost:8080/api/v1/quiz_pack/add?userId=${userId}`, {
+        const response = await fetch(`https://pupa-cards-backend.herokuapp.com/api/v1/quiz_pack/add?userId=${userId}`, {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
@@ -64,7 +64,7 @@ export class PackAPI {
 
     static async getPacksByUserId(userId: number) {
         const token = sessionStorage.getItem("token");
-        const response = await fetch(`http://localhost:8080/api/v1/quiz_pack/getByUser?userId=${userId}`, {
+        const response = await fetch(`https://pupa-cards-backend.herokuapp.com/api/v1/quiz_pack/getByUser?userId=${userId}`, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
@@ -81,7 +81,7 @@ export class PackAPI {
 
     static async getPackById(packId: number) {
         const token = sessionStorage.getItem("token");
-        const response = await fetch(`http://localhost:8080/api/v1/quiz_pack/get?id=${packId}`, {
+        const response = await fetch(`https://pupa-cards-backend.herokuapp.com/api/v1/quiz_pack/get?id=${packId}`, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',

@@ -25,7 +25,7 @@ public class ServerApplication {
     public static class WebConfiguration implements WebMvcConfigurer {
         @Override
         public void addCorsMappings(CorsRegistry registry) {
-            registry.addMapping("/**").allowedMethods("*").allowedOrigins("http://localhost:1234");
+            registry.addMapping("/**").allowedMethods("*").allowedOrigins("*");
         }
     }
 }
