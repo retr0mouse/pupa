@@ -1,5 +1,5 @@
 export interface Quiz {
-    id: number;
+    id: number | string;
     initialWord: string;
     translatedWord: string;
 }

@@ -14,7 +14,7 @@ import { PackAPI } from "../apis/PackAPI";
 import { Pack } from "../templates/Pack";
 import { Card } from "../components/Card";
 import { SuccessMessage } from "../components/SuccessMessage";
-import { cardAdded, selectAllCards } from "../redux/cardsSlice";
+import { cardAdded, cardUpdated, selectAllCards } from "../redux/cardsSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const CardsContainer = styled.div`
@@ -51,10 +51,10 @@ export function PackCreating(): ReactElement {
     const [userId, setUserId] = useState(null) as any;
     const [packName, setPackName] = useState("") as any;
     const [packDescription, setPackDescription] = useState("") as any;
-    const [currentInitWord, setCurrentInitWord] = useState("") as any;
-    const [currentTransWord, setCurrentTransWord] = useState("") as any;
-    const [initWords, setInitWords] = useState([]) as any;
-    const [transWords, setTransWords] = useState([]) as any;
+    const [frontWord, setFrontWord] = useState("") as any;
+    const [backWord, setBackWord] = useState("") as any;
+    // const [initWords, setInitWords] = useState([]) as any;
+    // const [transWords, setTransWords] = useState([]) as any;
     const [errorNotice, setErrorNotice] = useState("") as any;
     const [successNotice, setSuccessNotice] = useState("") as any;
 
@@ -65,7 +65,6 @@ export function PackCreating(): ReactElement {
         }
         setUserId(id);
     }, []);
-
 
     return (
         <>
@@ -82,8 +81,8 @@ export function PackCreating(): ReactElement {
             <CardFieldsPopup
                 title="Create a card"
                 trigger={<PopupButton><img src={plusIcon}></img></PopupButton>} 
-                onTypedInit={(cardInit) => setCurrentInitWord(cardInit)} 
-                onTypedTrans={(cardTrans) => setCurrentTransWord(cardTrans)}
+                onTypedInit={(cardInit) => setFrontWord(cardInit)} 
+                onTypedTrans={(cardTrans) => setBackWord(cardTrans)}
                 onClickedSubmit={() => addCard()}
             ></CardFieldsPopup>
             <ErrorMessage
@@ -114,27 +113,27 @@ export function PackCreating(): ReactElement {
                         ></CardFieldsPopup>
                     );
                 })} */}
-                {cards?.map((card, index) => (
-                        <CardFieldsPopup
-                            key={index}
-                            title="Edit a card"
-                            trigger={
-                                <PointyCardContainer>
-                                    <Card
-                                        initialWord={card.initWord}
-                                        translatedWord={card.transWord}
-                                    ></Card>
-                                </PointyCardContainer>
-                            }
-                            onTypedInit={(value) => setCurrentInitWord(value)} 
-                            onTypedTrans={(value) => setCurrentTransWord(value)} 
-                            onClickedSubmit={() => changeCard(index)}
-                        ></CardFieldsPopup>
+                {cards?.map((card) => (
+                    <CardFieldsPopup
+                        key={card.id}
+                        title="Edit a card"
+                        trigger={
+                            <PointyCardContainer>
+                                <Card
+                                    initialWord={card.initialWord}
+                                    translatedWord={card.translatedWord}
+                                ></Card>
+                            </PointyCardContainer>
+                        }
+                        onTypedInit={(value) => setFrontWord(value)} 
+                        onTypedTrans={(value) => setBackWord(value)} 
+                        onClickedSubmit={() => changeCard(card.id)}
+                    ></CardFieldsPopup>
                 ))}
             </CardsContainer>
         </>
     )
-    
+
     async function addPack() {
         if (packName.length > 0 && packDescription.length > 0) {
             try {
@@ -143,10 +142,10 @@ export function PackCreating(): ReactElement {
                     description: packDescription
                 } as Pack;
                 const quizzesList = [] as any[];
-                for (let i = 0; i < initWords.length; i++) {
+                for (let i = 0; i < cards.length; i++) {
                     quizzesList.push({
-                        initialWord: initWords[i],
-                        translatedWord: transWords[i]
+                        initialWord: cards[i]?.initialWord,
+                        translatedWord: cards[i]?.translatedWord
                     })
                 }
                 await PackAPI.createPackWithQuizzes(pack, quizzesList, await userId);
@@ -163,7 +162,9 @@ export function PackCreating(): ReactElement {
     }
 
     function addCard() {
-        dispatch(cardAdded(currentInitWord, currentTransWord));
+        dispatch(cardAdded(frontWord, backWord));
+        setFrontWord('');
+        setBackWord('');
         // setInitWords(initWords.concat(currentInitWord));
         // setTransWords(transWords.concat(currentTransWord));
         // setCurrentInitWord("");
@@ -171,11 +172,12 @@ export function PackCreating(): ReactElement {
     }
 
     function changeCard(index: any): void {
-        initWords[index] = currentInitWord;
-        transWords[index] = currentTransWord;
-        setInitWords([...initWords]);
-        setTransWords([...transWords]);
-        setCurrentInitWord("");
-        setCurrentTransWord("");
+        // initWords[index] = currentInitWord;
+        // transWords[index] = currentTransWord;
+        // setInitWords([...initWords]);
+        // setTransWords([...transWords]);
+        dispatch(cardUpdated(index, frontWord, backWord));
+        setFrontWord('');
+        setBackWord('');
     }
 }
