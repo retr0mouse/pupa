@@ -1,4 +1,7 @@
-import React, { ReactElement, useEffect, useState } from "react";
+import React, { ReactElement, 
+    useEffect, 
+    useState 
+} from "react";
 import styled from "styled-components";
 import { UserAPI } from "../apis/UserAPI";
 import { CreatePackInputs } from "../components/CreatePackInputs";
@@ -11,6 +14,8 @@ import { PackAPI } from "../apis/PackAPI";
 import { Pack } from "../templates/Pack";
 import { Card } from "../components/Card";
 import { SuccessMessage } from "../components/SuccessMessage";
+import { cardAdded, selectAllCards } from "../redux/cardsSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const CardsContainer = styled.div`
     display: flex;
@@ -41,6 +46,8 @@ const PointyCardContainer = styled.div`
 `;
 
 export function PackCreating(): ReactElement {
+    const cards = useSelector(selectAllCards);
+    const dispatch = useDispatch();
     const [userId, setUserId] = useState(null) as any;
     const [packName, setPackName] = useState("") as any;
     const [packDescription, setPackDescription] = useState("") as any;
@@ -86,7 +93,7 @@ export function PackCreating(): ReactElement {
                 message={successNotice}
             ></SuccessMessage>
             <CardsContainer>
-                {initWords?.map((word: string, index: number) => {
+                {/* {initWords?.map((word: string, index: number) => {
                     return (
                         <CardFieldsPopup
                             key={index}
@@ -106,11 +113,28 @@ export function PackCreating(): ReactElement {
                             onClickedSubmit={() => changeCard(index)}
                         ></CardFieldsPopup>
                     );
-                })}
+                })} */}
+                {cards?.map((card, index) => (
+                        <CardFieldsPopup
+                            key={index}
+                            title="Edit a card"
+                            trigger={
+                                <PointyCardContainer>
+                                    <Card
+                                        initialWord={card.initWord}
+                                        translatedWord={card.transWord}
+                                    ></Card>
+                                </PointyCardContainer>
+                            }
+                            onTypedInit={(value) => setCurrentInitWord(value)} 
+                            onTypedTrans={(value) => setCurrentTransWord(value)} 
+                            onClickedSubmit={() => changeCard(index)}
+                        ></CardFieldsPopup>
+                ))}
             </CardsContainer>
         </>
-    );
-
+    )
+    
     async function addPack() {
         if (packName.length > 0 && packDescription.length > 0) {
             try {
@@ -139,10 +163,11 @@ export function PackCreating(): ReactElement {
     }
 
     function addCard() {
-        setInitWords(initWords.concat(currentInitWord));
-        setTransWords(transWords.concat(currentTransWord));
-        setCurrentInitWord("");
-        setCurrentTransWord("");
+        dispatch(cardAdded(currentInitWord, currentTransWord));
+        // setInitWords(initWords.concat(currentInitWord));
+        // setTransWords(transWords.concat(currentTransWord));
+        // setCurrentInitWord("");
+        // setCurrentTransWord("");
     }
 
     function changeCard(index: any): void {
