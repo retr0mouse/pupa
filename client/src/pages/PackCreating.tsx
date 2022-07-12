@@ -16,6 +16,7 @@ import { Card } from "../components/Card";
 import { SuccessMessage } from "../components/SuccessMessage";
 import { cardAdded, cardUpdated, selectAllCards } from "../redux/cardsSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { Quiz } from "../templates/Quiz";
 
 const CardsContainer = styled.div`
     display: flex;
@@ -52,8 +53,6 @@ export function PackCreating(): ReactElement {
     const [userId, setUserId] = useState(null) as any;
     const [packName, setPackName] = useState("") as any;
     const [packDescription, setPackDescription] = useState("") as any;
-    const [frontWord, setFrontWord] = useState("") as any;
-    const [backWord, setBackWord] = useState("") as any;
     const [errorNotice, setErrorNotice] = useState("") as any;
     const [successNotice, setSuccessNotice] = useState("") as any;
 
@@ -80,9 +79,7 @@ export function PackCreating(): ReactElement {
             <CardFieldsPopup
                 title="Create a card"
                 trigger={<PopupButton><img src={plusIcon}></img></PopupButton>} 
-                onTypedInit={(cardInit) => setFrontWord(cardInit)} 
-                onTypedTrans={(cardTrans) => setBackWord(cardTrans)}
-                onClickedSubmit={() => addCard()}
+                onClickedSubmit={(quiz) => addCard(quiz.initialWord, quiz.translatedWord)}
             ></CardFieldsPopup>
             <ErrorMessage
                 message={errorNotice}
@@ -94,7 +91,6 @@ export function PackCreating(): ReactElement {
                 {cards?.map((card) => (
                     <CardFieldsPopup
                         id={typeof card.id === "string" ? card.id: ""}
-                        key={card.id}
                         title="Edit a card"
                         trigger={
                             <PointyCardContainer>
@@ -104,9 +100,7 @@ export function PackCreating(): ReactElement {
                                 ></Card>
                             </PointyCardContainer>
                         }
-                        onTypedInit={(value) => setFrontWord(value)} 
-                        onTypedTrans={(value) => setBackWord(value)} 
-                        onClickedSubmit={() => changeCard(card.id)}
+                        onClickedSubmit={(quiz:Quiz) => changeCard(quiz.id, quiz.initialWord, quiz.translatedWord)}
                     ></CardFieldsPopup>
                 ))}
             </CardsContainer>
@@ -140,15 +134,11 @@ export function PackCreating(): ReactElement {
         return user.id;
     }
 
-    function addCard() {
-        dispatch(cardAdded(frontWord, backWord));
-        setFrontWord('');
-        setBackWord('');
+    function addCard(frontSide: string, backSide: string) {
+        dispatch(cardAdded(frontSide, backSide));
     }
 
-    function changeCard(index: any): void {
-        dispatch(cardUpdated(index, frontWord, backWord));
-        setFrontWord('');
-        setBackWord('');
+    function changeCard(index: any, frontSide: string, backSide: string): void {
+        dispatch(cardUpdated(index, frontSide, backSide));
     }
 }

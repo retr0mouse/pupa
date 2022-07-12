@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Popup from 'reactjs-popup';
 import styled, { keyframes } from 'styled-components';
@@ -9,33 +9,17 @@ import { Quiz } from '../templates/Quiz';
 interface Props{
     id: string;
     title: string;
-    initWords?: string[];
-    transWords?: string[];
-    defaultInitWord?: string;
-    defaultTransWord?: string;
     trigger: any;
-    onTypedInit(event: any): void;
-    onTypedTrans(event: any): void;
-    onClickedSubmit(index?: number): void;
+    onClickedSubmit(card: Quiz): void;
 }
 
 const defaultProps: Props = {
-    initWords: ['default init word'],
-    transWords: ['default trans word'],
-    onTypedInit: function (): void {
-        throw new Error("Function not implemented.");
-    },
-    onTypedTrans: function (): void {
-        throw new Error("Function not implemented.");
-    },
-    onClickedSubmit: function (): void {
-        throw new Error("Function not implemented.");
-    },
     trigger: undefined,
-    defaultInitWord: "",
-    defaultTransWord: "",
     title: '',
-    id: ''
+    id: '',
+    onClickedSubmit: function (): Quiz {
+        throw new Error('Function not implemented.');
+    }
 }
 
 const TextField = styled.input`
@@ -134,43 +118,47 @@ const SubmitButton = styled.button`
     color: #FFFFFF;
 `;
 
-export function CardFieldsPopup(props:Props): ReactElement{
+export function CardFieldsPopup(props:Props): ReactElement {
     const card = useSelector((state: RootState) => props.id && selectCardById(state, props.id)) as Quiz;
 
-    const [initWord, setInitWord] = useState(typeof card != 'undefined' ? card.initialWord : '' ) as any;
-    const [transWord, setTransWord] = useState(typeof card != 'undefined' ? card.translatedWord : '' ) as any;
+    const [frontSide, setFrontSide] = useState(typeof card != 'undefined' ? card.initialWord : '' ) as any;
+    const [backSide, setBackSide] = useState(typeof card != 'undefined' ? card.translatedWord : '' ) as any;
     const [startedTypingFront, setStartedTypingFront] = useState(false);
     const [startedTypingBack, setStartedTypingBack] = useState(false);
+
+    const onFrontChanged = (e: any) => setFrontSide(e.target.value)
+    const onBackChanged = (e: any) => setBackSide(e.target.value)
 
     return (
         <StyledPopup
             trigger={props.trigger}
             modal
             lockScroll
+            key={props.id}
         >
             {(close: any) => (
                 <Container>
                     <h1>{props.title}</h1>
-                    <label htmlFor="InitialWord">{typeof initWord !== 'undefined' && initWord.length === 0 && startedTypingFront ? "Please provide a front text" : ""}</label>
-                    <TextField type="input" placeholder="Word" name="InitialWord" value={initWord} required onInput={(event: any) => {
-                        props.onTypedInit(event?.target.value);
-                        setInitWord(event?.target.value)
+                    <label htmlFor="InitialWord">{typeof frontSide !== 'undefined' && frontSide.length === 0 && startedTypingFront ? "Please provide a front text" : ""}</label>
+                    <TextField type="input" placeholder="Word" name="InitialWord" value={frontSide} required onInput={(event: any) => {
+                        onFrontChanged(event);
                         setStartedTypingFront(true);
                     }}/>
-                    <label htmlFor="WordTranslate">{typeof transWord !== 'undefined' && transWord.length === 0 && startedTypingBack ? "Please provide a back text" : ""}</label>
-                    <TextField type="input" maxLength={2048} placeholder="Word Translate" value={transWord} name="WordTranslate" required onInput={(event: any) => {
-                        props.onTypedTrans(event?.target.value);
-                        setTransWord(event?.target.value);
+                    <label htmlFor="WordTranslate">{typeof backSide !== 'undefined' && backSide.length === 0 && startedTypingBack ? "Please provide a back text" : ""}</label>
+                    <TextField type="input" placeholder="Word Translate" value={backSide} name="WordTranslate" required onInput={(event: any) => {
+                        onBackChanged(event);
                         setStartedTypingBack(true);
                     }}/>
                     <SubmitButton
                         onClick={() => {
-                            setStartedTypingBack(true);
-                            setStartedTypingFront(true);
                             if (checkInputs()) {
-                                props.onClickedSubmit()
+                                props.onClickedSubmit({initialWord: frontSide, translatedWord: backSide} as Quiz);
                                 setStartedTypingBack(false);
                                 setStartedTypingFront(false);
+                                if (!card.id) {
+                                    setFrontSide('');
+                                    setBackSide('');
+                                }
                                 close();
                             }
                         }}
@@ -184,10 +172,10 @@ export function CardFieldsPopup(props:Props): ReactElement{
 
     function checkInputs(): boolean {
         let isFilled = true;
-        if (initWord.length === 0) {
+        if (frontSide.length === 0) {
             isFilled = false;
         }
-        if (transWord.length === 0) {
+        if (backSide.length === 0) {
             isFilled = false;
         }
         return isFilled;
