@@ -48,13 +48,12 @@ const PointyCardContainer = styled.div`
 export function PackCreating(): ReactElement {
     const cards = useSelector(selectAllCards);
     const dispatch = useDispatch();
+
     const [userId, setUserId] = useState(null) as any;
     const [packName, setPackName] = useState("") as any;
     const [packDescription, setPackDescription] = useState("") as any;
     const [frontWord, setFrontWord] = useState("") as any;
     const [backWord, setBackWord] = useState("") as any;
-    // const [initWords, setInitWords] = useState([]) as any;
-    // const [transWords, setTransWords] = useState([]) as any;
     const [errorNotice, setErrorNotice] = useState("") as any;
     const [successNotice, setSuccessNotice] = useState("") as any;
 
@@ -92,29 +91,9 @@ export function PackCreating(): ReactElement {
                 message={successNotice}
             ></SuccessMessage>
             <CardsContainer>
-                {/* {initWords?.map((word: string, index: number) => {
-                    return (
-                        <CardFieldsPopup
-                            key={index}
-                            title="Edit a card"
-                            trigger={
-                                <PointyCardContainer>
-                                    <Card
-                                        initialWord={word}
-                                        translatedWord={transWords[index]}
-                                    ></Card>
-                                </PointyCardContainer>
-                            }
-                            defaultInitWord={word}
-                            defaultTransWord={transWords[index]}
-                            onTypedInit={(value) => setCurrentInitWord(value)} 
-                            onTypedTrans={(value) => setCurrentTransWord(value)} 
-                            onClickedSubmit={() => changeCard(index)}
-                        ></CardFieldsPopup>
-                    );
-                })} */}
                 {cards?.map((card) => (
                     <CardFieldsPopup
+                        id={typeof card.id === "string" ? card.id: ""}
                         key={card.id}
                         title="Edit a card"
                         trigger={
@@ -165,17 +144,9 @@ export function PackCreating(): ReactElement {
         dispatch(cardAdded(frontWord, backWord));
         setFrontWord('');
         setBackWord('');
-        // setInitWords(initWords.concat(currentInitWord));
-        // setTransWords(transWords.concat(currentTransWord));
-        // setCurrentInitWord("");
-        // setCurrentTransWord("");
     }
 
     function changeCard(index: any): void {
-        // initWords[index] = currentInitWord;
-        // transWords[index] = currentTransWord;
-        // setInitWords([...initWords]);
-        // setTransWords([...transWords]);
         dispatch(cardUpdated(index, frontWord, backWord));
         setFrontWord('');
         setBackWord('');

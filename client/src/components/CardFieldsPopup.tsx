@@ -1,8 +1,13 @@
 import React, { ReactElement, useState } from 'react';
+import { useSelector } from 'react-redux';
 import Popup from 'reactjs-popup';
 import styled, { keyframes } from 'styled-components';
+import { selectCardById } from '../redux/cardsSlice';
+import { RootState } from '../redux/store';
+import { Quiz } from '../templates/Quiz';
 
 interface Props{
+    id: string;
     title: string;
     initWords?: string[];
     transWords?: string[];
@@ -29,7 +34,8 @@ const defaultProps: Props = {
     trigger: undefined,
     defaultInitWord: "",
     defaultTransWord: "",
-    title: ''
+    title: '',
+    id: ''
 }
 
 const TextField = styled.input`
@@ -83,8 +89,6 @@ const StyledPopup = styled(Popup)`
     &-content {
         animation: ${anvil} 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
     }
-
-    
 `;
 
 const Container = styled.div`
@@ -131,8 +135,10 @@ const SubmitButton = styled.button`
 `;
 
 export function CardFieldsPopup(props:Props): ReactElement{
-    const [initWord, setInitWord] = useState("") as any;
-    const [transWord, setTransWord] = useState("") as any;
+    const card = useSelector((state: RootState) => props.id && selectCardById(state, props.id)) as Quiz;
+
+    const [initWord, setInitWord] = useState(typeof card != 'undefined' ? card.initialWord : '' ) as any;
+    const [transWord, setTransWord] = useState(typeof card != 'undefined' ? card.translatedWord : '' ) as any;
     const [startedTypingFront, setStartedTypingFront] = useState(false);
     const [startedTypingBack, setStartedTypingBack] = useState(false);
 
@@ -145,14 +151,14 @@ export function CardFieldsPopup(props:Props): ReactElement{
             {(close: any) => (
                 <Container>
                     <h1>{props.title}</h1>
-                    <label htmlFor="InitialWord">{initWord.length === 0 && startedTypingFront ? "Please provide a front text" : ""}</label>
-                    <TextField type="input" placeholder="Word" name="InitialWord" required onInput={(event: any) => {
+                    <label htmlFor="InitialWord">{typeof initWord !== 'undefined' && initWord.length === 0 && startedTypingFront ? "Please provide a front text" : ""}</label>
+                    <TextField type="input" placeholder="Word" name="InitialWord" value={initWord} required onInput={(event: any) => {
                         props.onTypedInit(event?.target.value);
                         setInitWord(event?.target.value)
                         setStartedTypingFront(true);
                     }}/>
-                    <label htmlFor="WordTranslate">{transWord.length === 0 && startedTypingBack ? "Please provide a back text" : ""}</label>
-                    <TextField type="input" maxLength={2048} placeholder="Word Translate" name="WordTranslate" required onInput={(event: any) => {
+                    <label htmlFor="WordTranslate">{typeof transWord !== 'undefined' && transWord.length === 0 && startedTypingBack ? "Please provide a back text" : ""}</label>
+                    <TextField type="input" maxLength={2048} placeholder="Word Translate" value={transWord} name="WordTranslate" required onInput={(event: any) => {
                         props.onTypedTrans(event?.target.value);
                         setTransWord(event?.target.value);
                         setStartedTypingBack(true);
@@ -163,8 +169,8 @@ export function CardFieldsPopup(props:Props): ReactElement{
                             setStartedTypingFront(true);
                             if (checkInputs()) {
                                 props.onClickedSubmit()
-                                setInitWord('');
-                                setTransWord('');
+                                setStartedTypingBack(false);
+                                setStartedTypingFront(false);
                                 close();
                             }
                         }}
