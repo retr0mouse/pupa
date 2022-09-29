@@ -6,7 +6,8 @@ import styled from "styled-components";
 const ButtonsContainer = styled.div`
     position: relative;
     left: 50%;
-    transform: translate(-50%, 0);
+    /* top: 50%; */
+    transform: translate(-50%, 50%);
     align-items: center;
     display: flex;
     flex-direction: column;

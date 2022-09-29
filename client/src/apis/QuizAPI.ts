@@ -3,7 +3,7 @@ import { Pack } from "../templates/Pack";
 
 export class QuizAPI {
     static async getQuizzes(): Promise<Pack[]>{
-        const response = await fetch("https://pupa-cards-backend.herokuapp.com/api/v1/quiz_pack", {
+        const response = await fetch("http://localhost:8080/api/v1/quiz_pack", {
             method: "GET"
         });
         if (!response.ok) {
@@ -23,7 +23,7 @@ export class QuizAPI {
                 initialWord: initWords[i],
                 translatedWord: transWords[i]
             }
-            const response = await fetch(`https://pupa-cards-backend.herokuapp.com/api/v1/quiz_pack/addQuiz?packId=${packId}`, {
+            const response = await fetch(`http://localhost:8080/api/v1/quiz_pack/addQuiz?packId=${packId}`, {
                 method: "POST",
                 body: JSON.stringify(data),
                 headers: {

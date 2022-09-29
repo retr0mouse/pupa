@@ -11,7 +11,7 @@ export class UserAPI {
             role: ["user", "admin", "mod"],
             password: password
         };
-        const response = await fetch("https://pupa-cards-backend.herokuapp.com/api/v1/auth/signup", {
+        const response = await fetch("http://localhost:8080/api/v1/auth/signup", {
             method: "POST",
             body: JSON.stringify(data),
             headers : {
@@ -29,7 +29,7 @@ export class UserAPI {
             password: password
         };
 
-        const response = await fetch("https://pupa-cards-backend.herokuapp.com/api/v1/auth/signin", {
+        const response = await fetch("http://localhost:8080/api/v1/auth/signin", {
             method: "POST",
             body: JSON.stringify(data),
             headers : {
@@ -45,7 +45,7 @@ export class UserAPI {
         if (token == null) {
             throw new Error("You need to sign in first");
         }
-        const response = await fetch("https://pupa-cards-backend.herokuapp.com/api/v1/user_table/getByJwt", {
+        const response = await fetch("http://localhost:8080/api/v1/user_table/getByJwt", {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
