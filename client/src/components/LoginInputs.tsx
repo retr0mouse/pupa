@@ -1,5 +1,7 @@
 import React, { ReactElement, useState } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components"
+import { noticeSetted } from "../redux/noticeSlice";
 
 const InputsContainer = styled.div`
     position: relative;
@@ -86,25 +88,27 @@ export function LoginInputs(props: Props): ReactElement {
     const [password, setPassword] = useState("");
     const [passwordState, setPasswordState] = useState(true);
 
+    const dispatch = useDispatch();
+
     return (
         <>
-        <InputsContainer>
-            <h1>Login</h1>
-            <label htmlFor="username">{usernameState ? "" : "please provide a username"}</label>
-            <TextField type="text" name="username" id="" placeholder="username" onChange={(event: any) => {
-                props.onUsernameTyped(event?.target.value);
-                event?.target.value.length > 0 ? setUsernameState(true) : setUsernameState(false);
-                setUsername(event?.target.value);
-            }}/>
-            <label htmlFor="password">{passwordState ? "" : "please provide a password"}</label>
-            <TextField type="password" name="password" id="" placeholder="password" onChange={(event: any) => {
-                props.onPasswordTyped(event?.target.value);
-                event?.target.value.length > 0 ? setPasswordState(true) : setPasswordState(false);
-                setPassword(event?.target.value);
-            }}/>
-            <button onClick={() => checkInputs() ? props.onClickedSubmit() : null}>Submit</button>
-        </InputsContainer></>
-        
+            <InputsContainer>
+                <h1>Login</h1>
+                <label htmlFor="username">{usernameState ? "" : "please provide a username"}</label>
+                <TextField type="text" name="username" id="" placeholder="username" onChange={(event: any) => {
+                    props.onUsernameTyped(event?.target.value);
+                    event?.target.value.length > 0 ? setUsernameState(true) : setUsernameState(false);
+                    setUsername(event?.target.value);
+                }}/>
+                <label htmlFor="password">{passwordState ? "" : "please provide a password"}</label>
+                <TextField type="password" name="password" id="" placeholder="password" onChange={(event: any) => {
+                    props.onPasswordTyped(event?.target.value);
+                    event?.target.value.length > 0 ? setPasswordState(true) : setPasswordState(false);
+                    setPassword(event?.target.value);
+                }}/>
+                <button onClick={() => checkInputs() ? props.onClickedSubmit() : dispatch(noticeSetted("notice me daddy"))}>Submit</button>
+            </InputsContainer>
+        </>
     )
 
     function checkInputs(): boolean {

@@ -1,16 +1,18 @@
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserAPI } from "../apis/UserAPI";
 import { LoginInputs } from "../components/LoginInputs";
 import { ErrorMessage } from "../components/ErrorMessage";
 import { Navigation } from "../components/NavigationBar";
 import 'react-toastify/dist/ReactToastify.css';
-
+import { useSelector } from "react-redux";
+import { getNotice } from "../redux/noticeSlice";
 
 export function Login(): ReactElement {
     const [username, setUsername] = useState("") as any;
     const [password, setPassword] = useState("") as any;
-    const [notice, setNotice] = useState("") as any;
+    // const [notice, setNotice] = useState("") as any;
+    const notice = useSelector(getNotice);
 
     const history = useNavigate();
     
@@ -34,26 +36,20 @@ export function Login(): ReactElement {
         </>
     );
     async function LoginUser() {
-        if (username.length > 0 && password.length > 0) {
-            try { 
-                const response = await UserAPI.LoginUser(username, password);
-                if (response.ok) {
-                    const result = await response.json() as UserResponse;
-                    window.sessionStorage.setItem("token", result.accessToken);
-                    history("/roles");
-                }
-                else {
-                    throw new Error("Bad credentials");
-                }
-            } catch (error) {
-                setNotice(error);
-                return;
+        try {
+            const response = await UserAPI.LoginUser(username, password);
+            if (response.ok) {
+                const result = await response.json() as UserResponse;
+                window.sessionStorage.setItem("token", result.accessToken);
+                history("/roles");
             }
-            // setNotice("Login successful!");    
+            else {
+                throw new Error("Bad credentials");
+            }
+        } catch (error) {
+            return;
         }
-        else {
-            setNotice("Please provide the needed data");
-        }
+        // setNotice("Login successful!");    
         return;
     }
     
@@ -66,4 +62,4 @@ interface UserResponse {
     roles: string[];
     accessToken: string;
     tokenType: string;
-  }
+}
