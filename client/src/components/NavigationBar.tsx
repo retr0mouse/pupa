@@ -11,6 +11,7 @@ const ListItem = styled.li`
     height: 3rem;
     align-items: center;
     padding: 18px;
+    
 
     .logo-link {
         font-family: 'Open Sans', sans-serif;
@@ -30,10 +31,6 @@ const ListItem = styled.li`
 
     a:visited {
         text-decoration: none;
-    }
-
-    a:hover {
-        text-decoration: underline;
     }
 
     a:active {

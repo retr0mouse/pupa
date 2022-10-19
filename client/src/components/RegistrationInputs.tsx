@@ -7,14 +7,15 @@ const InputsContainer = styled.div`
     transform: translate(-50%, 0);
     width: 1000px;
     border-radius: 5px;
-    background-color: white;
+    background-color: #6495ED;
     display: flex;
 
     flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
-    border-radius: 70px;
+    border-radius: 20px;
     margin: 50px;
+    box-shadow: 15px 15px 11px rgba(0, 0, 0, 0.25);
 
     input {
         background: #FEFEFE;
@@ -39,12 +40,12 @@ const InputsContainer = styled.div`
 
     button {
         cursor:pointer;
-        width: 380px;
+        width: 515px;
         height: 77px;
         margin: 30px;
-        background: #5B81E2;
+        background: linear-gradient(109.32deg, #2054DB 12.52%, rgba(0, 0, 0, 0) 62.98%), #FF0000;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        border-radius: 40px;
+        border-radius: 5px;
         border: none;
         font-size: 50px;
         color: #F1F1F1;
@@ -67,9 +68,10 @@ const InputsContainer = styled.div`
     h1 {
         margin-top: 0;
         margin-bottom: 0px;
-        font-weight: 400;
-        font-size: 60px;
+        font-weight: 600;
+        font-size: 80px;
         font-family: 'Poppins', sans-serif;
+        color: rgb(34, 79, 140);
     }
 `;
 const TextField = styled.input`
@@ -84,6 +86,15 @@ const TextField = styled.input`
     :hover {
     transform: scale(1.1);
     }
+
+    .icon {
+        padding: 10px;
+        background: dodgerblue;
+        color: white;
+        min-width: 50px;
+        text-align: center;
+      }
+
 `;
 
 interface Props {
@@ -112,7 +123,7 @@ export function RegistraionInputs(props: Props): ReactElement {
     
     return (
         <InputsContainer>
-            <h1>Register</h1>
+            <h1>Register</h1>           
             <div>
                 <label htmlFor="username">{usernameState ? "" : "please provide a username"}</label>
                 <TextField type="text" name="username" id="" placeholder="username" onChange={(event) => {

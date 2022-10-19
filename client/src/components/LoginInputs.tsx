@@ -10,12 +10,13 @@ const InputsContainer = styled.div`
     width: max-content;
     padding: 50px;
     border-radius: 5px;
-    background-color: white;
+    background-color: #6495ED;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-radius: 70px;
+    border-radius: 20px;
     margin-top: 50px;
+    box-shadow: 15px 15px 11px rgba(0, 0, 0, 0.25);
     
     input {
         background: #FEFEFE;
@@ -41,7 +42,8 @@ const InputsContainer = styled.div`
         cursor:pointer;
         width: 515px;
         height: 77px;
-        background: #5B81E2;
+        background: linear-gradient(109.32deg, #2054DB 12.52%, rgba(0, 0, 0, 0) 62.98%), #FF0000;
+
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border-radius: 5px;
         border: none;
@@ -56,9 +58,10 @@ const InputsContainer = styled.div`
     }
     h1 {
         margin-top: 0;
-        font-weight: 400;
-        font-size: 70px;
+        font-weight: 600;
+        font-size: 80px;
         font-family: 'Poppins', sans-serif;
+        color:rgb(34, 79, 140);
     }
 `;
 
