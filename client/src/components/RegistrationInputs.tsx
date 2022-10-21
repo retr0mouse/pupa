@@ -8,13 +8,13 @@ const InputsContainer = styled.div`
     width: 1000px;
     border-radius: 5px;
     background-color: #6495ED;
-    display: flex;
+    display: flex;\
 
     flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
     border-radius: 20px;
-    margin: 50px;
+    margin-top:50px;
     box-shadow: 15px 15px 11px rgba(0, 0, 0, 0.25);
 
     input {
@@ -39,22 +39,62 @@ const InputsContainer = styled.div`
     }
 
     button {
-        cursor:pointer;
-        width: 515px;
-        height: 77px;
-        margin: 30px;
-        background: linear-gradient(109.32deg, #2054DB 12.52%, rgba(0, 0, 0, 0) 62.98%), #FF0000;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        border-radius: 5px;
-        border: none;
-        font-size: 50px;
-        color: #F1F1F1;
-        font-family: 'Poppins', sans-serif;
-
-        transition: transform .2s;
-        :hover {
-        transform: scale(1.2);
+        {
+        align-items: center;
+        background-image: linear-gradient(to right, #eecda3, #ef629f);
+        border: 0;
+        border-radius: 8px;
+        box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+        box-sizing: border-box;
+        color: #FFFFFF;
+        display: flex;
+        font-family: Phantomsans, sans-serif;
+        font-size: 20px;
+        justify-content: center;
+        margin: 15px;
+        line-height: 50px;
+        max-width: 100%;
+        min-width: 140px;
+        padding: 3px;
+        text-decoration: none;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        white-space: nowrap;
+        cursor: pointer;
+      }
+      
+      :active,
+      :hover {
+        outline: 0;
+      }
+      
+      span {
+        background-color: rgb(5, 6, 45);
+        padding: 16px 24px;
+        border-radius: 6px;
+        width: 100%;
+        height: 100%;
+        transition: 300ms;
+        underline: none;
+      }
+      
+      :hover span {
+        background: none;
+        underline: none;
+      }
+      
+      @media (min-width: 768px) {
+      {
+          font-size: 40px;
+          min-width: 196px;
         }
+      }
+      
+      transition: transform .2s;
+           :hover {
+               transform: scale(1.2);
+          }
     }
 
     div {
@@ -164,7 +204,7 @@ export function RegistraionInputs(props: Props): ReactElement {
                 }}/>
             </div>
            
-            <button onClick={() => checkInputs() ? props.onClickedSubmit() : ""}>Submit</button>
+            <button onClick={() => checkInputs() ? props.onClickedSubmit() : ""}><span className="text">Submit</span></button>
         </InputsContainer>
     )
 
