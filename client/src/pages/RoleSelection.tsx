@@ -1,5 +1,5 @@
-import React, {  } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useEffect } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Navigation } from "../components/NavigationBar";
 import styled from "styled-components";
 import studentImage from '../../images/student.svg';
@@ -61,7 +61,16 @@ const MainContainer = styled.div`
     }
 `;
 
-export function RoleSelection() {
+interface Props {
+    isLoggedIn: boolean
+}
+
+export function RoleSelection(props: Props) {
+    const history = useNavigate();
+    useEffect(() => {
+        !props.isLoggedIn ? history("/") : null;
+    }, [])
+
     return(
         <>
             <Navigation

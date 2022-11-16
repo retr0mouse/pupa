@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { PackAPI } from "../apis/PackAPI";
 import { ErrorMessage } from "../components/ErrorMessage";
@@ -14,7 +14,16 @@ const SpinnerContainer = styled.div`
     transform: translate(-50%, -50%);
 `;
 
-export function PackOverview() {
+interface Props {
+    isLoggedIn: boolean
+}
+
+export function PackOverview(props: Props) {
+    const history = useNavigate();
+    useEffect(() => {
+        !props.isLoggedIn ? history("/") : null;
+    }, [])
+
     const { packId } = useParams();
     const [pack, setPack] = useState() as any;
     const [notice, setNotice] = useState() as any;

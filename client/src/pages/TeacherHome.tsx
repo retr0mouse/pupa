@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { UserAPI } from "../apis/UserAPI";
 import { Navigation } from "../components/NavigationBar";
@@ -49,7 +49,16 @@ const Container = styled.div`
     }
 `;
 
-export function TeacherHome() {
+interface Props {
+    isLoggedIn: boolean
+}
+
+export function TeacherHome(props: Props) {
+    const history = useNavigate();
+    useEffect(() => {
+        !props.isLoggedIn ? history("/") : null;
+    }, [])
+
     const [userId, setUserId] = useState(0);
 
     useEffect(() => {

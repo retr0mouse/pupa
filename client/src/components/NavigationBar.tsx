@@ -1,6 +1,8 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import styled from "styled-components";interface Props {
+import styled from "styled-components";import { toggleLoggedIn } from "../redux/loginSlice";
+interface Props {
     link: string;
     enableRolesButton: boolean;
     enableLogoutButton: boolean;
@@ -67,6 +69,7 @@ const UnorderedList = styled.ul`
 `
 
 export function Navigation(props: Props) {
+    const dispatch = useDispatch();
     return (
         <>  
             <UnorderedList>
@@ -86,6 +89,7 @@ export function Navigation(props: Props) {
                 </ListItem>
                 <ListItem className="logout-button">
                     <NavLink
+                        onClick={() => dispatch(toggleLoggedIn())}
                         to={"/"}
                         >
                         {props.enableLogoutButton ? "Log out" : null}

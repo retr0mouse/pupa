@@ -37,7 +37,12 @@ const cardsSlice = createSlice({
                     }
                 }
             }
-        }
+        },
+        // userLoggedIn: {
+        //     reducer(state, action: PayloadAction<boolean>) {
+        //         const isLogged = state.find(state);
+        //     }
+        // }
     }
 })
 

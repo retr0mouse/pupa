@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ErrorMessage } from "../components/ErrorMessage";
 import { Navigation } from "../components/NavigationBar";
 import styled from "styled-components";
@@ -6,6 +6,7 @@ import { PackFindingBox } from "../components/PackFindingBox";
 import { PackAPI } from "../apis/PackAPI";
 import { PacksPreview } from "../components/PacksPreview";
 import { Spinner } from "../components/Spinner";
+import { useNavigate } from "react-router";
 
 const PacksContainer = styled.div`
     display: flex;
@@ -20,8 +21,16 @@ const SpinnerContainer = styled.div`
     transform: translate(-50%, -50%);
 `;
 
+interface Props {
+    isLoggedIn: boolean
+}
 
-export function StudentHome() {
+export function StudentHome(props: Props) {
+    const history = useNavigate();
+    useEffect(() => {
+        !props.isLoggedIn ? history("/") : null;
+    }, [])
+    
     const [packs, setPacks] = useState([]) as any;
     const [userId, setUserId] = useState("") as any;
     const [notice, setNotice] = useState("") as any;

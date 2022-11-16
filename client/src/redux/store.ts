@@ -1,12 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import cardsReducer from "./cardsSlice";
 import noticeReducer from "./noticeSlice";
+import loginReducer from "./loginSlice";
 
 
 const store = configureStore({
     reducer: {
         cards: cardsReducer,
-        notice: noticeReducer
+        notice: noticeReducer,
+        login: loginReducer
     }
 });
 

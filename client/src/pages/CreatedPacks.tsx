@@ -6,6 +6,7 @@ import { PacksPreview } from "../components/PacksPreview";
 import styled from "styled-components";
 import { UserAPI } from "../apis/UserAPI";
 import { Spinner } from "../components/Spinner";
+import { useNavigate } from "react-router";
 
 const PacksContainer = styled.div`
     display: flex;
@@ -29,12 +30,18 @@ const Title = styled.h1`
     font-family: 'Open Sans', sans-serif;
 `;
 
-export function CreatedPacks(): ReactElement {
+interface Props {
+    isLoggedIn: boolean
+}
+
+export function CreatedPacks(props: Props): ReactElement {
+    const history = useNavigate();
     const [packs, setPacks] = useState([]) as any;
     const [errorNotice, setErrorNotice] = useState("") as any;
     const [loading, setLoading] = useState(true) as any;
 
     useEffect(() => {
+        !props.isLoggedIn ? history("/") : null;
         fetchPacks().catch(console.log);
     }, []); 
 

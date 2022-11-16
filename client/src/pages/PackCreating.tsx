@@ -17,6 +17,7 @@ import { SuccessMessage } from "../components/SuccessMessage";
 import { cardAdded, cardUpdated, selectAllCards } from "../redux/cardsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { Quiz } from "../templates/Quiz";
+import { useNavigate } from "react-router";
 
 const CardsContainer = styled.div`
     display: flex;
@@ -46,7 +47,17 @@ const PointyCardContainer = styled.div`
     cursor: pointer;
 `;
 
-export function PackCreating(): ReactElement {
+interface Props {
+    isLoggedIn: boolean
+}
+
+export function PackCreating(props: Props): ReactElement {
+    const history = useNavigate();
+
+    useEffect(() => {
+        !props.isLoggedIn ? history("/") : null;
+    }, [])
+
     const cards = useSelector(selectAllCards);
     const dispatch = useDispatch();
 

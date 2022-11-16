@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect, useState } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { PackAPI } from "../apis/PackAPI";
 import { CardsToStudy } from "../components/CardsToStudy";
@@ -42,13 +42,19 @@ const ReturnButton = styled.div`
     cursor: pointer;
 `;
 
-export function PackStudy(): ReactElement {
+interface Props {
+    isLoggedIn: boolean
+}
+
+export function PackStudy(props: Props): ReactElement {
+    const history = useNavigate();
     const { packId } = useParams();
     const [cards, setCards] = useState([]) as any;
     const [loading, setLoading] = useState(true) as any;
     const [notice, setNotice] = useState("") as any;
     
     useEffect(() => {
+        !props.isLoggedIn ? history("/") : null;
         fetchCards();
     }, []);
 

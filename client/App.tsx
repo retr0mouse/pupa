@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import { CreatedPacks } from "./src/pages/CreatedPacks";
 import { Home } from "./src/pages/Home";
@@ -10,20 +11,23 @@ import { Registration } from "./src/pages/Registration";
 import { RoleSelection } from "./src/pages/RoleSelection";
 import { StudentHome } from "./src/pages/StudentHome";
 import { TeacherHome } from "./src/pages/TeacherHome";
+import { getIsLoggedIn } from "./src/redux/loginSlice";
 
 export default function App() {
+    const isLoggedIn = useSelector(getIsLoggedIn);
+
     return (
         <Routes>
             <Route path="/" element={<Home/>}/>
             <Route path="/register" element={<Registration/>}/>
             <Route path="/login" element={<Login/>}/>
-            <Route path="/teacher" element={<TeacherHome/>}/>
-            <Route path="/student" element={<StudentHome/>}/>
-            <Route path="/roles" element={<RoleSelection/>}/>
-            <Route path="/create-pack" element={<PackCreating/>}/>
-            <Route path="/packs" element={<CreatedPacks/>}/>
-            <Route path="/pack-overview/:packId" element={<PackOverview/>}/>
-            <Route path="/pack-study/:packId" element={<PackStudy/>}/>
+            <Route path="/teacher" element={<TeacherHome isLoggedIn={isLoggedIn.value}/>}/>
+            <Route path="/student" element={<StudentHome isLoggedIn={isLoggedIn.value}/>}/>
+            <Route path="/roles" element={<RoleSelection isLoggedIn={isLoggedIn.value}/>}/>
+            <Route path="/create-pack" element={<PackCreating isLoggedIn={isLoggedIn.value}/>}/>
+            <Route path="/packs" element={<CreatedPacks isLoggedIn={isLoggedIn.value}/>}/>
+            <Route path="/pack-overview/:packId" element={<PackOverview isLoggedIn={isLoggedIn.value}/>}/>
+            <Route path="/pack-study/:packId" element={<PackStudy isLoggedIn={isLoggedIn.value}/>}/>
         </Routes>
     );
 }

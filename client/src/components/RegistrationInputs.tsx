@@ -108,7 +108,6 @@ export function RegistraionInputs(props: Props): ReactElement {
     const [password, setPassword] = useState("");
     const [passwordState, setPasswordState] = useState(true);
     const [passwordAgain, setPasswordAgain] = useState("");
-
     
     return (
         <InputsContainer>
